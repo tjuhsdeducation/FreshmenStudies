@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Freshmen Studies Lessons</title>
+<meta name="description" content="California health lessons for 9th grade: fentanyl awareness, human trafficking prevention, and identity, respect & healthy relationships.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fs-style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%238a54e0'/%3E%3Cpath d='M16 7l-9 5 9 5 7-3.8V19h2v-7z' fill='white'/%3E%3C/svg%3E">
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#home" aria-label="Freshmen Studies home">
+      <span class="mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3zm-7 9.2V16l7 4 7-4v-3.8l-7 3.8-7-3.8z"/></svg></span>
+      <span class="t">Freshmen Studies</span>
+    </a>
+    <span class="crumb" id="crumb"></span>
+    <span class="spacer"></span>
+    <div class="whoami" id="who" hidden></div>
+  </div>
+</header>
+<main id="app"></main>
+<div id="modal" class="modal" hidden></div>
+
+<!-- Settings (edit fs-config.js), engine, map shapes, then one file per topic -->
+<script src="fs-config.js"></script>
+<script src="fs-app.js"></script>
+<script src="fs-worldmap.js"></script>
+<script src="topic-fentanyl.js"></script>
+<script src="topic-trafficking.js"></script>
+<script src="topic-lgbtq.js"></script>
+<script src="topic-teacher.js"></script>
+</body>
+</html>
