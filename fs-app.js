@@ -6,6 +6,7 @@
 const CFG = window.FS_CONFIG || {};
 const SCHOOLS = CFG.schools || { 'Tulare Union': [], 'Tulare Western': [], 'Mission Oak': [] };
 const SCRIPT_URL = (CFG.scriptUrl || '').trim();
+const PERIODS = CFG.periods || ['1', '2', '3', '4', '5', '6', '7', '8'];
 const FS = window.FS = { topics: [], items: {} };
 FS.topic = t => FS.topics.push(t);
 FS.item = (id, d) => { FS.items[id] = Object.assign({ id }, d); };
@@ -19,6 +20,8 @@ FS.esc = esc; FS.shuffle = shuffle; FS.words = words;
 /* ---------- who is signed in ---------- */
 let CUR = null;
 try { CUR = JSON.parse(localStorage.getItem('fsStudent') || 'null'); } catch (e) { CUR = null; }
+/* sign in again if saved info is from an older version, or the school/teacher list changed */
+if (CUR && CUR.role === 'student' && (!CUR.period || !(SCHOOLS[CUR.school] || []).includes(CUR.teacher))) CUR = null;
 const isTeacher = () => !!(CUR && CUR.role === 'teacher');
 FS.me = () => CUR; FS.isTeacher = isTeacher;
 function saveMe(v) { CUR = v; try { v ? localStorage.setItem('fsStudent', JSON.stringify(v)) : localStorage.removeItem('fsStudent'); } catch (e) { } }
@@ -34,7 +37,7 @@ FS.toast = toast;
 function renderWho() {
   if (!CUR) { who.hidden = true; return; }
   who.hidden = false;
-  who.innerHTML = `<span>${isTeacher() ? '🍎 Teacher view' : '👤 ' + esc(CUR.first + ' ' + CUR.last.charAt(0) + '.') + ' · ' + esc(CUR.school)}</span><button type="button" id="signout">Sign out</button>`;
+  who.innerHTML = `<span>${isTeacher() ? '🍎 Teacher view' : '👤 ' + esc(CUR.first + ' ' + CUR.last.charAt(0) + '.') + ' · P' + esc(CUR.period) + ' · ' + esc(CUR.school)}</span><button type="button" id="signout">Sign out</button>`;
   $('#signout').onclick = () => { if (confirm('Sign out of Freshmen Studies?')) { saveMe(null); location.hash = '#home'; route(); } };
 }
 
@@ -51,7 +54,8 @@ function signin() {
       <div class="srow"><label>First name<input id="s-first" autocomplete="given-name"></label><label>Last name<input id="s-last" autocomplete="family-name"></label></div>
       <label>Student ID<input id="s-id" inputmode="numeric" placeholder="Your student ID number"></label>
       <label>School site<select id="s-school"><option value="">Choose your school…</option>${Object.keys(SCHOOLS).map(s => `<option>${esc(s)}</option>`).join('')}</select></label>
-      <label>Teacher<select id="s-teacher" disabled><option value="">Choose your school first</option></select></label>
+      <div class="srow"><label>Period<select id="s-period"><option value="">Choose…</option>${PERIODS.map(p => `<option>${esc(p)}</option>`).join('')}</select></label>
+      <label>Teacher<select id="s-teacher" disabled><option value="">Pick a school first</option></select></label></div>
       <button class="sgo" type="submit" disabled>Start ▶</button>
       <p class="smsg" id="smsg" aria-live="polite"></p>
       <p class="privacy">Your name and ID are only sent to your teacher with your work. They are never shown to classmates.</p>
@@ -62,16 +66,16 @@ function signin() {
   sch.onchange = () => {
     const list = SCHOOLS[sch.value] || [];
     tch.disabled = !sch.value;
-    tch.innerHTML = sch.value ? `<option value="">Choose your teacher…</option>${list.map(t => `<option>${esc(t)}</option>`).join('')}` : '<option value="">Choose your school first</option>';
+    tch.innerHTML = sch.value ? `<option value="">Choose your teacher…</option>${list.map(t => `<option>${esc(t)}</option>`).join('')}` : '<option value="">Pick a school first</option>';
     upd();
   };
-  const read = () => ({ first: $('#s-first').value.trim(), last: $('#s-last').value.trim(), id: $('#s-id').value.trim(), school: sch.value, teacher: tch.value });
+  const read = () => ({ first: $('#s-first').value.trim(), last: $('#s-last').value.trim(), id: $('#s-id').value.trim(), school: sch.value, teacher: tch.value, period: $('#s-period').value });
   const okName = s => /^[A-Za-zÀ-ÿ' .-]{1,40}$/.test(s) && /[A-Za-zÀ-ÿ]/.test(s);
   const okId = s => /^[A-Za-z0-9-]{3,12}$/.test(s);
   function upd() {
-    const d = read(), good = okName(d.first) && okName(d.last) && okId(d.id) && d.school && d.teacher;
+    const d = read(), good = okName(d.first) && okName(d.last) && okId(d.id) && d.school && d.period && d.teacher;
     $('.sgo', f).disabled = !good;
-    $('#smsg').textContent = good ? 'Looks good! Press Start.' : !d.first ? 'Type your first name.' : !okName(d.first) ? 'First name: letters only.' : !d.last ? 'Type your last name.' : !okName(d.last) ? 'Last name: letters only.' : !okId(d.id) ? 'Type your student ID.' : !d.school ? 'Choose your school site.' : 'Choose your teacher.';
+    $('#smsg').textContent = good ? 'Looks good! Press Start.' : !d.first ? 'Type your first name.' : !okName(d.first) ? 'First name: letters only.' : !d.last ? 'Type your last name.' : !okName(d.last) ? 'Last name: letters only.' : !okId(d.id) ? 'Type your student ID.' : !d.school ? 'Choose your school site.' : !d.period ? 'Choose your class period.' : 'Choose your teacher.';
   }
   f.addEventListener('input', upd); f.addEventListener('change', upd); upd();
   f.onsubmit = e => { e.preventDefault(); const d = read(); if ($('.sgo', f).disabled) return; d.role = 'student'; saveMe(d); toast('Welcome, ' + d.first + '!'); route(); };
@@ -82,7 +86,7 @@ function signin() {
 }
 
 /* ---------- SAVING WORK ---------- */
-function studentPayload() { return { first: CUR.first, last: CUR.last, id: CUR.id, school: CUR.school, teacher: CUR.teacher }; }
+function studentPayload() { return { first: CUR.first, last: CUR.last, id: CUR.id, school: CUR.school, period: CUR.period, teacher: CUR.teacher }; }
 async function post(body) {
   if (!SCRIPT_URL) {
     try { const k = 'fsPreview'; const a = JSON.parse(localStorage.getItem(k) || '[]'); a.push(Object.assign({ time: new Date().toISOString() }, body)); localStorage.setItem(k, JSON.stringify(a.slice(-200))); } catch (e) { }
@@ -103,7 +107,7 @@ FS.submit = async function (topicId, type, activity, score, max, responses) {
 };
 FS.ask = async function (topicId, text) {
   const t = FS.topics.find(x => x.id === topicId);
-  const body = { action: 'question', school: CUR.school || '', teacher: CUR.teacher || '', topic: t ? t.name : topicId, text };
+  const body = { action: 'question', school: CUR.school || '', teacher: CUR.teacher || '', period: CUR.period || '', topic: t ? t.name : topicId, text };
   try { const r = await post(body); return r.ok ? (r.preview ? 'Saved (preview mode).' : '✅ Sent anonymously. Your teacher will answer questions with the whole class.') : '⚠️ ' + r.error; } catch (e) { return '⚠️ Could not send right now.'; }
 };
 function saveBox(el, topicId, type, title, score, max, responses) {
@@ -297,7 +301,7 @@ function openItem(id) {
     <div class="dbody" id="db"></div></div>`;
   modal.hidden = false; modal.classList.remove('full'); document.body.style.overflow = 'hidden';
   const db = $('#db', modal);
-  const strip = it.info ? `<div class="tstrip"><div><b>🎯 Essential Question:</b> ${esc(it.info.eq)}</div><div><b>I can:</b> ${it.info.lt.map(esc).join(' · ')}</div>${isTeacher() ? '' : `<div class="who">👤 ${esc(CUR.first + ' ' + CUR.last)} · ID ${esc(CUR.id)} · ${esc(CUR.school)} · ${esc(CUR.teacher)}</div>`}</div>` : '';
+  const strip = it.info ? `<div class="tstrip"><div><b>🎯 Essential Question:</b> ${esc(it.info.eq)}</div><div><b>I can:</b> ${it.info.lt.map(esc).join(' · ')}</div>${isTeacher() ? '' : `<div class="who">👤 ${esc(CUR.first + ' ' + CUR.last)} · ID ${esc(CUR.id)} · ${esc(CUR.school)} · Period ${esc(CUR.period)} · ${esc(CUR.teacher)}</div>`}</div>` : '';
   if (it.care) db.insertAdjacentHTML('beforeend', `<div class="note care">💗 ${it.care}</div>`);
   if (it.kind === 'plan') renderPlan(db, it, t);
   else if (it.kind === 'exit') { db.insertAdjacentHTML('beforeend', strip + '<div id="qz"></div>'); FS.quiz($('#qz', db), it.qs, { topic: it.topic, type: 'Exit Ticket', title: it.title, label: 'Question' }); }

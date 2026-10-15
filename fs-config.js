@@ -1,10 +1,9 @@
 /* =====================================================================
    ✏️ FRESHMEN STUDIES SETTINGS: the only file you need to edit.
 
-   1) TEACHER NAMES: replace the placeholder names under each school.
-      Keep the quotes and commas. Example:
-         "Tulare Union": ["Langlie", "Smith", "Garcia"],
-      (Use the same names in Code.gs so each teacher gets their own tab.)
+   1) TEACHER NAMES: listed under each school. Keep the quotes and commas.
+      ✏️ ACHS still has a placeholder ("ACHS Teacher"): replace it with real names.
+      (If you change a school's name, change it in Code.gs too.)
 
    2) GOOGLE SHEET: after you deploy Code.gs as a Web app, paste the
       Web app URL between the quotes for scriptUrl. While it is empty the
@@ -17,10 +16,13 @@
 window.FS_CONFIG = {
   scriptUrl: "",
   teacherPasscode: "freshmen2026",
+  periods: ["1", "2", "3", "4", "5", "6", "7", "8"],
   schools: {
-    "Tulare Union":   ["Teacher 1", "Teacher 2", "Teacher 3"],
-    "Tulare Western": ["Teacher 1", "Teacher 2", "Teacher 3"],
-    "Mission Oak":    ["Teacher 1", "Teacher 2", "Teacher 3"]
+    "Tulare Union":   ["Amy Gavello", "Darren Bennett", "DJ Bennett", "Fernando Valadao", "Kristen Pallas", "Kelli Medeiros", "Mark Reindl"],
+    "Tulare Western": ["Joseph Rivera", "Kristen Rickard", "Michael Sozinho", "Keith Rickard", "Ken Searcy", "Matt Archibald"],
+    "Mission Oak":    ["Livi Aguilar", "Stevan Chamalbide", "Matt Jones", "Celina Rodela", "Richard Salazar"],
+    "ACHS":           ["ACHS Teacher"],
+    "Tech Prep / Countryside": ["Silvia Sausedo"]
   },
   // Optional: paste YouTube or other links for the LGBTQ+ lesson videos you already use.
   videos: {
