@@ -283,7 +283,7 @@ FS.present = function (deck, color) {
 
 /* ---------- ITEM WINDOWS ---------- */
 const KIND = {
-  plan: ['📋', 'Lesson plan', 'k-plan', 'Open plan & slides'], warm: ['☀️', 'Warm-up', 'k-warm', 'Project it'], act: ['🎮', 'Interactive', 'k-act', 'Start'],
+  plan: ['📋', 'Lesson plan', 'k-plan', 'Open plan & slides'], warm: ['☀️', 'Warm-up', 'k-warm', 'Project it'], act: ['🎮', 'Interactive', 'k-act', 'Start'], module: ['🧭', 'Full lesson', 'k-mod', 'Start the lesson'],
   exit: ['🎟️', 'Exit ticket', 'k-exit', 'Start'], print: ['🖨️', 'Printable', 'k-print', 'Open & print'], info: ['📘', 'Reference', 'k-info', 'Read'], link: ['🔗', 'Link', 'k-link', 'Open site']
 };
 const forStudents = it => !it.teacherOnly && it.kind !== 'plan' && it.kind !== 'print';
@@ -296,8 +296,8 @@ function openItem(id) {
   if (cleanup) { cleanup(); cleanup = null; }
   modal.style.setProperty('--c', t.color || '#5b5fe0');
   const showPresent = it.kind === 'plan' && it.slides;
-  modal.innerHTML = `<div class="dialog ${it.kind === 'act' || it.kind === 'plan' || it.wide ? 'wide' : ''}" role="dialog" aria-modal="true" aria-label="${esc(it.title)}">
-    <div class="dhead"><h3>${KIND[it.kind][0]} ${esc(it.title)}</h3>${showPresent ? '<button id="pres" type="button">▶ Present slides</button>' : ''}${it.kind === 'warm' || it.kind === 'act' ? '<button id="fs" type="button">Full screen</button>' : ''}${it.kind === 'print' || it.kind === 'plan' || it.kind === 'info' ? '<button id="pr" type="button">🖨 Print</button>' : ''}<button id="cl" type="button">Close</button></div>
+  modal.innerHTML = `<div class="dialog ${it.kind === 'act' || it.kind === 'module' || it.kind === 'plan' || it.wide ? 'wide' : ''}" role="dialog" aria-modal="true" aria-label="${esc(it.title)}">
+    <div class="dhead"><h3>${KIND[it.kind][0]} ${esc(it.title)}</h3>${showPresent ? '<button id="pres" type="button">▶ Present slides</button>' : ''}${it.kind === 'warm' || it.kind === 'act' || it.kind === 'module' ? '<button id="fs" type="button">Full screen</button>' : ''}${it.kind === 'print' || it.kind === 'plan' || it.kind === 'info' ? '<button id="pr" type="button">🖨 Print</button>' : ''}<button id="cl" type="button">Close</button></div>
     <div class="dbody" id="db"></div></div>`;
   modal.hidden = false; modal.classList.remove('full'); document.body.style.overflow = 'hidden';
   const db = $('#db', modal);
@@ -305,6 +305,7 @@ function openItem(id) {
   if (it.care) db.insertAdjacentHTML('beforeend', `<div class="note care">💗 ${it.care}</div>`);
   if (it.kind === 'plan') renderPlan(db, it, t);
   else if (it.kind === 'exit') { db.insertAdjacentHTML('beforeend', strip + '<div id="qz"></div>'); FS.quiz($('#qz', db), it.qs, { topic: it.topic, type: 'Exit Ticket', title: it.title, label: 'Question' }); }
+  else if (it.kind === 'module') { db.insertAdjacentHTML('beforeend', strip + '<div id="mz"></div>'); cleanup = FS.runModule($('#mz', db), it, { topic: it.topic, title: it.title, color: t.color }) || null; }
   else if (it.kind === 'act') { db.insertAdjacentHTML('beforeend', strip + '<div id="az"></div>'); cleanup = it.run($('#az', db), { topic: it.topic, title: it.title, color: t.color }) || null; }
   else if (it.kind === 'warm') { db.insertAdjacentHTML('beforeend', (it.tn && isTeacher() ? `<div class="note">🍎 ${it.tn}</div>` : '') + '<div id="wz"></div>'); cleanup = it.run($('#wz', db)) || null; }
   else if (it.kind === 'print') db.insertAdjacentHTML('beforeend', `<div class="note noprint">🖨 Press <b>Print</b> (top right). Tip: choose "Save as PDF" to keep a copy, or turn off headers and footers in the print settings.</div><div class="paper">${it.html}</div>`);
