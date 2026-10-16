@@ -290,6 +290,11 @@ const KIND = {
   exit: ['🎟️', 'Exit ticket', 'k-exit', 'Start'], print: ['🖨️', 'Printable', 'k-print', 'Open & print'], info: ['📘', 'Reference', 'k-info', 'Read'], link: ['🔗', 'Link', 'k-link', 'Open site']
 };
 const forStudents = it => !it.teacherOnly && it.kind !== 'plan' && it.kind !== 'print';
+/* Graded = sends a score to the teacher's Google Sheet (full lessons, exit tickets, interactive activities) */
+const isGraded = it => ['module', 'exit', 'act'].includes(it.kind);
+FS.isGraded = isGraded;
+const gradeBadge = it => isGraded(it) ? '<span class="gbadge yes">📊 Graded</span>' : '<span class="gbadge no">Not graded</span>';
+const gradeLegend = () => `<div class="glegend"><span class="gbadge yes">📊 Graded</span> sends a score to ${isTeacher() ? 'the teacher’s Google Sheet' : 'your teacher'} when finished <span class="gbadge no">Not graded</span> practice or teacher-led (no score)</div>`;
 let cleanup = null;
 function openItem(id) {
   const it = FS.items[id]; if (!it) return;
@@ -305,7 +310,7 @@ function openItem(id) {
     <div class="dbody" id="db"></div></div>`;
   modal.hidden = false; modal.classList.remove('full'); document.body.style.overflow = 'hidden';
   const db = $('#db', modal);
-  const strip = it.info ? `<div class="tstrip"><div><b>🎯 Essential Question:</b> ${esc(it.info.eq)}</div><div><b>I can:</b> ${it.info.lt.map(esc).join(' · ')}</div>${isTeacher() ? '' : `<div class="who">👤 ${esc(CUR.first + ' ' + CUR.last)} · ID ${esc(CUR.id)} · ${esc(CUR.school)} · Period ${esc(CUR.period)} · ${esc(CUR.teacher)}</div>`}</div>` : '';
+  const strip = (isGraded(it) && !isTeacher() ? `<div class="gnote">📊 <b>This is graded.</b> Your score is sent to your teacher when you finish.</div>` : '') + (it.info ? `<div class="tstrip"><div><b>🎯 Essential Question:</b> ${esc(it.info.eq)}</div><div><b>I can:</b> ${it.info.lt.map(esc).join(' · ')}</div>${isTeacher() ? '' : `<div class="who">👤 ${esc(CUR.first + ' ' + CUR.last)} · ID ${esc(CUR.id)} · ${esc(CUR.school)} · Period ${esc(CUR.period)} · ${esc(CUR.teacher)}</div>`}</div>` : '');
   if (it.care) db.insertAdjacentHTML('beforeend', `<div class="note care">💗 ${it.care}</div>`);
   if (it.kind === 'plan') renderPlan(db, it, t);
   else if (it.kind === 'exit') { db.insertAdjacentHTML('beforeend', strip + '<div id="qz"></div>'); FS.quiz($('#qz', db), it.qs, { topic: it.topic, type: 'Exit Ticket', title: it.title, label: 'Question' }); }
@@ -381,7 +386,8 @@ function topicPage(t) {
   const vf = visibleFolders(t);
   app.innerHTML = `<div class="wrap" style="--c:${t.color}">${switcher(t)}${banner(t)}
     <h2 class="homeh" style="margin-top:24px">${isTeacher() ? 'Open a folder' : 'What are we doing today?'}</h2>
-    <div class="tiles folders">${vf.map(({ f, i }) => `<a class="tile" href="#${t.id}/${i}" style="--c:${t.color}"><span class="stk"><span class="em">${f.icon}</span></span><h2>${f.name}</h2><small>${visibleItems(f.items).length} ${visibleItems(f.items).length === 1 ? 'item' : 'items'}</small></a>`).join('')}</div>
+    <div class="tiles folders">${vf.map(({ f, i }) => `<a class="tile" href="#${t.id}/${i}" style="--c:${t.color}"><span class="stk"><span class="em">${f.icon}</span></span><h2>${f.name}</h2><small>${visibleItems(f.items).length} ${visibleItems(f.items).length === 1 ? 'item' : 'items'}</small>${(n => n ? `<span class="gbadge yes">📊 ${n === visibleItems(f.items).length ? 'All graded' : n + ' graded'}</span>` : '<span class="gbadge no">Not graded</span>')(visibleItems(f.items).filter(id => isGraded(FS.items[id])).length)}</a>`).join('')}</div>
+    ${gradeLegend()}
     ${t.ask === false ? '' : `<div class="askbox"><p>🙋 Have a question you don't want to ask out loud? Send it anonymously. Your name is not attached.</p><button class="btn" type="button" id="askb">Ask anonymously</button></div>`}
     ${helpLine()}</div>`;
   if ($('#askb')) $('#askb').onclick = () => askBox(t);
@@ -391,8 +397,8 @@ function folderPage(t, i) {
   crumb.innerHTML = `<span>/</span><a href="#${t.id}">${t.name}</a><span>/</span><b>${f.name}</b>`;
   const ids = visibleItems(f.items);
   app.innerHTML = `<div class="wrap" style="--c:${t.color}">${switcher(t)}<nav class="switch" style="padding-top:2px">${visibleFolders(t).map(({ f: g, i: k }) => `<a class="swchip ${k === i ? 'on' : ''}" href="#${t.id}/${k}" style="--c:${t.color}">${g.icon} ${g.name}</a>`).join('')}</nav>
-    <section class="panel"><header><h2>${f.icon} ${f.name}</h2><small>${ids.length} ${ids.length === 1 ? 'item' : 'items'}</small></header>${f.sub ? `<p class="sub">${f.sub}</p>` : ''}
-    <div class="cards">${ids.map(id => { const it = FS.items[id], k = KIND[it.kind]; return `<button class="rcard" type="button" data-id="${id}" style="--c:${t.color}"><span class="top"><span class="ico">${it.icon || k[0]}</span><span class="meta"><span class="kpill ${k[2]}">${k[1]}</span>${it.mins ? `<span class="kpill k-info">${it.mins} min</span>` : ''}</span></span><span class="t">${esc(it.title)}</span><span class="d">${it.desc || ''}</span><span class="go">${k[3]} →</span></button>`; }).join('')}</div></section>${helpLine()}</div>`;
+    <section class="panel"><header><h2>${f.icon} ${f.name}</h2><small>${ids.length} ${ids.length === 1 ? 'item' : 'items'}</small></header>${f.sub ? `<p class="sub">${f.sub}</p>` : ''}${gradeLegend()}
+    <div class="cards">${ids.map(id => { const it = FS.items[id], k = KIND[it.kind]; return `<button class="rcard" type="button" data-id="${id}" style="--c:${t.color}"><span class="top"><span class="ico">${it.icon || k[0]}</span><span class="meta"><span class="kpill ${k[2]}">${k[1]}</span>${it.mins ? `<span class="kpill k-info">${it.mins} min</span>` : ''}</span></span><span class="t">${esc(it.title)}</span>${gradeBadge(it)}<span class="d">${it.desc || ''}</span><span class="go">${k[3]} →</span></button>`; }).join('')}</div></section>${helpLine()}</div>`;
   $$('.rcard', app).forEach(b => b.onclick = () => openItem(b.dataset.id));
 }
 function askBox(t) {
