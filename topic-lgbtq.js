@@ -163,7 +163,7 @@ I('lg-a2', {
         if (b.dataset.add === 'b' && !on) { FS.toast('Choose which yellow note your blue note builds on.'); return; }
         const rf = $('#rf', el).value; mine[k].push({ c: b.dataset.add, t, on: b.dataset.add === 'b' ? on : '' }); draw(); $('#rf', el).value = rf;
       });
-      FS.saveBox($('#fin', el), T, 'Interactive', ctx.title, mine.flat().length, 4, () => P.map((p, k) => `${p.h}: ` + mine[k].map(n => `[${n.c === 'y' ? 'Yellow' : 'Blue → ' + n.on}] ${n.t}`).join(' | ')).join('\n') + `\nReflection: ${$('#rf', el).value.trim()}`);
+      FS.saveBox($('#fin', el), T, 'Interactive', ctx.title, () => Math.min(4, mine.flat().length), 4, () => P.map((p, k) => `${p.h}: ` + mine[k].map(n => `[${n.c === 'y' ? 'Yellow' : 'Blue → ' + n.on}] ${n.t}`).join(' | ')).join('\n') + `\nReflection: ${$('#rf', el).value.trim()}`);
       const btn = $('#fin button', el), old = btn.onclick;
       btn.onclick = () => { const ok = mine.every(m => m.some(n => n.c === 'y') && m.some(n => n.c === 'b')); if (!ok) { $('#fin .save', el).textContent = 'Add at least 1 yellow and 1 blue note to each poster first.'; return; } if (FS.words($('#rf', el).value) < 10) { $('#fin .save', el).textContent = 'Write at least 10 words in your reflection.'; return; } old(); };
     };
