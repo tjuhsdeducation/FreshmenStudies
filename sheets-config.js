@@ -20,4 +20,4 @@ const SCHOOLS = {
 const TEACHERS = Object.values(SCHOOLS).flat();
 
 // Paste your Web app URL here:
-const SHEETS_WEBHOOK_URL = '';
+const SHEETS_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbx4CN9OpgwwMmqP2h1uQfB6Om4JaxMf_gLMnxArAJu6HFMamZ2E1zLzl7dkDVb-i9qHXg/exec';
