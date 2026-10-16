@@ -434,3 +434,9 @@ textarea:focus,input.txt:focus,select.txt:focus{border-color:var(--c);outline:no
 .spectrum div{border-top:8px solid var(--sc);background:color-mix(in srgb,var(--sc) 10%,var(--surface));border-radius:12px;padding:10px}
 .spectrum b{display:block;font-family:var(--display);font-size:1.1rem}
 .spectrum span{font-weight:600;font-size:.92rem}
+
+/* locked-activity overlay */
+.dialog{position:relative}
+.lockov{position:fixed;inset:0;z-index:30;background:color-mix(in srgb,var(--surface) 92%,transparent);display:grid;place-items:center;text-align:center;padding:20px;backdrop-filter:blur(3px)}
+.lockov>div{max-width:420px;background:var(--surface);border:3px solid var(--c);border-radius:20px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,.2)}
+.lockov h3{font-size:1.4rem;margin:6px 0}

@@ -4,8 +4,8 @@
    pop-up windows, slide shows, quizzes, and saving to Google Sheets.
    ===================================================================== */
 const CFG = window.FS_CONFIG || {};
-const SCHOOLS = CFG.schools || { 'Tulare Union': [], 'Tulare Western': [], 'Mission Oak': [] };
-const SCRIPT_URL = (CFG.scriptUrl || '').trim();
+/* School sites + teachers come from sheets-config.js (shared by every activity) */
+const SITES = (typeof SCHOOLS !== 'undefined' && SCHOOLS) || CFG.schools || {};
 const PERIODS = CFG.periods || ['1', '2', '3', '4', '5', '6', '7', '8'];
 const FS = window.FS = { topics: [], items: {} };
 FS.topic = t => FS.topics.push(t);
@@ -21,7 +21,7 @@ FS.esc = esc; FS.shuffle = shuffle; FS.words = words;
 let CUR = null;
 try { CUR = JSON.parse(localStorage.getItem('fsStudent') || 'null'); } catch (e) { CUR = null; }
 /* sign in again if saved info is from an older version, or the school/teacher list changed */
-if (CUR && CUR.role === 'student' && (!CUR.period || !(SCHOOLS[CUR.school] || []).includes(CUR.teacher))) CUR = null;
+if (CUR && CUR.role === 'student' && (!CUR.period || !(SITES[CUR.school] || []).includes(CUR.teacher))) CUR = null;
 const isTeacher = () => !!(CUR && CUR.role === 'teacher');
 FS.me = () => CUR; FS.isTeacher = isTeacher;
 function saveMe(v) { CUR = v; try { v ? localStorage.setItem('fsStudent', JSON.stringify(v)) : localStorage.removeItem('fsStudent'); } catch (e) { } }
@@ -53,7 +53,7 @@ function signin() {
       <h2>Student sign-in</h2>
       <div class="srow"><label>First name<input id="s-first" autocomplete="given-name"></label><label>Last name<input id="s-last" autocomplete="family-name"></label></div>
       <label>Student ID<input id="s-id" inputmode="numeric" placeholder="Your student ID number"></label>
-      <label>School site<select id="s-school"><option value="">Choose your school…</option>${Object.keys(SCHOOLS).map(s => `<option>${esc(s)}</option>`).join('')}</select></label>
+      <label>School site<select id="s-school"><option value="">Choose your school…</option>${Object.keys(SITES).map(s => `<option>${esc(s)}</option>`).join('')}</select></label>
       <div class="srow"><label>Period<select id="s-period"><option value="">Choose…</option>${PERIODS.map(p => `<option>${esc(p)}</option>`).join('')}</select></label>
       <label>Teacher<select id="s-teacher" disabled><option value="">Pick a school first</option></select></label></div>
       <button class="sgo" type="submit" disabled>Start ▶</button>
@@ -64,7 +64,7 @@ function signin() {
     </form></div></div>`;
   const f = $('#sf'), sch = $('#s-school'), tch = $('#s-teacher');
   sch.onchange = () => {
-    const list = SCHOOLS[sch.value] || [];
+    const list = SITES[sch.value] || [];
     tch.disabled = !sch.value;
     tch.innerHTML = sch.value ? `<option value="">Choose your teacher…</option>${list.map(t => `<option>${esc(t)}</option>`).join('')}` : '<option value="">Pick a school first</option>';
     upd();
@@ -87,35 +87,37 @@ function signin() {
 
 /* ---------- SAVING WORK ---------- */
 function studentPayload() { return { first: CUR.first, last: CUR.last, id: CUR.id, school: CUR.school, period: CUR.period, teacher: CUR.teacher }; }
-async function post(body) {
-  if (!SCRIPT_URL) {
-    try { const k = 'fsPreview'; const a = JSON.parse(localStorage.getItem(k) || '[]'); a.push(Object.assign({ time: new Date().toISOString() }, body)); localStorage.setItem(k, JSON.stringify(a.slice(-200))); } catch (e) { }
-    return { ok: true, preview: true };
-  }
-  const r = await fetch(SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(body) });
-  return r.json();
-}
-/* submit(topic, type, activity, score, max, responses) → saves one row for the teacher */
-FS.submit = async function (topicId, type, activity, score, max, responses) {
-  if (isTeacher()) return { ok: true, teacher: true, msg: 'Teacher view: practice only, nothing saved.' };
-  const t = FS.topics.find(x => x.id === topicId);
-  try {
-    const res = await post({ action: 'submit', student: studentPayload(), topic: t ? t.name : topicId, type, activity, score, max, responses: typeof responses === 'string' ? responses : JSON.stringify(responses) });
-    if (!res.ok) throw new Error(res.error || 'Could not save');
-    return { ok: true, msg: res.preview ? 'Saved (preview mode: your teacher will connect Google Sheets soon).' : '✅ Sent to your teacher!' };
-  } catch (e) { return { ok: false, msg: '⚠️ Could not send: ' + e.message + '. Try again, or show your teacher this screen.' }; }
+/* Each activity name becomes its own tab in the teacher's spreadsheet, e.g. "Fentanyl · Exit Ticket: Fentanyl Facts" */
+const TOPIC_TAG = { fentanyl: 'Fentanyl', trafficking: 'Trafficking', lgbtq: 'LGBTQ+' };
+const activityName = (topicId, title) => (TOPIC_TAG[topicId] ? TOPIC_TAG[topicId] + ' · ' : '') + title;
+/* submit(topic, type, activity, score, max, responses, q) → sends one score to the teacher's spreadsheet.
+   q = { labels:[question names], points:[points earned], max:[points possible] } (optional) */
+FS.submit = async function (topicId, type, activity, score, max, responses, q) {
+  if (isTeacher()) return { ok: true, teacher: true, msg: 'Teacher view: practice only, nothing sent.' };
+  q = q && q.labels && q.labels.length ? q : { labels: [type || 'Activity'], points: [score], max: [max] };
+  const r = await window.sendScoreToSheets({
+    studentId: CUR.id, firstName: CUR.first, lastName: CUR.last, period: CUR.period, teacher: CUR.teacher, school: CUR.school,
+    activity: activityName(topicId, activity), score: Math.round(score * 10) / 10, total: max,
+    qlabels: q.labels, qpoints: q.points.map(x => Math.round((+x || 0) * 10) / 10), qmax: q.max,
+    locks: FS.lockOverride ? FS.lockOverride() : locks, topic: topicId, responses: typeof responses === 'string' ? responses : JSON.stringify(responses)
+  });
+  return r.ok ? { ok: true, msg: r.preview ? 'Saved (preview mode: your teacher will connect Google Sheets soon).' : '✅ Score sent to your teacher!' }
+    : { ok: false, msg: '📶 No connection right now. Your score is saved and will send automatically. You can also press the button again.' };
 };
 FS.ask = async function (topicId, text) {
-  const t = FS.topics.find(x => x.id === topicId);
-  const body = { action: 'question', school: CUR.school || '', teacher: CUR.teacher || '', period: CUR.period || '', topic: t ? t.name : topicId, text };
-  try { const r = await post(body); return r.ok ? (r.preview ? 'Saved (preview mode).' : '✅ Sent anonymously. Your teacher will answer questions with the whole class.') : '⚠️ ' + r.error; } catch (e) { return '⚠️ Could not send right now.'; }
+  const r = await window.sendScoreToSheets({ kind: 'question', school: CUR.school || '', teacher: CUR.teacher || '', period: CUR.period || '', topic: TOPIC_TAG[topicId] || topicId, text });
+  return r.preview ? 'Saved (preview mode).' : r.ok ? '✅ Sent anonymously. Your teacher will answer questions with the whole class.' : '📶 No connection. It will send when you’re back online.';
 };
-function saveBox(el, topicId, type, title, score, max, responses) {
+/* saveBox: the "Send my score to my teacher" button. opts.auto = send right away (the button becomes a backup). */
+function saveBox(el, topicId, type, title, score, max, responses, opts = {}) {
   const box = document.createElement('div'); box.className = 'btnrow noprint';
-  box.innerHTML = `<button class="btn" type="button">📤 Turn in to my teacher</button><span class="save" aria-live="polite"></span>`;
+  box.innerHTML = `<button class="btn" type="button">📤 Send my score to my teacher</button><span class="save" aria-live="polite"></span>`;
   el.appendChild(box);
   const b = $('button', box), s = $('.save', box);
-  b.onclick = async () => { b.disabled = true; s.textContent = 'Sending…'; const r = await FS.submit(topicId, type, title, score, max, responses()); s.textContent = r.msg; if (!r.ok) b.disabled = false; else b.textContent = '✔ Turned in'; };
+  const val = v => typeof v === 'function' ? v() : v;
+  const send = async () => { b.disabled = true; s.textContent = 'Sending…'; const r = await FS.submit(topicId, type, title, val(score), val(max), responses(), val(opts.q)); s.textContent = r.msg; b.disabled = false; if (r.ok) b.textContent = '📤 Send again (backup)'; };
+  b.onclick = send;
+  if (opts.auto) send();
   return box;
 }
 FS.saveBox = saveBox;
@@ -191,7 +193,8 @@ FS.quiz = function (el, qs, opt = {}) {
     const pct = max ? Math.round(pts / max * 100) : 100;
     $('.fin', el).innerHTML = `<div class="scorebox"><div class="big">${Math.round(pts * 10) / 10} / ${max}</div><div>${pct >= 80 ? 'Great work!' : pct >= 60 ? 'Good effort. Review the feedback above.' : 'Review the feedback above, then ask your teacher about anything confusing.'}</div></div>`;
     if (opt.onFinish) opt.onFinish(pts, max, qs.map((q, i) => ({ q: q.q.replace(/<[^>]+>/g, ''), a: state[i].ans, pts: state[i].pts })));
-    if (opt.topic) saveBox($('.fin', el), opt.topic, opt.type || 'Exit Ticket', opt.title, Math.round(pts * 10) / 10, max, () => qs.map((q, i) => `${i + 1}. ${state[i].ans}`).join('\n'));
+    const qinfo = { labels: qs.map((q, i) => 'Q' + (i + 1) + ' ' + q.q.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim().slice(0, 40)).filter((_, i) => state[i].max), points: state.filter(x => x.max).map(x => x.pts), max: state.filter(x => x.max).map(x => x.max) };
+    if (opt.topic) saveBox($('.fin', el), opt.topic, opt.type || 'Exit Ticket', opt.title, Math.round(pts * 10) / 10, max, () => qs.map((q, i) => `${i + 1}. ${state[i].ans}`).join('\n'), { auto: true, q: qinfo });
   }
 };
 
@@ -293,6 +296,7 @@ function openItem(id) {
   const t = FS.topics.find(x => x.id === it.topic) || {};
   if (!isTeacher() && !forStudents(it)) { toast('That one is for teachers.'); return; }
   if (it.kind === 'link') { window.open(it.url, '_blank', 'noopener'); return; }
+  locks = 0; lockOn = !isTeacher() && ['act', 'exit', 'module'].includes(it.kind); FS.lockHook = null; FS.lockOverride = null;
   if (cleanup) { cleanup(); cleanup = null; }
   modal.style.setProperty('--c', t.color || '#5b5fe0');
   const showPresent = it.kind === 'plan' && it.slides;
@@ -317,7 +321,18 @@ function openItem(id) {
   $('#cl', modal).focus();
 }
 FS.open = openItem;
-function closeModal() { if (cleanup) { cleanup(); cleanup = null; } modal.hidden = true; modal.innerHTML = ''; document.body.style.overflow = ''; try { document.fullscreenElement && document.exitFullscreen(); } catch (e) { } }
+/* ---------- LOCKED ACTIVITIES: count how many times a student leaves an open activity ---------- */
+let locks = 0, lockOn = false;
+FS.lockCount = () => locks;
+document.addEventListener('visibilitychange', () => {
+  if (!lockOn || modal.hidden) return;
+  if (document.hidden) { locks++; if (FS.lockHook) FS.lockHook(); return; }
+  const d = $('.dialog', modal); if (!d || $('.lockov', d)) return;
+  const ov = document.createElement('div'); ov.className = 'lockov'; ov.setAttribute('role', 'alertdialog');
+  ov.innerHTML = `<div><div style="font-size:46px">🔒</div><h3>You left the activity</h3><p>Leaving this page is recorded for your teacher (times left: <b>${locks}</b>). Stay on this page until you finish.</p><button class="btn" type="button">Continue my work</button></div>`;
+  d.appendChild(ov); $('button', ov).onclick = () => ov.remove(); $('button', ov).focus();
+});
+function closeModal() { lockOn = false; if (cleanup) { cleanup(); cleanup = null; } modal.hidden = true; modal.innerHTML = ''; document.body.style.overflow = ''; try { document.fullscreenElement && document.exitFullscreen(); } catch (e) { } }
 modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape' && !modal.hidden && !document.querySelector('.deck')) closeModal(); });
 

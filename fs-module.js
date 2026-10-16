@@ -107,20 +107,30 @@ FS.runModule = function (el, mod, ctx) {
       <div class="tablewrap" style="margin-top:12px"><table class="std"><tr><th>Step</th><th>Score</th></tr>${steps.map((s, i) => `<tr><td>${i + 1}. ${s.icon || ''} ${esc(s.name)}</td><td>${st.res[i] ? (st.res[i].max ? st.res[i].pts + ' / ' + st.res[i].max : '✓') : '<b style="color:var(--bad)">not done</b>'}</td></tr>`).join('')}</table></div>
       <h3 style="margin-top:16px">How well can you do each learning target?</h3><div class="mself">${mod.info.lt.map((t, k) => `<div class="qcard"><div class="q">I can ${esc(t)}.</div><div class="opts" style="grid-template-columns:repeat(4,1fr)">${['1 · Not yet', '2 · Getting there', '3 · I can', '4 · I can teach it'].map((o, v) => `<button class="opt ${st.selfcheck[k] === v + 1 ? 'sel' : ''}" type="button" data-t="${k}" data-v="${v + 1}">${o}</button>`).join('')}</div></div>`).join('')}</div>
       ${missing.length ? `<div class="fb no">Finish step${missing.length > 1 ? 's' : ''} ${missing.join(', ')} before you turn in.</div>` : ''}
-      <div class="btnrow"><button class="btn" type="button" id="ti" ${missing.length || st.turnedIn ? 'disabled' : ''}>${st.turnedIn ? '✔ Turned in' : '📤 Turn in the whole lesson'}</button><span class="save" id="tim"></span><span class="spacer"></span><button class="btn ghost" type="button" id="rs">↺ Start over</button></div></div></section>`;
+      <div class="btnrow"><button class="btn" type="button" id="ti" ${missing.length ? 'disabled' : ''}>${st.turnedIn ? '📤 Send again (backup)' : '📤 Send my score to my teacher'}</button><span class="save" id="tim"></span><span class="spacer"></span><button class="btn ghost" type="button" id="rs">↺ Start over</button></div></div></section>`;
     $$('[data-go]', el).forEach(b => b.onclick = () => { st.cur = +b.dataset.go; save(); draw(); });
     $$('[data-t]', el).forEach(b => b.onclick = () => { st.selfcheck[b.dataset.t] = +b.dataset.v; save(); $$(`[data-t="${b.dataset.t}"]`, el).forEach(x => x.classList.toggle('sel', x === b)); });
     $('#rs', el).onclick = () => { if (confirm('Start the whole lesson over? This clears your saved answers on this device.')) { st = { cur: 0, res: {}, drafts: {}, turnedIn: false, selfcheck: {} }; save(); draw(); } };
-    $('#ti', el).onclick = async () => {
-      if (mod.info.lt.some((_, k) => !st.selfcheck[k])) { $('#tim', el).textContent = 'Rate yourself on each learning target first.'; return; }
-      const b = $('#ti', el); b.disabled = true; $('#tim', el).textContent = 'Sending…';
-      const text = steps.map((s, i) => `=== STEP ${i + 1}: ${s.name} (${st.res[i].max ? st.res[i].pts + '/' + st.res[i].max : 'done'}) ===\n${st.res[i].ans || ''}`).join('\n') + '\n=== SELF-CHECK ===\n' + mod.info.lt.map((t, k) => `${t}: ${st.selfcheck[k]}/4`).join('\n');
-      const r = await FS.submit(ctx.topic, 'Full Lesson', ctx.title, Math.round(tot * 10) / 10, max, text);
-      $('#tim', el).textContent = r.msg; if (r.ok) { st.turnedIn = true; save(); b.textContent = '✔ Turned in'; } else b.disabled = false;
+    const send = async (auto) => {
+      const b = $('#ti', el), m = $('#tim', el);
+      const text = steps.map((s, i) => `=== STEP ${i + 1}: ${s.name} (${st.res[i].max ? st.res[i].pts + '/' + st.res[i].max : 'done'}) ===\n${st.res[i].ans || ''}`).join('\n') + '\n=== SELF-CHECK ===\n' + mod.info.lt.map((t, k) => `${t}: ${st.selfcheck[k] || '-'}/4`).join('\n');
+      const graded = steps.map((s, i) => i).filter(i => st.res[i].max);
+      const q = { labels: graded.map(i => `Step ${i + 1} ${steps[i].name}`.slice(0, 45)), points: graded.map(i => st.res[i].pts), max: graded.map(i => st.res[i].max) };
+      b.disabled = true; m.textContent = 'Sending…';
+      const r = await FS.submit(ctx.topic, 'Full Lesson', ctx.title, Math.round(tot * 10) / 10, max, text, q);
+      m.textContent = r.msg + (auto && r.ok ? ' Rate yourself above, then press the button to send your self-check too.' : '');
+      b.disabled = false; if (r.ok) { st.turnedIn = true; save(); b.textContent = '📤 Send again (backup)'; }
     };
+    $('#ti', el).onclick = () => {
+      if (mod.info.lt.some((_, k) => !st.selfcheck[k])) { $('#tim', el).textContent = 'Rate yourself on each learning target first.'; return; }
+      send(false);
+    };
+    if (!missing.length && !st.turnedIn) send(true);
   }
 
   if (teacher) el.insertAdjacentHTML('beforebegin', `<details class="note" style="margin-bottom:12px"><summary><b>🍎 Teacher overview</b> (students don’t see this): ${N} steps · ${mod.mins || 60} min</summary><ol style="margin:8px 0 0">${steps.map((s, i) => `<li><b>${s.icon || ''} ${esc(s.name)}</b> (~${s.mins} min, by minute ${cum[i]})${s.tn ? `: ${s.tn}` : ''}</li>`).join('')}</ol>${mod.tn ? `<p style="margin:8px 0 0">${mod.tn}</p>` : ''}<p style="margin:6px 0 0">Teacher view lets you jump to any step. Students unlock steps in order.</p></details>`);
+  FS.lockHook = () => { st.locks = (st.locks || 0) + 1; save(); };
+  FS.lockOverride = () => st.locks || 0;
   draw();
   return () => { if (cleanupStep) try { cleanupStep(); } catch (e) { } };
 };
