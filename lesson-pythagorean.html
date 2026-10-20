@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pythagorean Theorem | WICOR Geometry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="wicor-lesson.css">
+</head>
+<body>
+<script>
+/* =====================================================================
+   ✏️ LESSON CONTENT: The Pythagorean Theorem (Geometry)
+   In the article:  [C] = claim   [E] = evidence   [R] = reasoning
+                    {{word}} = a key term students should circle
+   ===================================================================== */
+const FRAMES = [ "I agree with ___ because…", "I respectfully disagree because the math shows…", "Can you clarify what you mean by…?",
+                 "I'd like to build on that idea…", "What evidence do you have that…?", "I used to think ___, but now I think…" ];
+const LESSON = {
+  id: "geo-pythagorean",
+  subject: "Geometry",
+  short: "Geometry: Pythagorean Theorem",
+  color: "#ee7d1c",
+  emoji: "📐",
+  eq: "How can the Pythagorean theorem help us measure what we cannot reach?",
+  targets: {"R": "I can identify the claim, evidence, and reasoning in an article about the Pythagorean theorem.", "W": "I can write a CER paragraph that uses a² + b² = c² and the 4-to-1 rule to judge ladder safety.", "I": "I can use the Pythagorean theorem to predict, test, and graph how a ladder's base affects its height.", "C": "I can use math evidence to support my position and respond respectfully to a peer.", "O": "I can use the converse of the Pythagorean theorem to sort right and non-right triangles."},
+  title: "Reach for the Sky: The Pythagorean Theorem",
+  intro: "How do firefighters, carpenters, and TV shoppers measure what they can't reach? Read, calculate, experiment with a ladder, debate, and organize. Five stations, about 5–10 minutes each.",
+  order: ["R", "W", "I", "C", "O"],
+  stations: {
+
+    R: {
+      title: "Read & Annotate", time: "8–10 min",
+      goal: "Read the article and mark it up: underline the <b>claim</b>, highlight <b>evidence</b> and <b>reasoning</b>, circle <b>key terms</b>, and write at least one <b>margin note</b>.",
+      minKeys: 4,
+      gist: "In one sentence, what does the author want you to believe about the Pythagorean theorem?",
+      article: {
+        title: "Reach for the Sky",
+        byline: "Geometry · AVID WICOR reading",
+        paragraphs: [
+          [ "A firefighter needs to reach a second-story window, a carpenter needs a perfectly square corner, and a shopper wonders whether a 65-inch TV will fit on the wall.",
+            "All three can find the answer with the {{Pythagorean theorem}}.",
+            "[C] The Pythagorean theorem is one of the most useful ideas in all of mathematics, because it lets people measure distances they cannot measure directly." ],
+          [ "The theorem works for every {{right triangle}}, a triangle with one 90° angle.",
+            "It states that a² + b² = c², where a and b are the two {{legs}} and c is the {{hypotenuse}}, the longest side, across from the right angle.",
+            "If you know any two sides of a right triangle, you can always find the third." ],
+          [ "[E] A clay tablet from ancient Babylon called Plimpton 322, written around 1800 BCE, lists sets of whole numbers that fit this pattern, more than a thousand years before Pythagoras was born.",
+            "[E] Carpenters still use the 3-4-5 rule: if one side measures 3 feet, the other 4 feet, and the diagonal exactly 5 feet, the corner is square, because 3² + 4² = 5².",
+            "[E] Television screens are sold by their diagonal, so a 65-inch TV measures 65 inches from corner to corner, not 65 inches wide." ],
+          [ "[R] Because the theorem connects the sides of any right triangle, people can calculate a length, like the height a ladder reaches on a wall, without ever climbing up to measure it.",
+            "[R] That turns a difficult measuring problem into a simple calculation." ],
+          [ "Safety experts even build rules around right triangles.",
+            "For ladders, workplace safety guidelines call for a {{4-to-1 ratio}}: for about every 4 feet of height, the base of the ladder should sit 1 foot away from the wall." ]
+        ]
+      }
+    },
+
+    W: {
+      title: "Write a CER Paragraph", time: "8–10 min",
+      goal: "Use the article and some quick math to write a <b>Claim–Evidence–Reasoning</b> paragraph. Each box lights up when that part is strong.",
+      prompt: "A painter leans a 16-foot ladder against a wall with its base 2 feet from the wall. Is the ladder set up safely? Use the Pythagorean theorem and the 4-to-1 rule.",
+      parts: [
+        { key: "claim", label: "Claim", sub: "Answer the question", starter: "The ladder is / is not safe because…",
+          hint: "One sentence that answers: safe or not safe?", checkLabel: "Claim says safe or not safe (6+ words)",
+          check: v => words(v) >= 6 && /safe/i.test(v) },
+        { key: "evidence", label: "Evidence", sub: "Show the math", rows: 3, starter: "Using a² + b² = c²: 2² + h² = 16², so h² = … and h ≈ …",
+          hint: "Find the height with the theorem, then compare the base to the <b>4-to-1 rule</b> (height ÷ 4).",
+          checkLabel: "Evidence shows the theorem and the 4-to-1 rule with numbers",
+          check: v => words(v) >= 10 && /\d/.test(v) && /²|\^2|squared|pythag|√|square root|=/i.test(v) && /4-to-1|4 to 1|ratio|÷ ?4|\/ ?4|divided by 4|quarter|one-fourth/i.test(v) },
+        { key: "reasoning", label: "Reasoning", sub: "Why the math proves it", rows: 3, starter: "This shows that … because…",
+          hint: "Explain what the numbers mean for the painter's safety.",
+          checkLabel: "Reasoning explains WHY (uses \"because\" or \"this shows\")",
+          check: v => words(v) >= 15 && /because|this shows|this means|therefore|which means|so that/i.test(v) }
+      ],
+      minTerms: 2, minWords: 45,
+      terms: [ ["hypotenuse", /hypotenuse/i], ["legs", /\blegs?\b/i], ["right triangle", /right triangle/i], ["Pythagorean", /pythag/i],
+               ["square root", /square root|√/i], ["ratio", /ratio/i], ["a² + b² = c²", /a² ?\+ ?b²|a\^2/i] ]
+    },
+
+    I: {
+      title: "Predict, Test & Graph", time: "10 min",
+      goal: "Make a <b>prediction</b>, test it in the <b>ladder lab</b>, graph your data, and ask a <b>Level 3 question</b>.",
+      predict: {
+        q: "Predict: As you slide the ladder's base AWAY from the wall, how will the height it reaches change?",
+        placeholder: "If the base moves farther from the wall, then the height will … because …",
+        options: [
+          { v: "curve", label: "Drops slowly at first, then faster", d: "M14 10 C 60 10, 92 22, 106 58" },
+          { v: "linear", label: "Drops in a straight line", d: "M14 10 L106 58" },
+          { v: "up", label: "Gets higher", d: "M14 58 L106 10" },
+          { v: "flat", label: "Stays the same", d: "M14 20 L106 20" } ]
+      },
+      lab: {
+        title: "Test it: Ladder Lab",
+        intro: "Choose a ladder and slide its base away from the wall. Record the height it reaches for <b>at least 5 different base distances</b> with the same ladder. Watch for the safe 4-to-1 angle!",
+        controls: [
+          { type: "seg", id: "len", label: "🪜 Ladder length (hypotenuse)", options: [[12, "12 ft"], [16, "16 ft"], [20, "20 ft"]], value: 16, short: "Ladder", fmt: v => v + " ft" },
+          { type: "range", id: "base", label: "↔️ Base distance from wall (leg)", min: 1, max: 11, step: 1, value: 4, unit: " ft", short: "Base" } ],
+        model: c => Math.sqrt(c.len * c.len - c.base * c.base),
+        noise: 0, digits: 1,
+        x: { id: "base", label: "Base distance from wall (ft)", min: 0, max: 12, tick: 2 },
+        y: { label: "Height reached on wall (ft)", min: 0, max: 20, tick: 4 },
+        readout: "Height reached on the wall", unit: " ft", yShort: "Height (ft)",
+        group: c => c.len + "-ft ladder",
+        need: { distinct: 5, groups: 1 }, needLabel: "Recorded 5+ base distances with the same ladder",
+        scene: `<svg viewBox="0 0 320 230" style="width:100%;display:block">
+          <rect x="280" y="20" width="26" height="190" fill="#d8c3a5"/>
+          <path d="M280 20 v190" stroke="#a88b64" stroke-width="2"/>
+          <rect x="0" y="210" width="320" height="16" fill="#9ccc65"/>
+          <path id="lad" d="" stroke="#8d5524" stroke-width="7" stroke-linecap="round"/>
+          <path id="ra" d="" fill="none" stroke="#1f2430" stroke-width="2"/>
+          <text id="ta" font-family="Nunito" font-weight="800" font-size="12" fill="#ee7d1c"></text>
+          <text id="tb" font-family="Nunito" font-weight="800" font-size="12" fill="#2b7de9"></text>
+          <text id="tc" font-family="Nunito" font-weight="800" font-size="12" fill="#8d5524"></text>
+          <text id="safe" x="12" y="28" font-family="Nunito" font-weight="800" font-size="13"></text>
+          <text id="eq" x="12" y="48" font-family="Nunito" font-weight="700" font-size="12" fill="#5d6577"></text>
+        </svg>`,
+        draw(svg, c) {
+          const s = 9.5, wx = 280, gy = 210, h = Math.sqrt(c.len * c.len - c.base * c.base);
+          const bx = wx - c.base * s, ty = gy - h * s;
+          svg.querySelector("#lad").setAttribute("d", `M${bx} ${gy} L${wx} ${ty}`);
+          svg.querySelector("#ra").setAttribute("d", `M${wx - 12} ${gy} v-12 h12`);
+          const ta = svg.querySelector("#ta"); ta.setAttribute("x", wx - 50); ta.setAttribute("y", (gy + ty) / 2); ta.textContent = `a = ${h.toFixed(1)} ft`;
+          const tb = svg.querySelector("#tb"); tb.setAttribute("x", bx); tb.setAttribute("y", gy - 6); tb.textContent = `b = ${c.base} ft`;
+          const tc = svg.querySelector("#tc"); tc.setAttribute("x", Math.min(bx + 8, 150)); tc.setAttribute("y", (gy + ty) / 2 + 24); tc.textContent = `c = ${c.len} ft`;
+          const ratio = h / c.base, safe = svg.querySelector("#safe");
+          if (ratio > 5) { safe.textContent = "⚠️ Too steep: could tip backward"; safe.setAttribute("fill", "#d9534f"); }
+          else if (ratio < 3) { safe.textContent = "⚠️ Too shallow: base could slide out"; safe.setAttribute("fill", "#d9534f"); }
+          else { safe.textContent = "✅ Safe angle (about 4-to-1)"; safe.setAttribute("fill", "#1aa36f"); }
+          svg.querySelector("#eq").textContent = `${c.base}² + a² = ${c.len}²  →  a = √${c.len * c.len - c.base * c.base}`;
+        }
+      },
+      analyze: {
+        placeholder: "As the base moved away from the wall, the height… The graph curves because…",
+        hint: "Explain the shape of your graph using the <b>Pythagorean theorem</b> or the word <b>hypotenuse</b>. Which base distances were safe?",
+        must: /pythag|hypotenuse|a² ?\+|a\^2|squared/i, minWords: 25, checkLabel: "Analyzed the graph (25+ words, uses \"Pythagorean\" or \"hypotenuse\")",
+        stems: [ "What would happen if…", "How would the graph change if…", "Why do safety rules…", "Predict the height if…" ]
+      }
+    },
+
+    C: {
+      title: "Philosophical Chairs", time: "5–8 min",
+      goal: "Take a position, back it up with <b>math and evidence</b>, and respond respectfully to a classmate's argument.",
+      statement: "Experienced builders don't need geometry. They can just eyeball whether something is square or safe.",
+      reasonStarter: "I agree / disagree because in the ladder lab I noticed…",
+      peer: { name: "Marcus", says: "My uncle builds houses and never uses the Pythagorean theorem. He just knows when things look right." },
+      frames: FRAMES
+    },
+
+    O: {
+      title: "Organize It", time: "5–8 min",
+      goal: "Test each set of side lengths with a² + b² = c² and <b>sort</b> them, then write a <b>summary</b>.",
+      sortTitle: "Right triangle or not? (Check: a² + b² = c²)",
+      zones: [ "✅ Right triangle", "❌ Not a right triangle" ],
+      tiles: [ ["3, 4, 5", 0], ["5, 12, 13", 0], ["6, 8, 10", 0], ["8, 15, 17", 0], ["7, 24, 25", 0], ["9, 12, 15", 0],
+               ["4, 5, 6", 1], ["2, 3, 4", 1], ["5, 6, 8", 1], ["10, 10, 15", 1] ],
+      summaryPrompt: "Write a 2–3 sentence summary explaining how to use the Pythagorean theorem to decide whether a triangle is a right triangle.",
+      summaryStarter: "To check whether a triangle is a right triangle…"
+    }
+  }
+};
+function words(s) { return (String(s).trim().match(/[A-Za-z0-9'’%₂₆-]+/g) || []).length; }
+</script>
+<script src="hub-config.js?v=3"></script>
+<script src="wicor-lesson.js?v=3"></script>
+</body>
+</html>

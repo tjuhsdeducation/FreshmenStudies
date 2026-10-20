@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Interview & Job Search Guide | College & Career</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f7f9;--surface:#fff;--fg:#1f2430;--muted:#5d6577;--line:#dfe3ea;--soft:#f1f3f7;--lc:#1f6fd1;--ok:#1a8f5a;--bad:#d0453a;--part:#c98a00;
+  --display:"Fredoka","Trebuchet MS",system-ui,sans-serif;--body:"Nunito","Segoe UI",system-ui,sans-serif;--shadow:0 6px 18px rgba(40,30,70,.08)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17151f;--surface:#211e2b;--fg:#ece9f5;--muted:#aaa5bd;--line:#352f45;--soft:#2a2637;--ok:#5fd39a;--bad:#ff8a80;--part:#ffc94d;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#17151f;--surface:#211e2b;--fg:#ece9f5;--muted:#aaa5bd;--line:#352f45;--soft:#2a2637;--ok:#5fd39a;--bad:#ff8a80;--part:#ffc94d;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.5;overflow-x:hidden}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.15;margin:0 0 .4em}
+a{color:inherit}button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--lc);outline-offset:2px}
+header.top{position:sticky;top:0;z-index:40;background:var(--surface);border-bottom:1px solid var(--line)}
+header.top .bar{max-width:1100px;margin:0 auto;padding:9px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:9px;font:700 1.1rem var(--display);text-decoration:none}
+.brand .mark{width:34px;height:34px;border-radius:10px;background:var(--lc);display:grid;place-items:center}
+.crumb{display:flex;gap:6px;color:var(--muted);font-weight:700;font-size:.92rem;flex-wrap:wrap}.crumb a{text-decoration:none;color:var(--muted)}.crumb b{color:var(--fg)}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px 60px}
+.tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:16px 0}
+.btn{border:0;border-radius:999px;padding:10px 18px;font-weight:800;background:var(--lc);color:#fff;cursor:pointer}
+.btn.ghost{background:var(--soft);color:var(--fg)}
+.mu{color:var(--muted)}
+.sheet{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:var(--shadow);margin-bottom:16px}
+.ttl{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:flex-end;border-bottom:3px solid var(--lc);padding-bottom:8px;margin-bottom:12px}
+.ttl h1{font-size:clamp(1.5rem,4vw,2.1rem);margin:0}.ttl p{margin:2px 0 0;color:var(--muted);font-weight:700}
+.nd{display:flex;gap:14px;flex-wrap:wrap;font-weight:700;font-size:.95rem}.nd span{white-space:nowrap}.nd i{display:inline-block;width:150px;border-bottom:1.5px solid currentColor;vertical-align:bottom;margin-left:4px}.nd i.s{width:60px}
+h2{font-size:1.25rem;margin:14px 0 6px;color:color-mix(in srgb,var(--lc) 75%,var(--fg))}
+.qs{counter-reset:q;list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:6px 18px}
+.qs li{counter-increment:q;break-inside:avoid;padding:6px 0 6px 34px;position:relative;border-bottom:1px dashed var(--line)}
+.qs li::before{content:counter(q);position:absolute;left:0;top:6px;width:24px;height:24px;border-radius:50%;background:var(--lc);color:#fff;font-weight:800;font-size:.8rem;display:grid;place-items:center}
+.qs b{display:block}.qs span{font-size:.92rem;color:var(--muted)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.box{border:2px solid var(--line);border-radius:16px;padding:10px 14px;break-inside:avoid}
+.box h2{margin-top:0}
+.box ul{margin:0;padding-left:20px}.box li{margin:2px 0}
+.check{list-style:none;padding-left:0!important}.check li{padding-left:26px;position:relative}.check li::before{content:"";position:absolute;left:0;top:4px;width:15px;height:15px;border:2px solid currentColor;border-radius:3px}
+.email{font-family:Georgia,serif;background:var(--soft);border-radius:12px;padding:10px 14px;line-height:1.55;font-size:.95rem}
+.email p{margin:0 0 6px}.blank{display:inline-block;min-width:90px;border-bottom:1.5px solid currentColor}
+.jobs li{margin:4px 0}
+.note{font-size:.88rem;color:var(--muted)}
+.tip{background:color-mix(in srgb,var(--lc) 9%,var(--surface));border-radius:12px;padding:8px 12px;font-size:.92rem;margin-top:10px}
+@media (max-width:760px){.qs,.cols{grid-template-columns:1fr}header.top{position:static}.sheet{padding:14px}}
+@media print{
+  @page{size:letter;margin:.5in}
+  :root{--fg:#000;--muted:#333;--line:#999;--soft:#f2f2f2;--surface:#fff;--lc:#000}
+  html,body{background:#fff!important;color:#000;font-size:9.6pt;line-height:1.32}
+  header.top,.tools{display:none!important}
+  .wrap{padding:0;max-width:none}
+  .sheet{border:0;box-shadow:none;padding:0;margin:0;border-radius:0}
+  .sheet+.sheet{break-before:page}
+  .ttl{border-bottom-width:2px;padding-bottom:4px;margin-bottom:6px}.ttl h1{font-size:17pt}
+  h2{font-size:11.5pt;margin:7px 0 3px;color:#000}
+  .qs{gap:0 14px}.qs li{padding:3px 0 3px 22px}.qs li::before{width:16px;height:16px;font-size:7pt;top:4px;background:#000}.qs span{font-size:8.8pt;color:#222}
+  .cols{gap:10px}.box{padding:6px 10px;border-width:1.2px;border-radius:8px}
+  .email{font-size:9pt;padding:6px 10px;background:#f4f4f4}
+  .tip{padding:5px 10px;font-size:8.8pt;background:#f4f4f4}
+  .note{font-size:8.5pt;color:#222}
+  .check li{padding-left:18px}.check li::before{width:9px;height:9px;top:3px;border-width:1.2px}
+  a{text-decoration:none}
+}
+</style>
+</head>
+<body>
+<header class="top"><div class="bar"><a class="brand" href="index.html#college"><span class="mark">🎓</span><span>College & Career</span></a>
+  <span class="crumb"><span>›</span><a href="index.html#college">College & Career</a><span>›</span><b>Interview & Job Search Guide</b></span></div></header>
+<main class="wrap">
+  <div class="tools"><button type="button" class="btn" onclick="window.print()">🖨️ Print this guide (2 pages)</button><a class="btn ghost" href="resume-builder.html" style="text-decoration:none">📄 Resume Builder</a><a class="btn ghost" href="job-ready.html" style="text-decoration:none">💼 Practice: Get Hired lesson</a></div>
+
+  <section class="sheet">
+    <div class="ttl"><div><h1>💼 Interview & Job Search Guide</h1><p>For your first job, internship, or volunteer position</p></div>
+      <div class="nd"><span>Name <i></i></span><span>Date <i class="s"></i></span><span>Period <i class="s"></i></span></div></div>
+
+    <h2>The 15 most common interview questions</h2>
+    <ol class="qs">
+      <li><b>Tell me about yourself.</b><span>Give a 30-second answer: your grade and school, 1 or 2 strengths, and why you want this job. Skip private details.</span></li>
+      <li><b>Why do you want to work here?</b><span>Name something you like about the business (friendly team, you shop there, you like kids) and how you can help.</span></li>
+      <li><b>What are your strengths?</b><span>Pick 2 strengths and prove each one with a quick example.</span></li>
+      <li><b>What is one weakness?</b><span>Choose a real but small weakness, then say what you are doing to improve it.</span></li>
+      <li><b>Why should we hire you?</b><span>Match your skills to what the job needs: “You need someone dependable, and I…”</span></li>
+      <li><b>Tell me about a time you worked on a team.</b><span>Use STAR (Situation, Task, Action, Result). Say what <i>you</i> did.</span></li>
+      <li><b>Tell me about a time you solved a problem.</b><span>Use STAR. School, sports, family, and volunteering stories all count.</span></li>
+      <li><b>How would you handle an upset customer?</b><span>Stay calm, listen, say sorry, try to fix it, and get a manager if needed.</span></li>
+      <li><b>What is your availability?</b><span>Know your real days and hours before you go. Remember school-year hour limits for teens.</span></li>
+      <li><b>How do you handle stress or a busy day?</b><span>Show a plan: a planner, a to-do list, staying calm, and asking for help.</span></li>
+      <li><b>Tell me about a mistake you made.</b><span>Own it, explain how you fixed it, and share what you learned. Stay positive.</span></li>
+      <li><b>Where do you see yourself in 5 years?</b><span>Mention your goals (college, a trade, a career) and the skills this job will help you build.</span></li>
+      <li><b>What do you know about our business?</b><span>Look at their website or visit before the interview. Mention one thing you learned.</span></li>
+      <li><b>How would a teacher or coach describe you?</b><span>Use 2 or 3 words (reliable, kind, hard-working) and a quick reason.</span></li>
+      <li><b>Do you have any questions for us?</b><span>Always say yes! Ask 1 or 2 questions from the list below.</span></li>
+    </ol>
+
+    <div class="cols" style="margin-top:10px">
+      <div class="box"><h2>🙋 Questions to ask the interviewer</h2><ul>
+        <li>What does a typical day look like in this job?</li>
+        <li>What do your best employees do well?</li>
+        <li>What training will I get when I start?</li>
+        <li>What are the usual hours or shifts for this position?</li>
+        <li>What do you like most about working here?</li>
+        <li>What are the next steps, and when should I expect to hear back?</li></ul>
+        <p class="note">Wait to ask about pay until they offer the job or bring it up.</p></div>
+      <div class="box"><h2>⭐ The STAR answer</h2><ul>
+        <li><b>S</b>ituation: where and when</li>
+        <li><b>T</b>ask: your job or the problem</li>
+        <li><b>A</b>ction: what <i>you</i> did, step by step</li>
+        <li><b>R</b>esult: what happened and what you learned</li></ul>
+        <p class="note">Practice out loud. A good answer takes about 1 to 2 minutes.</p>
+        <p class="note" style="margin-top:6px"><b>My best STAR story:</b> ________________________________<br>____________________________________________</p></div>
+    </div>
+    <div class="cols" style="margin-top:10px">
+      <div class="box"><h2>👕 What to wear</h2><ul>
+        <li>Dress one step nicer than the job’s uniform.</li>
+        <li>A clean collared shirt, polo, blouse, or simple sweater.</li>
+        <li>Clean pants, khakis, or a skirt with no rips.</li>
+        <li>Clean, closed-toe shoes.</li>
+        <li>Neat hair, light or no perfume, no hats.</li>
+        <li>You do not need to buy anything new. Clean and neat matters most.</li></ul></div>
+      <div class="box"><h2>🎒 What to bring</h2><ul>
+        <li>2 or 3 copies of your resume in a folder</li>
+        <li>A pen and a small notebook</li>
+        <li>Your list of references (names and phone numbers)</li>
+        <li>Your weekly availability, written down</li>
+        <li>Your questions for the interviewer</li>
+        <li>A photo ID, if you have one</li></ul></div>
+    </div>
+
+  </section>
+
+  <section class="sheet">
+    <div class="ttl"><div><h1>✅ Interview Day, Follow-Up, and Finding Jobs</h1><p>Interview & Job Search Guide, page 2</p></div></div>
+    <div class="box"><h2>📋 Day-of checklist</h2>
+      <div class="cols" style="gap:4px 18px"><ul class="check">
+        <li>Know the address, the time, and the interviewer’s name</li>
+        <li>Plan your ride and arrive <b>10 minutes early</b></li>
+        <li>Phone on silent and put away</li>
+        <li>Go alone (a ride can wait outside)</li>
+        <li>Greet everyone politely, including the front desk</li></ul>
+        <ul class="check">
+        <li>Smile, make eye contact, and introduce yourself</li>
+        <li>Sit up straight and speak clearly</li>
+        <li>Give examples, not just “I’m a hard worker”</li>
+        <li>Ask 1 or 2 questions at the end</li>
+        <li>Say thank you, and send a thank-you email within 24 hours</li></ul></div></div>
+
+    <div class="box" style="margin-top:10px"><h2>✉️ Thank-you email template</h2>
+      <div class="email">
+        <p><b>Subject:</b> Thank you for the interview</p>
+        <p>Dear <span class="blank"></span> (Ms./Mr. + last name),</p>
+        <p>Thank you for taking the time to meet with me today about the <span class="blank"></span> position. I enjoyed learning about <span class="blank" style="min-width:150px"></span>.</p>
+        <p>I am excited about the chance to join your team. I think my <span class="blank"></span> and <span class="blank"></span> would help me do a great job. Please let me know if you need anything else from me.</p>
+        <p>Sincerely,<br><span class="blank" style="min-width:150px"></span> (your full name)<br><span class="blank" style="min-width:150px"></span> (your phone number)</p></div>
+      <p class="note">Use a professional email address, check spelling, and do not use slang or emojis.</p></div>
+
+    <div class="box" style="margin-top:10px"><h2>📍 Where teens can find jobs near Tulare and Visalia</h2><ul class="jobs">
+      <li><b>Your school’s career center, counselor, or work-permit office.</b> Ask about local job openings, internships, and how to get your work permit.</li>
+      <li><b>Employment Connection</b>, Tulare County’s job centers, run by the Workforce Investment Board of Tulare County. Ask about free help with resumes and job searches, and about programs for young people.</li>
+      <li><b>CalJOBS</b> (caljobs.ca.gov), California’s free online job board from the state.</li>
+      <li><b>City job pages.</b> Search online for the City of Tulare or City of Visalia jobs page. Cities often hire teens for summer recreation jobs like camp helpers and lifeguards.</li>
+      <li><b>Local businesses.</b> Look for “Now Hiring” signs, ask for the manager, and bring a resume. Tell family, neighbors, coaches, and your church that you are looking.</li>
+      <li><b>Big job websites and store websites.</b> Many grocery stores, restaurants, and retail stores take applications online.</li></ul>
+      <div class="tip">🚩 <b>Stay safe:</b> a real job never asks you to pay to apply. Do not share your Social Security number or bank information until you are hired and filling out official paperwork. Under 18? You will usually need a California work permit (forms B1-1 and B1-4) from your school before you start.</div></div>
+  </section>
+</main>
+</body>
+</html>

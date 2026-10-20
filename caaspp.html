@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CAASPP Practice | Teacher Resource Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="rc-style.css?v=3">
+</head>
+<body class="locked">
+<!--
+  CAASPP practice sets (Smarter Balanced ELA + Math, CAST Science), grades 9–12.
+  The page shows the set named in the link, for example:
+      caaspp.html?id=ela-literary
+  Sets live in rc-caaspp-ela.js and rc-caaspp-math.js.
+  The engine (no need to edit) is rc-engine.js.
+-->
+<header class="top"><div class="bar">
+  <a class="brand" href="index.html#lessons"><span class="mark">📝</span><span>CAASPP Practice</span></a>
+  <span class="crumb" id="crumb"></span>
+  <span class="spacer"></span>
+  <span class="timer" id="timer" title="Suggested time" hidden>⏱ <b>0:00</b></span>
+  <span class="who" id="whoChip"></span>
+</div></header>
+<div id="app"><p style="padding:40px;text-align:center">Loading…</p></div>
+
+<script src="hub-config.js?v=3"></script>
+<script src="rc-engine.js?v=4"></script>
+<script src="rc-caaspp-ela.js?v=1"></script>
+<script src="rc-caaspp-math.js?v=1"></script>
+</body>
+</html>

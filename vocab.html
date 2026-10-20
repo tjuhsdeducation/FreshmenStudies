@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vocabulary Practice | AVID Student Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="cc-lesson.css?v=2">
+<style>
+  /* deck picker (the lesson itself is styled by cc-lesson.css and cc-vocab.js) */
+  :root{--lc:#2b7de9}
+  .vp-search{display:grid;gap:4px;max-width:420px;font-weight:800;font-size:.92rem;margin:4px 0 0}
+  .vp-search input{font:inherit;font-weight:600;padding:10px 14px;border-radius:14px;border:2px solid var(--line);background:var(--surface);color:var(--fg);width:100%;min-width:0}
+  .vp-steps{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 0;padding:0;list-style:none}
+  .vp-steps li{display:flex;align-items:center;gap:6px;background:var(--surface);border-radius:999px;padding:4px 12px 4px 4px;font-weight:800;font-size:.88rem}
+  .vp-steps i{font-style:normal;color:#fff;font-weight:900;font-size:.75rem;width:24px;height:24px;border-radius:50%;display:grid;place-items:center}
+  .vp-group{margin:26px 0 0}
+  .vp-group h2{font-size:1.45rem;margin:0 0 10px;display:flex;align-items:center;gap:8px}
+  .vp-group h2 small{font:700 .9rem var(--body);color:var(--muted)}
+  .vp-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px}
+  .vp-card{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;align-items:start;text-decoration:none;color:var(--fg);background:var(--surface);border:2px solid var(--line);border-left:8px solid var(--dc);border-radius:20px;padding:14px 16px;box-shadow:var(--shadow);transition:transform .15s,border-color .15s}
+  .vp-card:hover,.vp-card:focus-visible{border-color:var(--dc);transform:translateY(-2px)}
+  .vp-emoji{grid-row:span 3;width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font-size:1.6rem;background:color-mix(in srgb,var(--dc) 16%,var(--surface))}
+  .vp-card h3{font-size:1.12rem;margin:0}
+  .vp-card p{margin:0;color:var(--muted);font-size:.9rem;line-height:1.4}
+  .vp-count{justify-self:start;font-weight:800;font-size:.8rem;border-radius:999px;padding:2px 10px;background:color-mix(in srgb,var(--dc) 14%,var(--surface));color:color-mix(in srgb,var(--dc) 70%,var(--fg));margin-top:4px}
+  .vp-none{color:var(--muted);font-weight:700}
+  .vp-warn{background:color-mix(in srgb,var(--bad) 10%,var(--surface));border:2px solid color-mix(in srgb,var(--bad) 35%,var(--surface));border-radius:14px;padding:10px 14px;font-weight:700;margin:16px 0 0}
+  .vp-load{text-align:center;padding:60px 16px;color:var(--muted);font-weight:800}
+  @media (max-width:520px){.vp-grid{grid-template-columns:1fr}.banner{padding:18px}}
+  @media (prefers-reduced-motion:reduce){.vp-card{transition:none}.vp-card:hover{transform:none}}
+</style>
+</head>
+<body>
+<div id="vp-root"><p class="vp-load">Loading…</p></div>
+<!-- deck data + flash / match / spell blocks (also used by the picker for the deck list) -->
+<script src="cc-vocab.js?v=1"></script>
+<script>
+(function () {
+  const DECKS = window.VOCAB_DECKS || {};
+  const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const params = new URLSearchParams(location.search), ID = (params.get("deck") || "").trim();
+  const root = document.getElementById("vp-root");
+
+  /* ================= DECK PICKER (no ?deck=) : the lesson engine is NOT loaded ================= */
+  function picker(missing) {
+    document.title = "Vocabulary Practice | AVID Student Hub";
+    const groups = {};
+    Object.entries(DECKS).forEach(([id, d]) => (groups[d.group] = groups[d.group] || []).push([id, d]));
+    const steps = [["R", "#e08a00", "Learn: flashcards"], ["O", "#0e9f6e", "Match: timed game"], ["I", "#8a54e0", "Spell It"], ["I", "#8a54e0", "Check: 10-question quiz"], ["W", "#2b7de9", "Use It: write"]];
+    root.innerHTML = `
+      <header class="top"><div class="bar"><a class="brand" href="index.html#lessons"><span class="mark">🔤</span><span>Vocabulary Practice</span></a>
+        <span class="crumb"><span>›</span><a href="index.html#lessons">Lessons</a><span>›</span><b>Choose a deck</b></span><span class="spacer"></span></div></header>
+      <main class="wrap">
+        <section class="banner"><span class="kick">🔤 Vocabulary Practice · about 40 minutes per deck</span><h1>Pick a word deck</h1>
+          <p>Choose the words you are learning in class. Each deck has five stations. You earn points in each one, and you can turn your score in to your teacher at the end.</p>
+          <ol class="vp-steps">${steps.map((s, i) => `<li><i style="background:${s[1]}">${s[0]}</i>${i + 1}. ${s[2]}</li>`).join("")}</ol>
+          <label class="vp-search">Find a deck or a word<input id="vp-q" type="search" placeholder="Try “biology” or “FAFSA”" autocomplete="off"></label>
+          ${missing ? `<p class="vp-warn" role="alert">We could not find a deck called “${esc(missing)}”. Please choose one below.</p>` : ""}</section>
+        <div id="vp-list"></div><p class="vp-none" id="vp-none" hidden>No decks match. Try a different word.</p>
+      </main>`;
+    const list = document.getElementById("vp-list"), q = document.getElementById("vp-q"), none = document.getElementById("vp-none");
+    const draw = () => {
+      const f = q.value.trim().toLowerCase(); let shown = 0;
+      list.innerHTML = Object.entries(groups).map(([g, decks]) => {
+        const hit = decks.filter(([id, d]) => !f || (d.name + " " + d.blurb + " " + d.words.map(w => w.term).join(" ")).toLowerCase().includes(f));
+        shown += hit.length; if (!hit.length) return "";
+        return `<section class="vp-group" aria-labelledby="g-${esc(g).replace(/\W+/g, "")}"><h2 id="g-${esc(g).replace(/\W+/g, "")}">${esc(g)} <small>${hit.length} deck${hit.length > 1 ? "s" : ""}</small></h2><div class="vp-grid">
+          ${hit.map(([id, d]) => `<a class="vp-card" href="vocab.html?deck=${encodeURIComponent(id)}" style="--dc:${d.color}"><span class="vp-emoji" aria-hidden="true">${d.emoji}</span><h3>${esc(d.name)}</h3><p>${esc(d.blurb)}</p><span class="vp-count">${d.words.length} words</span></a>`).join("")}</div></section>`;
+      }).join("");
+      none.hidden = shown > 0;
+    };
+    q.oninput = draw; draw();
+  }
+
+  /* ================= LESSON (?deck=ID) : build window.CC, then load the engine ================= */
+  function lesson(id, d) {
+    const n = d.words.length;
+    document.title = `${d.name} | Vocabulary Practice`;
+    const termsRe = window.VOCAB.finder(id);
+    const bank = d.words.map(w => `<span>${esc(w.term)}</span>`).join("");
+    window.CC = {
+      id: "vocab-" + id, subject: "Vocabulary", short: d.name, color: d.color, emoji: d.emoji, time: "≈ 40 min",
+      kind: "Vocabulary Practice",
+      brand: { name: "Vocabulary Practice", home: "lessons", mark: "🔤" },
+      title: d.name,
+      intro: `${esc(d.blurb)} You will practice all ${n} words in five stations: learn them, match them, spell them, check yourself, and use them in your own writing. <a href="vocab.html">Choose a different deck</a>`,
+      eq: "How can knowing these words help me understand my classes and show what I know?",
+      targets: {
+        R: "I can read each word and explain what it means in my own words.",
+        O: "I can quickly match each word with its meaning.",
+        I: "I can figure out and spell a word from its meaning.",
+        W: "I can use new words correctly in sentences about my classes."
+      },
+      teacher: `<p><b>Pacing (≈ 40 min):</b> Learn 8 · Match 7 · Spell It 8 · Check 9 · Use It 8.</p>
+        <p><b>Points (17 total):</b> Flashcards 1 (flip every card) · Match 2 (finish every round) · Spell It 2 (80%+ first-try correct = 2, 50%+ = 1, best round counts) · Check 10 (one point per question) · Use It 2 (25+ words that use 3 or more deck words).</p>
+        <p><b>Fair for everyone:</b> the 10 quiz questions are built the same way for every student who opens this deck, so you can go over them as a class. Match and Spell It shuffle for each student.</p>
+        <p><b>Collaboration idea:</b> after Station 1, have partners quiz each other on their “Still learning” piles. Race the Match game in pairs and compare best times.</p>
+        <p><b>Other decks:</b> <a href="vocab.html">vocab.html</a> lists every deck. Link to one with <code>vocab.html?deck=${esc(id)}</code>.</p>`,
+      stations: [
+        { letters: ["R"], title: "Learn", time: "8 min", goal: "Flip every flashcard, read the meaning and the example, and sort the cards into piles.",
+          blocks: [{ t: "flash", deck: id, words: d.words }] },
+        { letters: ["O"], title: "Match", time: "7 min", goal: "Match each word to its meaning as fast as you can. Finish every round to earn the points.",
+          blocks: [{ t: "match", deck: id, words: d.words }] },
+        { letters: ["I"], title: "Spell It", time: "8 min", goal: "Read the meaning, then type the word. Try to get it on the first try without a hint.",
+          blocks: [{ t: "spell", deck: id, words: d.words, n: 10 }] },
+        { letters: ["I"], title: "Check", time: "9 min", goal: "Answer 10 questions about the words. Read every choice before you pick.",
+          blocks: [{ t: "quiz", label: "vocabulary quiz", title: "✅ Check yourself: 10 questions", items: window.VOCAB.buildQuiz(id, 10).map(({ q, opts, a, why }) => ({ q, opts, a, why })) }] },
+        { letters: ["W"], title: "Use It", time: "8 min", goal: "Write sentences about your classes that use at least 3 words from this deck.",
+          blocks: [
+            { t: "text", html: `<div class="callout"><b>Word bank (${n} words)</b><p class="frames" style="margin:6px 0 0">${bank}</p></div>` },
+            { t: "write", label: "vocabulary sentences", title: "Use 3 words", prompt: "Use 3 words from this deck in sentences about what you are learning in class.", min: 25, rows: 6,
+              frames: ["In ___ class, we are learning about …", "I had to ___ when we …", "One example of ___ from class is …", "This word helps me because …"],
+              starter: "In my ___ class, we …",
+              checks: [{ label: "Uses at least 3 different words from this deck", re: termsRe, min: 3 }] }
+          ] }
+      ]
+    };
+    /* engine scripts, in order, one after another (cc-vocab.js is already loaded above) */
+    const files = ["cc-blocks2.js?v=1", "hub-config.js?v=3", "cc-lesson.js?v=4"];
+    const next = k => {
+      if (k >= files.length) return;
+      const s = document.createElement("script"); s.src = files[k];
+      s.onload = () => next(k + 1);
+      s.onerror = () => { root.innerHTML = `<main class="wrap"><p class="vp-warn" role="alert">Could not load ${esc(files[k])}. Check your internet connection and refresh the page.</p></main>`; };
+      document.head.appendChild(s);
+    };
+    next(0);
+  }
+
+  if (ID && DECKS[ID]) lesson(ID, DECKS[ID]);
+  else picker(ID || "");
+})();
+</script>
+</body>
+</html>

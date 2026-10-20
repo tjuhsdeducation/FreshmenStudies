@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Costa’s Question Lab: Ask Higher-Level Questions | AVID</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="cc-lesson.css?v=2">
+</head>
+<body>
+<script>
+/* =====================================================================
+   AVID LESSON: Costa’s Question Lab (about 40 minutes)
+   New blocks (qbank, qbuild, qpractice, qreverse) live in cc-costa.js.
+   ===================================================================== */
+window.CC = {
+  id: "costas-lab", subject: "AVID", short: "Costa’s Question Lab", color: "#5b5fe0", emoji: "❓", time: "≈ 40 min", kind: "AVID Lesson",
+  brand: { name: "AVID", home: "avid", mark: "❓" },
+  title: "Costa’s Question Lab: Ask Higher-Level Questions",
+  intro: "Learn Costa’s three levels of questions, sort and build your own, practice with real readings, and write a strong question you can bring to tutorials.",
+  eq: "How can asking higher-level questions help me understand what I learn in every class?",
+  targets: {
+    R: "I can read a short text and ask questions about it at all three of Costa’s levels.",
+    I: "I can tell the difference between Level 1, Level 2, and Level 3 questions.",
+    W: "I can write my own Level 2 and Level 3 questions using question stems.",
+    C: "I can bring a clear, higher-level question about my point of confusion to tutorials."
+  },
+  teacher: `<p><b>Pacing (≈ 40 min):</b> The Three Levels 6 · Sort 6 · Build Your Own 8 · Read, Ask, Answer 10 · Answer First 5 · Tutorial Ready 5.</p>
+    <p><b>About the level detector:</b> Stations 3, 4, and 5 use an automatic detector that looks for question stems and thinking verbs (for example, “compare” → Level 2, “what if” → Level 3). It is an estimate, not a judge. When two levels appear, the highest one counts. When it finds no clear stem, it says it is not sure. Use its feedback as a talking point: “Do you agree with the detector? Why?”</p>
+    <p><b>Points (22 total):</b> House explored 1 · Sort 2 · Builder 3 (one per level) · Readings 8 (2 each: level match, plus an answer of 12+ words that reuses words from the reading) · Answer First 6 (2 each) · Tutorial question 2 (writing rubric).</p>
+    <p><b>Collaboration idea:</b> After Station 5, have partners trade screens and try to answer each other’s Level 3 questions out loud. Station 6 questions can go straight onto a Tutorial Request Form.</p>`,
+  stations: [
+    { letters: ["R"], title: "The Three Levels", time: "6 min", goal: "Learn how Costa’s levels work, then open every floor of the Question House.",
+      blocks: [
+        { t: "text", html: `<p>Educator Arthur Costa noticed that some questions only ask you to <b>remember</b>, while others make you <b>think</b>. He sorted questions into three levels. AVID often shows them as a three-story house: the higher you climb, the more your brain has to work.</p>
+          <div class="tw"><table><thead><tr><th>Level</th><th>What your brain does</th><th>Where is the answer?</th></tr></thead><tbody>
+          <tr><td><b style="color:#0e9f6e">🧱 Level 1: Gathering</b><br>Ground floor</td><td>Find or remember facts.</td><td>Right there in the text or your notes.</td></tr>
+          <tr><td><b style="color:#2b7de9">🪜 Level 2: Processing</b><br>Second floor</td><td>Make sense of facts: compare, explain why, find causes and patterns.</td><td>You put pieces of the text together.</td></tr>
+          <tr><td><b style="color:#8a54e0">🔭 Level 3: Applying</b><br>Rooftop</td><td>Use facts in a new way: predict, judge, imagine, design.</td><td>Beyond the text. You use what you know plus your own thinking.</td></tr></tbody></table></div>
+          <p class="callout">💡 <b>Why it matters:</b> Level 1 questions are a great start, but tests, essays, and tutorials ask for Level 2 and 3 thinking. If you can <b>ask</b> a higher-level question, you are already halfway to answering one.</p>` },
+        { t: "qbank" }
+      ] },
+    { letters: ["I"], title: "Sort the Questions", time: "6 min", goal: "Decide which floor of the house each question lives on.",
+      blocks: [
+        { t: "sort", label: "question sort", title: "🗂️ Sort 12 questions into Costa’s levels",
+          zones: ["🧱 Level 1: Gathering", "🪜 Level 2: Processing", "🔭 Level 3: Applying"],
+          tiles: [
+            ["🔬 Define the word “photosynthesis.”", 0],
+            ["➗ List the first three steps for solving a two-step equation.", 0],
+            ["📖 Who wrote the novel <i>To Kill a Mockingbird</i>?", 0],
+            ["🏛️ When did World War II end?", 0],
+            ["🔬 Compare mitosis and meiosis.", 1],
+            ["📖 Why does the author repeat the same phrase in the poem?", 1],
+            ["➗ What is the relationship between the side lengths of a right triangle?", 1],
+            ["🏛️ What caused the Great Depression to get worse after 1929?", 1],
+            ["➗ What would happen to the price if the store doubled the discount?", 2],
+            ["📖 Predict how the story would change if it were told by the villain.", 2],
+            ["🏛️ Should the voting age be lowered to 16? Justify your answer.", 2],
+            ["🔬 Design an experiment to test whether music affects plant growth.", 2]
+          ],
+          why: "Look for the verb or stem: define, list, who, when → Level 1. Compare, why, relationship, caused → Level 2. What would happen, predict, should, design → Level 3." }
+      ] },
+    { letters: ["I", "W"], title: "Build Your Own", time: "8 min", goal: "Test questions in the detector, then build one question for each level.",
+      blocks: [
+        { t: "text", html: `<p>The <b>level detector</b> reads the words in a question and estimates its level. It looks for stems and thinking verbs, like the ones in the Question House. Try a few questions in the detector first. Can you fool it? Then build one question for each floor about anything you are learning in your classes.</p>` },
+        { t: "qbuild" }
+      ] },
+    { letters: ["R", "I"], title: "Read, Ask, Answer", time: "10 min", goal: "Read four short texts. For each one, write a question at the level shown and answer it.",
+      blocks: [
+        { t: "qpractice", items: [
+          { subject: "Science", level: 1, title: "How Plants Make Food",
+            html: `<p>Photosynthesis is the process plants use to make their own food. Inside leaf cells, tiny structures called <b>chloroplasts</b> capture energy from sunlight. The plant takes in <b>carbon dioxide</b> from the air through small openings in its leaves called stomata, and its roots pull <b>water</b> up from the soil. Using the light energy, the chloroplasts turn the carbon dioxide and water into <b>glucose</b>, a sugar the plant uses for energy and growth. <b>Oxygen</b> is released into the air as a by-product.</p>
+              <p><b>Lab data:</b> oxygen bubbles counted in 1 minute from a water plant (Elodea) at different distances from a lamp.</p>`,
+            bars: [["Lamp 10 cm away", 32], ["Lamp 20 cm away", 21], ["Lamp 30 cm away", 12], ["Lamp 40 cm away", 6]],
+            barsAlt: "Bubbles per minute: 32 at 10 cm, 21 at 20 cm, 12 at 30 cm, 6 at 40 cm.", barsCap: "Sample data from a class lab, made up for practice.",
+            ph: "Example start: What gas…", aph: "Answer with a full sentence that uses words from the reading.",
+            tip: "Level 1 questions gather facts that are right in the text. Try starting with “What,” “Where,” “How many,” or “Identify.” Answer in a full sentence with words from the reading." },
+          { subject: "Math", level: 2, title: "The Kettle Corn Fundraiser",
+            html: `<p>The Ag Club sells bags of kettle corn at home football games. Every bag costs the same price. Here are their sales for the first four games.</p>
+              <table><thead><tr><th>Game</th><th>Bags sold</th><th>Money earned</th></tr></thead><tbody>
+              <tr><td>Game 1</td><td>20</td><td>$30</td></tr><tr><td>Game 2</td><td>26</td><td>$39</td></tr><tr><td>Game 3</td><td>32</td><td>$48</td></tr><tr><td>Game 4</td><td>38</td><td>$57</td></tr></tbody></table>`,
+            ph: "Example start: What is the relationship between…", aph: "Explain your thinking with numbers and words from the table.",
+            tip: "Level 2 questions look for patterns, causes, and connections. Try “What is the relationship between…,” “Why does…,” or “Compare….” In your answer, use words like bags, money, or game." },
+          { subject: "History", level: 3, title: "The Declaration of Independence (1776)",
+            html: `<blockquote>“We hold these truths to be self-evident, that all men are created equal, that they are endowed by their Creator with certain unalienable Rights, that among these are Life, Liberty and the pursuit of Happiness.--That to secure these rights, Governments are instituted among Men, deriving their just powers from the consent of the governed, …”</blockquote>
+              <p class="mu small"><b>Word help:</b> self-evident = clearly true · endowed = given · unalienable = cannot be taken away · instituted = set up · consent of the governed = the people agree to it.</p>`,
+            src: "Source: Declaration of Independence, adopted July 4, 1776. Text from the National Archives transcription (public domain).",
+            ph: "Example start: What would happen if…", aph: "Use ideas from the quote, like rights, liberty, government, or consent.",
+            tip: "Level 3 questions go beyond the text. Try “What would happen if…,” “Do you agree that…,” “How would…,” or “Should….” Your answer still needs words from the quote, like rights, government, or consent." },
+          { subject: "ELA", level: 3, title: "Marisol’s Story",
+            html: `<p>When Marisol’s family moved from Guadalajara to Tulare, she stopped speaking in class. At home she told long stories that made her little brothers laugh, but at school her words felt heavy, like stones she had to carry up a hill. One afternoon, her English teacher asked the class to write about a place they missed. Marisol wrote three full pages about her grandmother’s kitchen: the smell of cinnamon, the warm tortillas, and the radio that was always playing. The next day, the teacher asked if she would read it aloud. Marisol looked at the paper for a long time. Then she stood up.</p>`,
+            src: "A short story paragraph written for this lesson.",
+            ph: "Example start: Predict…", aph: "Use details from the story, like the kitchen, her words, or the teacher.",
+            tip: "Level 3 questions imagine or predict. Try “Predict what…,” “What would happen if…,” or “If you were Marisol….” Back up your answer with details from the paragraph." }
+        ] }
+      ] },
+    { letters: ["I"], title: "Answer First", time: "5 min", goal: "Work backward: write a question at the right level for each answer.",
+      blocks: [
+        { t: "qreverse", items: [
+          { subject: "Science", level: 2, answer: "Both plant and animal cells have a nucleus and a cell membrane, but only plant cells have a cell wall and chloroplasts.",
+            tip: "This answer compares two things, so use a Level 2 stem like “How are ___ different from ___?” or “Compare…” and include key words from the answer." },
+          { subject: "Math", level: 3, answer: "If the price of a concert ticket went up from $20 to $25, the club would probably sell fewer tickets, but it might still earn about the same amount of money.",
+            tip: "This answer predicts what happens in a new situation, so try “What would happen if…” or “Predict…” and use words like price, ticket, or money." },
+          { subject: "History", level: 1, answer: "The U.S. Constitution was signed in 1787 in Philadelphia.",
+            tip: "This answer is a fact, so use a Level 1 stem like “In what year…,” “Where…,” or “When…” and include words like Constitution or signed." }
+        ] }
+      ] },
+    { letters: ["W", "C"], title: "Tutorial Ready", time: "5 min", goal: "Turn a real point of confusion from your classes into a Level 2 or 3 question for tutorials.",
+      blocks: [
+        { t: "text", html: `<p>In AVID tutorials, you bring a <b>point of confusion</b>: the exact spot where you got stuck. A strong tutorial question is Level 2 or Level 3, because it helps your group think with you instead of just giving you an answer.</p>
+          <p class="callout">❌ <b>Weak:</b> “What is the answer to number 5?” (Level 1)<br>✅ <b>Strong:</b> “Why do I have to flip the inequality sign when I divide by a negative number?” (Level 2)</p>` },
+        { t: "write", label: "tutorial question", title: "My Tutorial Question",
+          prompt: "Think of something from one of your classes that confuses you right now. Write (1) the class and topic, (2) what you already understand, (3) where you get stuck, and (4) your Level 2 or Level 3 question about it.",
+          min: 35, rows: 7,
+          frames: ["In ___ class, we are learning about ___.", "I understand that ___.", "I get stuck when ___.", "My Level 2/3 question: Why…? / How would…? / What is the relationship between…?"],
+          starter: "In ___ class, we are learning about ___. I understand that ___. I get stuck when ___. My question is: ___?",
+          checks: [
+            { label: "Names the class or subject (math, biology, English, history…)", re: /\b(math|algebra|geometry|calculus|statistics|biology|chemistry|physics|science|english|ela|history|government|economics|spanish|french|art|health|class)\b/i },
+            { label: "Explains what you already understand (I understand / I know…)", re: /\bI (know|understand|learned|get|can)\b/i },
+            { label: "Uses a Level 2 or 3 stem or verb (why, compare, explain, relationship, what if, how would, predict…)", re: /\b(why|compar\w*|contrast\w*|explain\w*|infer\w*|analy[sz]\w*|relationship|differen\w*|similar\w*|cause[sd]?|effects?|what if|how would|how could|what would happen|predict\w*|evaluat\w*|justif\w*|hypothes\w*|design|imagine|should)\b/i },
+            { label: "Ends your question with a question mark", re: /\?/ }
+          ] }
+      ] }
+  ]
+};
+</script>
+<script src="cc-costa.js?v=1"></script>
+<script src="cc-blocks2.js?v=1"></script>
+<script src="hub-config.js?v=3"></script>
+<script src="cc-lesson.js?v=4"></script>
+</body>
+</html>

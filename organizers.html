@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Graphic Organizers | AVID</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<!--
+  Printable Graphic Organizer Library (AVID). Standalone page, no other files needed.
+  Deep link to one organizer with a hash, for example:  organizers.html#frayer
+  Hash ids: frayer venn cause cer argument web flow timeline kwl problem plot mainidea
+            tchart math4 mistake lab source soapstone onepager swbst cornell
+  Each organizer prints on one letter page (8.5 x 11, 0.5 in margins).
+-->
+<style>
+:root{--bg:#f6f7f9;--surface:#fff;--fg:#1f2430;--muted:#5d6577;--line:#dfe3ea;--soft:#f1f3f7;--lc:#5b5fe0;--ok:#1a8f5a;--bad:#d0453a;--part:#c98a00;
+  --display:"Fredoka","Trebuchet MS",system-ui,sans-serif;--body:"Nunito","Segoe UI",system-ui,sans-serif;--shadow:0 6px 18px rgba(40,30,70,.08)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17151f;--surface:#211e2b;--fg:#ece9f5;--muted:#aaa5bd;--line:#352f45;--soft:#2a2637;--ok:#5fd39a;--bad:#ff8a80;--part:#ffc94d;--lc:#8b8ef0;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#17151f;--surface:#211e2b;--fg:#ece9f5;--muted:#aaa5bd;--line:#352f45;--soft:#2a2637;--ok:#5fd39a;--bad:#ff8a80;--part:#ffc94d;--lc:#8b8ef0;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.55;overflow-x:hidden}
+h1,h2,h3,h4{font-family:var(--display);font-weight:600;line-height:1.15;margin:0 0 .4em}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--lc);outline-offset:2px}
+a{color:inherit}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px 70px}
+header.top{position:sticky;top:0;z-index:40;background:var(--surface);border-bottom:1px solid var(--line)}
+header.top .bar{max-width:1100px;margin:0 auto;padding:9px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:9px;font:700 1.1rem var(--display);text-decoration:none}
+.brand .mark{width:34px;height:34px;border-radius:10px;background:#5b5fe0;display:grid;place-items:center}
+.crumb{display:flex;gap:6px;color:var(--muted);font-weight:700;font-size:.92rem;flex-wrap:wrap}.crumb a{text-decoration:none;color:var(--muted)}.crumb a:hover{text-decoration:underline}.crumb b{color:var(--fg)}
+.banner{margin:18px 0 14px;padding:24px;border-radius:26px;background:color-mix(in srgb,var(--lc) 13%,var(--surface));border:3px solid color-mix(in srgb,var(--lc) 35%,var(--surface))}
+.banner .kick{font-weight:800;text-transform:uppercase;letter-spacing:.05em;font-size:.8rem;color:color-mix(in srgb,var(--lc) 70%,var(--fg))}
+.banner h1{font-size:clamp(1.7rem,4vw,2.6rem);margin:6px 0 8px}.banner p{color:var(--muted);margin:0;max-width:760px}
+.btn{border:0;border-radius:999px;padding:10px 18px;font-weight:800;background:var(--fg);color:var(--bg);cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.btn.ghost{background:var(--soft);color:var(--fg)}.btn.acc{background:#5b5fe0;color:#fff}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin:14px 0}
+.spacer{flex:1}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:2px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 14px;font-weight:800;font-size:.92rem;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.chip .n{opacity:.7;font-weight:700;margin-left:4px}
+.fnote{color:var(--muted);font-size:.9rem;font-weight:700;margin:0 0 12px;min-height:1.4em}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
+@media (max-width:480px){.gal{grid-template-columns:1fr 1fr;gap:10px}}
+.card{display:flex;flex-direction:column;text-decoration:none;background:var(--surface);border:2px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);transition:transform .12s,border-color .12s}
+.card:hover{transform:translateY(-2px);border-color:var(--lc)}
+.card .paper{border-radius:0;border-bottom:2px solid var(--line);padding:6%;box-shadow:none}
+.card .ci{padding:10px 12px 12px;display:grid;gap:4px}
+.card h3{font-size:1.02rem;margin:0}
+.card p{margin:0;font-size:.84rem;color:var(--muted);line-height:1.35}
+.tag{justify-self:start;font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;border-radius:999px;padding:2px 9px;color:#fff}
+.tag[data-s="All"]{background:#5b5fe0}.tag[data-s="ELA"]{background:#b8306f}.tag[data-s="Math"]{background:#b85c00}.tag[data-s="Science"]{background:#0f7d60}.tag[data-s="History"]{background:#2f5f9e}
+/* paper preview + scaler */
+.paper{background:#fff;border-radius:14px;padding:4%;box-shadow:0 8px 30px rgba(20,20,40,.14)}
+.fit{position:relative;overflow:hidden;width:100%}
+.fit>.sheet{position:absolute;left:0;top:0;transform-origin:0 0}
+.detail-head{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:6px 0 10px}
+#d-title:focus{outline:none}
+.detail-head h1{font-size:clamp(1.4rem,3.4vw,2rem);margin:0}
+.detail .paper{max-width:860px;margin:0 auto}
+.tip{max-width:860px;margin:14px auto 0;color:var(--muted);font-size:.9rem;background:var(--surface);border:2px dashed var(--line);border-radius:14px;padding:10px 14px}
+.pn{display:flex;justify-content:space-between;gap:10px;max-width:860px;margin:14px auto 0;flex-wrap:wrap}
+[hidden]{display:none!important}
+#printAll{display:none}
+
+/* ===== The printable sheet (always paper white) ===== */
+.sheet{width:720px;height:950px;background:#fff;color:#1d1f27;display:flex;flex-direction:column;gap:7px;font-family:var(--body);font-size:12.5px;line-height:1.3;
+  --acc:#5b5fe0;--tint:#eef0ff;--rule:#b3b9c6;--grid:#d3d8e2;--k:#262936;overflow:hidden;-webkit-print-color-adjust:exact;print-color-adjust:exact;text-align:left}
+.sheet[data-s="ELA"]{--acc:#b8306f;--tint:#fcecf3}.sheet[data-s="Math"]{--acc:#b85c00;--tint:#fff1e2}
+.sheet[data-s="Science"]{--acc:#0f7d60;--tint:#e5f6f0}.sheet[data-s="History"]{--acc:#2f5f9e;--tint:#e9f0fa}
+.sheet p{margin:0}
+.sh-top{display:flex;align-items:flex-end;gap:10px;border-bottom:3px solid var(--acc);padding-bottom:5px}
+.sh-top h2{font:600 23px/1.1 var(--display);margin:0;color:#14161d}
+.sh-tag{flex:none;border:2px solid var(--acc);color:var(--acc);border-radius:999px;padding:1px 8px;font-weight:800;font-size:10.5px;text-transform:uppercase;letter-spacing:.04em;margin-bottom:2px}
+.sh-best{margin-left:auto !important;font-size:11.5px;color:#333;text-align:right;max-width:270px;line-height:1.25}
+.sh-name{display:flex;gap:12px;font-weight:800;font-size:12.5px}
+.sh-name span{display:flex;align-items:flex-end;gap:4px}.sh-name i,.lq i{flex:1;border-bottom:1.5px solid #333;height:17px}
+.sh-dir{background:var(--tint);border-left:4px solid var(--acc);border-radius:6px;padding:5px 10px;font-size:12px}
+.sh-body{flex:1;min-height:0;display:grid;gap:8px}
+.sh-st{border-top:1.5px dashed #999;padding-top:4px;font-size:11px;color:#333;line-height:1.4}
+.sh-st .d{color:var(--acc);font-weight:900;margin:0 3px}
+.bx{border:2px solid var(--k);border-radius:10px;display:flex;flex-direction:column;min-height:0;min-width:0;overflow:hidden;background:#fff;position:relative}
+.bl{font:600 14px/1.2 var(--display);padding:4px 9px 1px;color:#14161d}
+.bl small{font:700 10.5px/1.25 var(--body);color:#555;margin-left:4px}
+.bl.big b{font:700 26px/1 var(--display);color:var(--acc);margin-right:6px}
+.hint{font-size:10.5px;color:#4a4f5c;padding:0 9px;line-height:1.3}
+.ln{flex:1;min-height:0;margin:0 9px 3px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='28'%3E%3Crect y='27' width='20' height='1' fill='%23999fab'/%3E%3C/svg%3E") repeat left top}
+.gp{flex:1;min-height:0;margin:2px 7px 7px;border:1px solid var(--grid);background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18'%3E%3Cpath d='M0 .5H18M.5 0V18' stroke='%23c4c9d3' stroke-width='1' fill='none'/%3E%3C/svg%3E") repeat left top}
+.pl{flex:1;min-height:0}
+.lq{display:flex;align-items:flex-end;gap:6px;font-weight:800}
+.lq.sm{font-size:11.5px;padding:2px 9px 4px}
+.ft{border-top:1.5px dashed #999;margin:0 0 0;padding:3px 9px 5px;font-size:11px}
+.ck{list-style:none;margin:2px 0;padding:0 9px;display:grid;grid-template-columns:1fr 1fr;gap:3px 10px;font-size:11.5px}
+.ck li{display:flex;gap:6px;align-items:center}.ck li::before{content:"";flex:none;width:11px;height:11px;border:1.5px solid var(--k);border-radius:2px}
+.ck.one{grid-template-columns:1fr}.ck.row{display:flex;flex-wrap:wrap;gap:4px 14px}
+.ck.circ li::before{border-radius:50%}
+.arr{display:grid;place-items:center}.arr svg{width:24px;height:24px}
+/* Frayer */
+.fr{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:8px;position:relative;min-height:0}
+.fr-c{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:250px;height:124px;border:3px solid var(--k);border-radius:50%;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;box-shadow:0 0 0 6px #fff}
+.fr-c .bl{padding:0;color:var(--acc)}
+.fr>.bx:nth-child(even) .bl{text-align:right}.fr-c i{display:block;width:170px;border-bottom:1.5px solid #333}
+/* Venn */
+.vn-top{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.vn{width:100%;height:100%;min-height:0;display:block}
+/* Cause chain */
+.ch{display:grid;grid-template-rows:repeat(5,1fr);gap:16px;min-height:0}
+.ch-r{display:grid;grid-template-columns:2fr 1fr;gap:8px;position:relative;min-height:0}
+.ch-r:not(:last-child)::after{content:"";position:absolute;left:calc(33.3% - 10px);bottom:-17px;border:10px solid transparent;border-top:13px solid var(--k);border-bottom:0}
+/* Flow */
+.fl-row{display:grid;grid-template-columns:1fr 26px 1fr 26px 1fr;min-height:0}
+.fl-down{display:grid;grid-template-columns:1fr 26px 1fr 26px 1fr}.fl-down .arr{grid-column:5}
+.num{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:var(--acc);color:#fff;font:700 12px var(--display);margin-right:5px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+/* Timeline */
+.tl{display:grid;grid-template-columns:1fr 46px 1fr;grid-template-rows:repeat(9,1fr);gap:6px 0;position:relative;min-height:0}
+.tl::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:4px;margin-left:-2px;background:var(--k);border-radius:2px}
+.tl .dot{grid-column:2;align-self:center;justify-self:center;width:26px;height:26px;border-radius:50%;background:#fff;border:3px solid var(--k);display:grid;place-items:center;font:700 12px var(--display);z-index:1}
+.tl .bx.l{grid-column:1;margin-right:4px}.tl .bx.r{grid-column:3;margin-left:4px}
+/* Problem solution sub boxes */
+.sub{flex:1;display:grid;grid-template-columns:1fr 1fr;border-top:1.5px dashed #888;min-height:0}
+.sub>div{display:flex;flex-direction:column;padding-top:3px;min-height:0}.sub>div+div{border-left:1.5px dashed #888}
+.sub b{padding:0 9px;font-size:12px}
+/* Plot mountain */
+.pm{position:relative;min-height:0}
+.pm svg{position:absolute;inset:0;width:100%;height:100%}
+.pm .bx{position:absolute}
+/* Main idea table */
+.mi-top{border-width:4px;border-radius:12px}
+.mi-legs{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:0 14px;min-height:0;margin-top:-8px}
+.mi-legs .bx{border-top-left-radius:0;border-top-right-radius:0;border-top-width:0}
+/* T-chart */
+.tc{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto 1fr;min-height:0}
+.tc-h{border-bottom:4px solid var(--k);padding:4px 12px 6px;font:600 17px var(--display);display:flex;gap:6px;align-items:flex-end}
+.tc-h small{font:700 10.5px var(--body);color:#555}
+.tc>.ln{margin:6px 12px 0}
+.tc>.ln:nth-of-type(1){border-right:0}
+.tc .vr{border-left:4px solid var(--k)}
+/* Letter rows (SOAPSTone, SWBST) */
+.lr{display:grid;grid-template-columns:92px 1fr;border:2px solid var(--k);border-radius:10px;overflow:hidden;min-height:0}
+.lr .lt{background:var(--tint);border-right:2px solid var(--k);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4px}
+.lr .lt b{font:700 30px/1 var(--display);color:var(--acc)}.lr .lt span{font:600 13px/1.1 var(--display);margin-top:2px}
+.lr .rt{display:flex;flex-direction:column;min-height:0;padding-top:4px}
+/* Data table */
+.dt{border-collapse:collapse;width:calc(100% - 18px);margin:2px 9px 8px;flex:1;table-layout:fixed}
+.dt td,.dt th{border:1.5px solid var(--k);padding:0}
+.dt th{height:42px;font-size:10.5px;vertical-align:bottom;text-align:left;padding:2px 5px;color:#555;font-weight:700}
+/* Cornell */
+.cn{display:grid;grid-template-columns:31% 1fr;border:2px solid var(--k);border-radius:10px;overflow:hidden;min-height:0}
+.cn>div{display:flex;flex-direction:column;min-height:0}
+.cn>div+div{border-left:3px solid var(--k)}
+.cn .bl{border-bottom:2px solid var(--k);padding:5px 9px;background:var(--tint)}
+
+@media print{
+  @page{size:letter;margin:.5in}
+  html,body{background:#fff!important;color:#000!important}
+  body>*:not(#printAll){display:none!important}
+  #printAll{display:block!important}
+  .sheet,.sheet[data-s]{color:#000;--acc:#000;--tint:#fff;--k:#000;--rule:#8f8f8f;--grid:#bdbdbd;break-inside:avoid;page-break-inside:avoid;box-shadow:none;margin:0}
+  .sheet:not(:last-child){break-after:page;page-break-after:always}
+  .sheet .sh-best,.sheet .hint,.sheet .bl small,.sheet .sh-st,.sheet .tc-h small,.sheet .dt th{color:#000}
+  .sh-dir{border:1px solid #000;border-left:4px solid #000}
+  .num{background:#fff;color:#000;border:1.5px solid #000}
+  .lr .lt{background:#fff}
+  .cn .bl{background:#fff}
+  .pm path.fill{fill:#fff}
+}
+</style>
+</head>
+<body>
+<header class="top"><div class="bar">
+  <a class="brand" href="index.html#avid"><span class="mark" aria-hidden="true">🗂️</span><span>AVID</span></a>
+  <nav class="crumb" aria-label="Breadcrumb"><a href="index.html#avid">AVID</a><span aria-hidden="true">›</span><b>Graphic Organizers</b></nav>
+</div></header>
+
+<main class="wrap">
+  <section id="gallery" aria-labelledby="gal-h">
+    <div class="banner">
+      <div class="kick">AVID · Printables for every class</div>
+      <h1 id="gal-h">Graphic Organizer Library</h1>
+      <p>Pick an organizer to help you think, plan, or study. Click a card to see it full size, then print it. Every organizer fits on one page and has room to write by hand.</p>
+    </div>
+    <div class="toolbar">
+      <div class="chips" role="group" aria-label="Filter by subject" id="chips"></div>
+      <span class="spacer"></span>
+      <button class="btn ghost" id="printAllBtn" type="button">🖨️ Print all</button>
+    </div>
+    <p class="fnote" id="fnote" aria-live="polite"></p>
+    <div class="gal" id="gal"></div>
+  </section>
+
+  <section id="detail" class="detail" hidden aria-live="polite">
+    <div class="toolbar">
+      <button class="btn ghost" id="backBtn" type="button">← Back to all</button>
+      <span class="spacer"></span>
+      <button class="btn acc" id="printOneBtn" type="button">🖨️ Print this organizer</button>
+    </div>
+    <div class="detail-head"><h1 id="d-title" tabindex="-1"></h1><span class="tag" id="d-tag"></span></div>
+    <div class="paper"><div class="fit" id="d-fit"></div></div>
+    <p class="tip"><b>Printing tip:</b> In the print window, choose <b>Letter</b> paper, <b>Default</b> margins, and turn off <b>Headers and footers</b>. Each organizer prints on one page in black and white.</p>
+    <div class="pn"><button class="btn ghost" id="prevBtn" type="button"></button><button class="btn ghost" id="nextBtn" type="button"></button></div>
+  </section>
+</main>
+
+<div id="printAll"></div>
+
+<script>
+(function(){
+"use strict";
+/* ---------- small builders ---------- */
+const B=(label,hint,o)=>{o=o||{};const k=o.k||'ln';
+  return `<div class="bx${o.c?' '+o.c:''}"${o.a||o.st?` style="${o.a?'grid-area:'+o.a+';':''}${o.st||''}"`:''}>`+
+   (label!==null?`<div class="bl">${label}${hint?` <small>${hint}</small>`:''}</div>`:'')+
+   (o.pre||'')+(k==='none'?'':`<div class="${k}"></div>`)+(o.foot?`<div class="ft">${o.foot}</div>`:'')+`</div>`;};
+const L=(label,st)=>`<div class="lq"${st?` style="${st}"`:''}>${label}<i></i></div>`;
+const LS=(label)=>`<div class="lq sm">${label}<i></i></div>`;
+const H=(t)=>`<div class="hint">${t}</div>`;
+const ARR=(rot)=>`<div class="arr" aria-hidden="true"><svg viewBox="0 0 24 24" style="transform:rotate(${rot||0}deg)"><path d="M2 12h17M12 4l8 8-8 8" stroke="#262936" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div>`;
+const CK=(items,cls)=>`<ul class="ck ${cls||''}">${items.map(x=>`<li>${x}</li>`).join('')}</ul>`;
+const N=(n)=>`<span class="num">${n}</span>`;
+
+/* ---------- organizer bodies ---------- */
+function venn(){
+  return `<div class="vn-top">${L('A:')}${L('B:')}</div>
+  <svg class="vn" viewBox="0 0 720 500" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+   <ellipse cx="252" cy="250" rx="240" ry="244" fill="none" stroke="#262936" stroke-width="3"/>
+   <ellipse cx="468" cy="250" rx="240" ry="244" fill="none" stroke="#262936" stroke-width="3"/>
+   <g font-family="Fredoka, sans-serif" font-weight="600" font-size="17" fill="#262936" text-anchor="middle">
+    <text x="130" y="70">Only A</text><text x="360" y="62">Both</text><text x="590" y="70">Only B</text>
+   </g>
+   <g font-family="Nunito, sans-serif" font-size="11" fill="#555" text-anchor="middle">
+    <text x="130" y="88">How is A different?</text><text x="360" y="80">How are they alike?</text><text x="590" y="88">How is B different?</text>
+   </g>
+  </svg>
+  ${B('Sum it up','How are A and B alike? What is the most important difference?')}`;
+}
+function cause(){
+  const rows=[['Starting cause','What happened first?'],['This led to...',''],['Which led to...',''],['Which led to...',''],['Final effect','Where did it end up?']];
+  return L('Event or topic:')+`<div class="ch">${rows.map((r,i)=>`<div class="ch-r">${B(N(i+1)+r[0],r[1])}${B('How do I know?','evidence, page #')}</div>`).join('')}</div>`+
+   B('Why does this chain matter?','What is the big result or lesson?');
+}
+function web(){
+  const pos=[[0,0],[36.5,0],[73,0],[0,38],[73,38],[0,76],[36.5,76],[73,76]];
+  const ctr=pos.map(p=>[p[0]+13.5,p[1]+12]);
+  const lines=ctr.map(c=>`<line x1="50" y1="50" x2="${c[0]}" y2="${c[1]}" stroke="#262936" stroke-width="2.5" vector-effect="non-scaling-stroke"/>`).join('');
+  const lw=ctr.map(c=>{const x=(50+c[0])/2,y=(50+c[1])/2;return `<span style="position:absolute;left:${x}%;top:${y}%;transform:translate(-50%,-50%);width:78px;height:16px;background:#fff;border-bottom:1.5px solid #555"></span>`}).join('');
+  const boxes=pos.map((p,i)=>`<div class="bx" style="position:absolute;left:${p[0]}%;top:${p[1]}%;width:27%;height:24%"><div class="bl">${N(i+1)}<small>idea</small></div><div class="ln"></div></div>`).join('');
+  return `<div style="position:relative;min-height:0">
+    <svg viewBox="0 0 100 100" preserveAspectRatio="none" style="position:absolute;inset:0;width:100%;height:100%" aria-hidden="true">${lines}</svg>
+    ${lw}${boxes}
+    <div style="position:absolute;left:33%;top:40%;width:34%;height:20%;border:3.5px solid var(--k);border-radius:50%;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px">
+      <div class="bl" style="color:var(--acc);padding:0">Main concept</div><i style="display:block;width:70%;border-bottom:1.5px solid #333"></i></div>
+  </div>
+  ${B('Connections','Pick two ideas. Explain how they connect, using a linking word.')}`;
+}
+function flow(){
+  const S=(n)=>B(N(n)+'Step '+n,'',{});
+  return L('Process or goal:')+
+   `<div class="fl-row">${S(1)}${ARR(0)}${S(2)}${ARR(0)}${S(3)}</div>
+    <div class="fl-down">${ARR(90)}</div>
+    <div class="fl-row">${S(6)}${ARR(180)}${S(5)}${ARR(180)}${S(4)}</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;min-height:0">${B('Final result','What do you end up with?')}${B('Why does the order matter?','What goes wrong if you skip a step?')}</div>`;
+}
+function timeline(){
+  let h='';
+  for(let i=0;i<8;i++){const left=i%2===0,row=i+1;
+    h+=`<div class="bx ${left?'l':'r'}" style="grid-row:${row}/span 2">${LS('Date:')}<div class="ln" style="margin-top:-4px"></div></div>`;
+    h+=`<div class="dot" style="grid-row:${row}/span 2">${i+1}</div>`;
+  }
+  return `<div style="display:grid;grid-template-columns:1.2fr 1fr;gap:16px">${L('Time period: from')}${L('to')}</div><div class="tl">${h}</div>`+
+    B('Turning point','Which event changed things the most? Why?');
+}
+function kwl(){
+  const col=(l,w,h)=>B(`<span class="bl big" style="padding:0"><b>${l}</b></span>${w}`,'',{pre:H(h)});
+  return `<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;min-height:0">
+   ${col('K','What I Know','Before: facts, ideas, or experiences you already have.')}
+   ${col('W','What I Want to know','Before: questions you have. Start with who, what, why, how.')}
+   ${col('L','What I Learned','After: new facts, and answers to your W questions.')}</div>
+   <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:8px;min-height:0">${B('How did my thinking change?','')}${B('Sources','where I learned it')}</div>`;
+}
+function problem(){
+  const sol=(n,a)=>`<div class="bx" style="grid-area:${a}"><div class="bl">Solution ${n}</div><div class="ln" style="flex:0 0 58px"></div>
+     <div class="sub"><div><b>+ Pros</b><div class="ln"></div></div><div><b>&minus; Cons</b><div class="ln"></div></div></div></div>`;
+  return B('The problem','What is wrong? Describe it clearly.',{a:'p'})+B('Causes','Why does it happen?',{a:'c'})+B('Who is affected?','and how',{a:'w'})+
+    sol('A','s1')+sol('B','s2')+B('Best solution','Which one, and why is it better?',{a:'b'})+B('What would success look like?','',{a:'n'});
+}
+function plot(){
+  const P=(l,h,x,y,w,ht)=>`<div class="bx" style="left:${x}%;top:${y}%;width:${w}%;height:${ht}%"><div class="bl">${l}${h?` <small>${h}</small>`:''}</div><div class="ln"></div></div>`;
+  return `<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;min-height:0">${B('Title and author','')}${B('Characters','main and important')}${B('Setting','where and when')}</div>
+   <div class="pm">
+    <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+     <path class="fill" d="M0,96 L20,96 L50,30 L78,70 L100,70 L100,100 L0,100 Z" fill="var(--tint)"/>
+     <path d="M0,96 L20,96 L50,30 L78,70 L100,70" fill="none" stroke="#262936" stroke-width="3.5" vector-effect="non-scaling-stroke" stroke-linejoin="round"/>
+    </svg>
+    ${P('Exposition','the start',0,64,18,30)}
+    ${P('Rising action 1','problems build',0,32,24,28)}
+    ${P('Rising action 2','tension grows',3,0,29,27)}
+    ${P('Climax','the turning point',35,0,30,25)}
+    ${P('Falling action','things wind down',70,24,30,30)}
+    ${P('Resolution','the end',75,74,25,26)}
+    ${P('Conflict','',36,62,34,36).replace('<div class="ln"></div>',CK(['person vs. person','person vs. self','person vs. society','person vs. nature'],'')+'<div class="ln"></div>')}
+   </div>
+   ${B('Theme','What lesson or message does the author want you to learn?')}`;
+}
+function mainidea(){
+  return `<div class="bx mi-top"><div class="bl">Main idea <small>the tabletop: what is the whole text mostly about?</small></div><div class="ln"></div></div>
+   <div class="mi-legs">${[1,2,3,4].map(n=>B(N(n)+'Detail','',{foot:'Page or paragraph: ____'})).join('')}</div>
+   ${B('Sum it up','Main idea plus the most important details, in your own words.')}`;
+}
+function tchart(){
+  return L('Topic or decision:')+`<div class="tc">
+    <div class="tc-h">+ Pros / For <small>or label it:</small><i style="flex:1;border-bottom:1.5px solid #333;height:16px"></i></div>
+    <div class="tc-h vr">&minus; Cons / Against <small>or label it:</small><i style="flex:1;border-bottom:1.5px solid #333;height:16px"></i></div>
+    <div class="ln"></div><div class="vr" style="display:flex"><div class="ln" style="margin-top:6px"></div></div></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;min-height:0">${B('Weigh it','Which point matters most on each side?')}${B('My decision','and my main reason')}</div>`;
+}
+function math4(){
+  return B('The problem','Copy it here. Circle the question. Underline the numbers you need.',{a:'p'})+
+   B(N(1)+'Understand','',{a:'u',k:'none',pre:`${LS('What is the question asking?')}<div class="ln" style="flex:0 0 28px"></div>${LS('What do I know?')}<div class="ln"></div>${LS('Units or key words:')}`})+
+   B(N(2)+'Plan','Check a strategy.',{a:'pl',pre:CK(['Draw a picture or diagram','Make a table','Write an equation','Look for a pattern','Work backward','Guess, check, revise']),foot:''}).replace('<div class="ft"></div>','')+
+   B(N(3)+'Solve','Show every step.',{a:'s',k:'gp'})+
+   B(N(4)+'Check','',{a:'c',k:'none',pre:CK(['My answer is reasonable (estimate)','I plugged it back in','I used the right units','I answered the actual question'],'one')+`<div class="hint" style="margin-top:4px"><b>Answer in a complete sentence:</b></div><div class="ln"></div>`});
+}
+function mistake(){
+  return B('The problem','Copy the problem you missed. Problem #',{a:'p'})+
+   B('My original work','Copy what you did.',{a:'o',k:'gp'})+
+   B('Correct work','Solve it again, step by step.',{a:'c',k:'gp'})+
+   B('Type of mistake','Check all that apply.',{a:'t',k:'none',pre:CK(['Careless (sign, copy, or math fact)','Concept (I did not understand the idea)','Did not read the question carefully','Ran out of time or did not finish'])})+
+   B('What went wrong?','Explain the mistake in a sentence.',{a:'e'})+
+   B('Tip for next time','What will you do differently?',{a:'n'});
+}
+function lab(){
+  const hyp=`<div style="display:grid;gap:3px;padding:2px 9px 6px">${L('If')}${L('then')}${L('because')}</div>`;
+  let tr='';for(let r=0;r<6;r++)tr+='<tr>'+'<td></td>'.repeat(5)+'</tr>';
+  return B('Question','What are you testing?',{a:'q'})+
+   B('Hypothesis','',{a:'h',k:'none',pre:hyp})+
+   B('Independent variable','what I change',{a:'iv'})+B('Dependent variable','what I measure, units',{a:'dv'})+B('Controlled variables','what stays the same',{a:'cv'})+
+   B('Procedure','Main steps, numbered.',{a:'pr'})+
+   B('Data table','Label each column, including units.',{a:'dt',k:'none',pre:`<table class="dt" aria-label="Blank data table"><tr><th>Trial or group</th><th>____</th><th>____</th><th>____</th><th>Average or notes</th></tr>${tr}</table>`})+
+   B('Conclusion','Was your hypothesis supported? Use numbers from your data, then explain why.',{a:'cn'});
+}
+function source(){
+  const info=`<div style="display:grid;grid-template-columns:1.4fr 1fr;gap:6px 18px;padding:4px 9px 8px">${L('Title:')}${L('Date:')}${L('Author / creator:')}${L('Type:')}</div>`;
+  return B('About the source','',{a:'i',k:'none',pre:info})+
+   B(N(1)+'Sourcing','',{a:'s',pre:H('Who made this, and when? Why did they make it? Who was the audience? What is their point of view?')})+
+   B(N(2)+'Context','',{a:'x',pre:H('What was happening at the time and place it was made? How might that affect the source?')})+
+   B(N(3)+'Close reading','',{a:'r',pre:H('What is the main claim? What words or images show the author\'s tone or bias? Copy a key quote.')})+
+   B(N(4)+'Corroboration','',{a:'k',pre:H('What do other sources say? What agrees, and what does not? Name the other source.')})+
+   B('Reliability','',{a:'v',pre:`<div class="hint" style="display:flex;gap:14px;flex-wrap:wrap;align-items:center"><b>How reliable is it for my question?</b>${CK(['Very','Somewhat','Not very'],'row circ')}</div><div class="hint"><b>Because:</b></div>`});
+}
+function lrow(l,w,q){return `<div class="lr"><div class="lt"><b>${l}</b><span>${w}</span></div><div class="rt">${H(q)}<div class="ln"></div></div></div>`;}
+function soapstone(){
+  return [['S','Speaker','Who is the speaker or writer? What do we know about them that matters here?'],
+   ['O','Occasion','When and where was it written? What event or situation caused it?'],
+   ['A','Audience','Who is it for? How do you know?'],
+   ['P','Purpose','What does the speaker want the audience to think, feel, or do?'],
+   ['S','Subject','What is it about? State the topic in a few words.'],
+   ['Tone','Tone','What is the speaker\'s attitude? Which words show it?']].map(r=>lrow(r[0],r[1],r[2])).join('').replace('<b>Tone</b><span>Tone</span>','<b style="font-size:22px">Tone</b><span>attitude</span>')+
+   `<div class="hint" style="padding:0;font-size:11px"><b>Tone word bank:</b> hopeful, urgent, angry, sarcastic, serious, proud, critical, sympathetic, fearful, defiant, nostalgic, respectful, joyful, bitter, calm, inspiring</div>`;
+}
+function onepager(){
+  const req=CK(['Title and author','Central image','Two quotes','Theme statement','Border','Personal connection','Key words','Color with meaning'],'row');
+  return B('Requirements','Check off each part when it is on your final one-pager.',{a:'rq',k:'none',pre:req}).replace('<div class="bx"','<div class="bx" ')+
+   B('Big idea or theme','A complete sentence, not one word.',{a:'th'})+
+   B('Central image','Sketch a symbol that shows the big idea.',{a:'im',k:'pl',foot:'What does it represent?'})+
+   B('Quote 1','and page #',{a:'q1',foot:'Why it matters:'})+
+   B('Quote 2','and page #',{a:'q2',foot:'Why it matters:'})+
+   B('Border idea','a repeated phrase, word, or symbol',{a:'bd'})+
+   B('Key words','3 to 5 important words',{a:'kw'})+
+   B('Personal connection or question','',{a:'pc'});
+}
+function swbst(){
+  return [['S','Somebody','Who is the main character, person, or group?'],['W','Wanted','What did they want or need?'],['B','But','What problem got in the way?'],['S','So','What did they do about it?'],['T','Then','How did it end? What happened next?']].map(r=>lrow(r[0],r[1],r[2])).join('')+
+   B('Put it together','Write your summary in 2 to 4 complete sentences.');
+}
+function cornell(){
+  return `<div style="display:grid;grid-template-columns:1fr 1.5fr;gap:16px">${L('Topic:')}${L('Essential question:')}</div>
+   <div class="cn"><div><div class="bl">Questions <small>write these after</small></div><div class="ln" style="margin-top:6px"></div></div>
+   <div><div class="bl">Notes <small>main ideas, key terms, examples</small></div><div class="ln" style="margin-top:6px"></div></div></div>
+   ${B('Summary','What are the big ideas? How do they answer the essential question?')}`;
+}
+
+/* ---------- the library ---------- */
+const ORGS=[
+ {id:'frayer',t:'Frayer Model',s:'All',best:'learning a new vocabulary word or concept in any class',
+  dir:'Write the word in the center oval. Fill in all four boxes. Then use the word in a sentence of your own.',
+  lay:'grid-template-rows:1fr 96px',
+  body:()=>`<div class="fr">${B('Definition','in your own words')}${B('Characteristics','facts and features')}${B('Examples','real ones; drawings are OK')}${B('Non-examples','close, but NOT it')}<div class="fr-c"><div class="bl">Word or concept</div><i></i></div></div>${B('Use it in a sentence','show that you know what it means')}`,
+  st:['___ means ___.','One feature of ___ is ___.','An example of ___ is ___ because ___.','___ is NOT an example because ___.']},
+ {id:'venn',t:'Venn Diagram',s:'All',best:'comparing two people, ideas, events, or things',
+  dir:'Write one topic next to A and one next to B. Put differences in the outer parts and similarities in the middle, where the circles overlap.',
+  lay:'grid-template-rows:auto 1fr 120px',body:venn,
+  st:['Both ___ and ___ ...','Unlike ___, ___ ...','___ is similar to ___ because ...','The biggest difference is ...']},
+ {id:'cause',t:'Cause and Effect Chain',s:'History',best:'showing how one event leads to another in history, science, or stories',
+  dir:'Start with the first cause. Each box should be a result of the box above it. In the right column, write how you know.',
+  lay:'grid-template-rows:auto 1fr 100px',body:cause,
+  st:['Because ___, ___ happened.','This led to ...','As a result, ...','The evidence shows that ___ caused ___ because ...']},
+ {id:'cer',t:'CER: Claim, Evidence, Reasoning',s:'Science',best:'answering a question with proof, like lab results or a text question',
+  dir:'Write a claim that answers the question. Back it up with two pieces of evidence. Then explain how the evidence proves your claim.',
+  lay:'grid-template-columns:1fr 1fr;grid-template-rows:76px 104px 1fr 1fr;grid-template-areas:"q q" "c c" "e1 e2" "r r"',
+  body:()=>B('Question','What are you trying to answer?',{a:'q'})+B('Claim','One or two sentences that answer the question.',{a:'c'})+
+   B('Evidence 1','data, facts, quotes',{a:'e1',foot:'Source or page:'})+B('Evidence 2','data, facts, quotes',{a:'e2',foot:'Source or page:'})+
+   B('Reasoning','Explain HOW the evidence proves your claim. Connect it to a rule, idea, or scientific principle.',{a:'r'}),
+  st:['I claim that ...','According to ___, ...','The data show ...','This evidence supports my claim because ...','This matters because ...']},
+ {id:'argument',t:'Argument Planner',s:'ELA',best:'planning an argument essay, debate, or persuasive speech',
+  dir:'Take a clear side. Give three reasons, each with evidence. Then answer the other side with a strong rebuttal.',
+  lay:'grid-template-columns:1fr 1.25fr;grid-template-rows:64px 84px 1fr 1fr 1fr 124px 84px;grid-template-areas:"i i" "c c" "r1 e1" "r2 e2" "r3 e3" "cc rb" "cn cn"',
+  body:()=>B('Issue or question','',{a:'i'})+B('My claim','Which side are you on? Say it in one clear sentence.',{a:'c'})+
+   [1,2,3].map(n=>B(N(n)+'Reason','why?',{a:'r'+n})+B('Evidence','facts, quotes, examples',{a:'e'+n})).join('')+
+   B('Counterclaim','What would someone who disagrees say?',{a:'cc'})+B('Rebuttal','Why is your side still stronger?',{a:'rb'})+
+   B('Conclusion','So what? Why should your audience care?',{a:'cn'}),
+  st:['I believe ___ because ...','One reason is ...','Some people argue ___; however, ...','Although ___, the evidence shows ...','Therefore, ...']},
+ {id:'web',t:'Concept Map',s:'All',best:'brainstorming, or showing how the ideas in a unit connect',
+  dir:'Write the big concept in the center and related ideas in the boxes. On each line, write a linking word that explains the connection.',
+  lay:'grid-template-rows:1fr 110px',body:web,stl:'Linking words',
+  st:['is part of','causes','includes','leads to','is an example of','depends on','is the opposite of','is used to']},
+ {id:'flow',t:'Sequence Flowchart',s:'All',best:'steps in a process: a lab procedure, a math method, a cycle, or a how-to',
+  dir:'Write the steps in order and follow the arrows. Put one action in each box. Add details or a quick sketch if it helps.',
+  lay:'grid-template-rows:auto 1fr 26px 1fr 124px',body:flow,
+  st:['First, ...','Next, ...','After that, ...','Finally, ...','The order matters because ...']},
+ {id:'timeline',t:'Timeline',s:'History',best:'putting events in order and seeing change over time',
+  dir:'Write events in time order from top to bottom, with a date for each. Then pick the turning point and explain why it matters.',
+  lay:'grid-template-rows:auto 1fr 104px',body:timeline,
+  st:['In ___, ...','Before ___, ...; after ___, ...','This was a turning point because ...','Over time, ___ changed from ___ to ___.']},
+ {id:'kwl',t:'KWL Chart',s:'All',best:'starting a new unit, reading, or research topic',
+  dir:'Before you learn, fill in K and W. After you learn, fill in L and answer the questions at the bottom.',
+  lay:'grid-template-rows:1fr 130px',body:kwl,
+  st:['I already know ...','I wonder ...','I want to find out ...','I learned that ...','I used to think ___, but now I think ...']},
+ {id:'problem',t:'Problem and Solution',s:'All',best:'real-world issues, engineering design, history, and story conflicts',
+  dir:'Describe the problem and why it happens. Compare two solutions with pros and cons. Then choose the best one and explain why.',
+  lay:'grid-template-columns:1fr 1fr;grid-template-rows:100px 116px 1fr 116px 84px;grid-template-areas:"p p" "c w" "s1 s2" "b b" "n n"',body:problem,
+  st:['The problem is ...','This happens because ...','One solution is ...','A drawback of this is ...','The best solution is ___ because ...']},
+ {id:'plot',t:'Story Map: Plot Mountain',s:'ELA',best:'short stories, novels, plays, and films',
+  dir:'Fill in the story basics on top. Then climb the mountain: what happens at the start, as tension rises, at the climax, and as things wrap up.',
+  lay:'grid-template-rows:96px 1fr 92px',body:plot,
+  st:['The story begins when ...','Tension builds when ...','The turning point is when ...','In the end, ...','The author\'s message is ...']},
+ {id:'mainidea',t:'Main Idea and Details',s:'ELA',best:'articles, textbook sections, and other nonfiction',
+  dir:'Write the main idea on the tabletop. Each leg holds up the table with one supporting detail. Then sum it up in your own words.',
+  lay:'grid-template-rows:150px 1fr 150px',body:mainidea,
+  st:['The main idea is ...','One detail that supports this is ...','The author shows this by ...','In summary, ...']},
+ {id:'tchart',t:'T-Chart: Pros and Cons',s:'All',best:'making a decision or weighing two sides',
+  dir:'Write the topic on top. List points on each side (you can relabel the sides). Then weigh them and make a decision.',
+  lay:'grid-template-rows:auto 1fr 130px',body:tchart,
+  st:['An advantage is ...','A disadvantage is ...','On one hand ..., but on the other hand ...','After weighing both sides, I decided ...']},
+ {id:'math4',t:'Math Problem Solving: 4 Square',s:'Math',best:'word problems and multi-step problems',
+  dir:'Work through the squares in order: Understand, Plan, Solve, Check. Show all of your work in the Solve square.',
+  lay:'grid-template-columns:1fr 1fr;grid-template-rows:104px 1fr 1.35fr;grid-template-areas:"p p" "u pl" "s c"',body:math4,
+  st:['The problem is asking me to find ...','I know that ...','My strategy is ...','My answer makes sense because ...','The answer is ___ (units).']},
+ {id:'mistake',t:'Math Error Analysis',s:'Math',best:'test corrections and learning from mistakes',
+  dir:'Copy a problem you missed. Show your original work, then the correct work. Name the mistake so you do not repeat it.',
+  lay:'grid-template-columns:1fr 1fr;grid-template-rows:96px 1fr 92px 96px 84px;grid-template-areas:"p p" "o c" "t t" "e e" "n n"',body:mistake,
+  st:['My mistake was ...','I should have ...','The correct answer is ___ because ...','Next time, I will ...']},
+ {id:'lab',t:'Lab Report Planner',s:'Science',best:'planning and writing up a science lab or experiment',
+  dir:'Before the lab: question, hypothesis, variables, and procedure. During the lab: fill in the data table. After: write the conclusion.',
+  lay:'grid-template-columns:1fr 1fr 1fr;grid-template-rows:62px 104px 92px 1fr 236px 128px;grid-template-areas:"q q q" "h h h" "iv dv cv" "pr pr pr" "dt dt dt" "cn cn cn"',body:lab,
+  st:['If ___, then ___, because ...','The data show that ...','My hypothesis was (supported / not supported) because ...','A source of error could be ...']},
+ {id:'source',t:'Primary Source Analysis',s:'History',best:'documents, letters, speeches, photos, and political cartoons',
+  dir:'Read like a historian. Answer the questions in each box. Then decide how reliable the source is for your question.',
+  lay:'grid-template-columns:1fr 1fr;grid-template-rows:88px 1fr 1fr 104px;grid-template-areas:"i i" "s x" "r k" "v v"',body:source,
+  st:['The author\'s purpose was ...','At the time, ...','The word choice ___ suggests ...','This source agrees with ___ because ...','This source is reliable for ___ because ...']},
+ {id:'soapstone',t:'SOAPSTone',s:'ELA',best:'analyzing speeches, essays, ads, and historical documents',
+  dir:'Answer each question about the text. Use evidence and short quotes where you can.',
+  lay:'grid-template-rows:repeat(6,1fr) auto',body:soapstone,
+  st:['The speaker, ___, ...','This was written in response to ...','The intended audience is ___ because ...','The purpose is to ...','The tone is ___, as shown by the words ...']},
+ {id:'onepager',t:'One-Pager Planner',s:'ELA',best:'planning a one-pager about a book, unit, person, or topic',
+  dir:'Plan each part of your one-pager here first. Check off each part as you finish it on your final page.',
+  lay:'grid-template-columns:1fr 1fr;grid-template-rows:auto 80px 1fr 1fr 100px 84px;grid-template-areas:"rq rq" "th th" "im q1" "im q2" "bd kw" "pc pc"',body:onepager,
+  st:['This quote matters because ...','My image represents ...','The big idea is ...','This connects to my life because ...']},
+ {id:'swbst',t:'Summary Frame: Somebody, Wanted, But, So, Then',s:'ELA',best:'summarizing a story, a historical event, or a person\'s choices',
+  dir:'Answer each part in a few words. Then combine your answers into a short summary in complete sentences.',
+  lay:'grid-template-rows:repeat(5,1fr) 210px',body:swbst,
+  st:['___ wanted ___, but ___, so ___. Then ...','In the beginning, ...','As a result, ...','In the end, ...']},
+ {id:'cornell',t:'Cornell Notes and Question Generator',s:'All',best:'taking notes in class or from a reading, then studying them',
+  dir:'Take notes on the right. Afterward, write questions on the left that your notes answer. Finish with a summary of the big ideas.',
+  lay:'grid-template-rows:auto 1fr 140px',body:cornell,stl:'Question stems',
+  st:['Level 1: What is ...? Who ...? When ...?','Level 2: Why did ...? How is ___ similar to ___?','Level 3: What would happen if ...? How would ___ change if ...?']}
+];
+const BYID={};ORGS.forEach((o,i)=>{o.i=i;BYID[o.id]=o;});
+const SUBJ={All:'All subjects',ELA:'ELA',Math:'Math',Science:'Science',History:'History'};
+
+function sheet(o){
+  return `<article class="sheet" data-s="${o.s}" aria-label="${o.t} printable organizer">
+   <div class="sh-top"><h2>${o.t}</h2><span class="sh-tag">${SUBJ[o.s]}</span><p class="sh-best"><b>Best for:</b> ${o.best}</p></div>
+   <div class="sh-name"><span style="flex:3">Name<i></i></span><span style="flex:1.5">Date<i></i></span><span style="flex:1">Period<i></i></span><span style="flex:3">Topic<i></i></span></div>
+   <p class="sh-dir"><b>Directions:</b> ${o.dir}</p>
+   <div class="sh-body" style="${o.lay.replace(/"/g,"'")}">${typeof o.body==='function'?o.body():o.body}</div>
+   ${o.st?`<p class="sh-st"><b>${o.stl||'Sentence starters'}:</b> ${o.st.join('<span class="d">•</span>')}</p>`:''}
+  </article>`;
+}
+
+/* ---------- scaling previews ---------- */
+const ro=new ResizeObserver(es=>es.forEach(e=>fit(e.target)));
+function fit(el){const s=el.firstElementChild;if(!s)return;const k=el.clientWidth/720;s.style.transform=`scale(${k})`;el.style.height=(950*k)+'px';}
+function mountFit(el){fit(el);ro.observe(el);}
+
+/* ---------- gallery ---------- */
+let filter='Everything';
+const $=s=>document.querySelector(s);
+const chips=$('#chips'),gal=$('#gal');
+const FILTERS=['Everything','ELA','Math','Science','History'];
+function listFor(f){
+  if(f==='Everything')return ORGS.slice();
+  return ORGS.filter(o=>o.s===f).concat(ORGS.filter(o=>o.s==='All'));
+}
+chips.innerHTML=FILTERS.map(f=>`<button type="button" class="chip" data-f="${f}" aria-pressed="${f===filter}">${f==='Everything'?'All organizers':f}<span class="n">${f==='Everything'?ORGS.length:ORGS.filter(o=>o.s===f).length}</span></button>`).join('');
+gal.innerHTML=ORGS.map(o=>`<a class="card" href="#${o.id}" data-id="${o.id}" data-s="${o.s}">
+   <div class="paper" aria-hidden="true"><div class="fit">${sheet(o)}</div></div>
+   <div class="ci"><span class="tag" data-s="${o.s}">${SUBJ[o.s]}</span><h3>${o.t}</h3><p>Best for ${o.best}.</p></div></a>`).join('');
+gal.querySelectorAll('.fit').forEach(mountFit);
+gal.querySelectorAll('.paper').forEach(p=>p.setAttribute('inert',''));
+function applyFilter(){
+  const list=listFor(filter),ids=list.map(o=>o.id);
+  chips.querySelectorAll('.chip').forEach(c=>c.setAttribute('aria-pressed',String(c.dataset.f===filter)));
+  gal.querySelectorAll('.card').forEach(c=>{const i=ids.indexOf(c.dataset.id);c.hidden=i<0;c.style.order=i;});
+  $('#fnote').textContent=filter==='Everything'?`${ORGS.length} organizers. Click one to open it full size.`:
+    `${ORGS.filter(o=>o.s===filter).length} made for ${filter}, plus ${ORGS.filter(o=>o.s==='All').length} that work in any class.`;
+  $('#printAllBtn').textContent=filter==='Everything'?`🖨️ Print all (${list.length})`:`🖨️ Print these (${list.length})`;
+  try{localStorage.setItem('orgFilter',filter);}catch(e){}
+  if(!cur)fillPrint(list);
+}
+chips.addEventListener('click',e=>{const b=e.target.closest('.chip');if(!b)return;filter=b.dataset.f;applyFilter();});
+
+/* ---------- print container ---------- */
+const PA=$('#printAll');
+function fillPrint(list){PA.innerHTML=list.map(sheet).join('');}
+$('#printAllBtn').onclick=()=>{fillPrint(listFor(filter));window.print();};
+$('#printOneBtn').onclick=()=>{if(cur){fillPrint([cur]);window.print();}};
+window.addEventListener('afterprint',()=>{fillPrint(cur?[cur]:listFor(filter));});
+
+/* ---------- detail view + hash routing ---------- */
+let cur=null;
+function route(){
+  const id=decodeURIComponent(location.hash.slice(1)).toLowerCase();
+  const o=BYID[id];
+  if(o){
+    cur=o;
+    $('#gallery').hidden=true;$('#detail').hidden=false;
+    $('#d-title').textContent=o.t;const tg=$('#d-tag');tg.textContent=SUBJ[o.s];tg.dataset.s=o.s;
+    const f=$('#d-fit');f.innerHTML=sheet(o);mountFit(f);
+    const p=ORGS[(o.i+ORGS.length-1)%ORGS.length],n=ORGS[(o.i+1)%ORGS.length];
+    $('#prevBtn').textContent='‹ '+p.t;$('#prevBtn').onclick=()=>{location.hash=p.id;};
+    $('#nextBtn').textContent=n.t+' ›';$('#nextBtn').onclick=()=>{location.hash=n.id;};
+    document.title=o.t+' | Graphic Organizers | AVID';
+    fillPrint([o]);
+    window.scrollTo(0,0);$('#d-title').focus({preventScroll:true});
+  }else{
+    const was=cur;cur=null;
+    $('#detail').hidden=true;$('#gallery').hidden=false;
+    document.title='Graphic Organizers | AVID';
+    applyFilter();
+    if(was){const c=gal.querySelector(`[data-id="${was.id}"]`);if(c){c.scrollIntoView({block:'center'});c.focus({preventScroll:true});}}
+  }
+}
+$('#backBtn').onclick=()=>{history.pushState(null,'',location.pathname+location.search);route();};
+window.addEventListener('hashchange',route);
+try{const f=localStorage.getItem('orgFilter');if(FILTERS.includes(f))filter=f;}catch(e){}
+route();
+window.ORGS=ORGS;
+})();
+</script>
+</body>
+</html>

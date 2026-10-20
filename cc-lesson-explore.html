@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Explore California Colleges | College & Career</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="cc-lesson.css?v=2">
+</head>
+<body>
+<script src="cc-data.js?v=1"></script>
+<script>
+/* =====================================================================
+   ✏️ LESSON 1: Explore California's Colleges (about 55–60 minutes)
+   ===================================================================== */
+window.CC = {
+  id: "cc-explore", subject: "College & Career", short: "Lesson 1: Explore CA Colleges", color: "#e8368f", emoji: "🌉", time: "55–60 min",
+  title: "California, Here I Come: Exploring Our Colleges",
+  intro: "Discover California’s three public college systems, take a virtual campus tour, find the skills and campus resources that help students finish, and compare two colleges that could fit you.",
+  eq: "Which California college path fits my goals, and what will I need to succeed there?",
+  targets: {
+    R: "I can explain the differences between California Community Colleges, the CSU, and the UC using evidence from a text.",
+    I: "I can explore a college campus and identify which resources help students succeed.",
+    C: "I can share my thinking about college paths and skills with classmates during movement activities.",
+    O: "I can organize facts about two colleges in a comparison chart.",
+    W: "I can write about the college path that fits my goals and the skills I will build."
+  },
+  teacher: `<p><b>Pacing (≈ 57 min):</b> Warm-Up 8 · Read 12 · Virtual Tour 15 · Skills 12 · Compare 6 · Exit 4.</p>
+    <p><b>Movement:</b> Before class, post signs in the four corners: <i>Community College</i>, <i>CSU</i>, <i>UC</i>, <i>Trade / Apprenticeship / Military / Work</i>. For the Human Line-Up, tape a line on the floor with “Not yet” on one end and “Very confident” on the other. Use <b>📢 Project for the class</b> on each movement card for a full-screen prompt with a timer.</p>
+    <p><b>Video:</b> The UC Merced tour video is on YouTube. If YouTube is blocked for students, play it from your computer.</p>
+    <p><b>Grading:</b> Every station earns points (quizzes, sorts, movement reflections, tour, writing). Students press <b>Turn in</b> at the end; scores go to your “Formative Scores” sheet.</p>`,
+  stations: [
+    { letters: ["W", "C"], title: "Warm-Up: Four Corners", time: "8 min", goal: "Move to the corner that matches your plan right now, talk with your group, then write.",
+      blocks: [
+        { t: "move", mode: "corners", time: "3 min", seconds: 150, prompt: "After high school, which path sounds most like you right now?",
+          options: ["🏫 Community college first", "🎓 Cal State (CSU)", "🏛️ University of California (UC)", "🛠️ Trade school, apprenticeship, military, or work"],
+          talk: "Share one reason you picked this corner. Choose a spokesperson to share with the class.", reflect: "Why did you choose that corner? What is one reason someone in your corner gave?" },
+        { t: "write", title: "Quickwrite", prompt: "What do you picture when you hear the word <b>college</b>? What is one thing that excites you, and one thing that worries you?", min: 30, starter: "When I hear “college,” I picture… One thing that excites me is… One thing that worries me is…",
+          checks: [{ label: "Names something that excites you", re: /excit|look(ing)? forward|can.?t wait|want|dream|hope|fun|proud|freedom|new|meet/i }, { label: "Names something that worries you", re: /worr|scared|nervous|afraid|cost|money|hard|stress|far|homesick|fail|alone/i }] }
+      ] },
+    { letters: ["R"], title: "Read: California’s Three Public College Systems", time: "12 min", goal: "Read the article and the chart, then check your understanding.",
+      blocks: [
+        { t: "text", html: `<h3>Three Systems, One Big Promise</h3>
+          <p>California has one of the largest public college systems in the world. It is built so that every high school graduate has a place to go next. There are three public systems, and many students move between them.</p>
+          <p><b>California Community Colleges (116 colleges).</b> Community colleges are open to anyone with a high school diploma or who is 18 or older, and they do not require the SAT or ACT. Students can earn a career certificate (such as welding, medical assisting, or automotive technology) in a year or less, an associate degree (about 60 units, or two years full-time), or get ready to transfer to a university. The enrollment fee is about $46 per unit, and many students qualify for the <b>California College Promise Grant</b>, which waives that fee. Near Tulare: <b>College of the Sequoias</b> (Visalia, the Tulare College Center, and Hanford) and <b>Porterville College</b>.</p>
+          <p><b>California State University, or CSU (22 universities).</b> CSU campuses offer bachelor’s and master’s degrees and are known for hands-on, career-focused programs like nursing, engineering, agriculture, business, and teaching. First-year students need 15 <b>A–G</b> courses with a C or better. Systemwide tuition for 2025–26 is $6,450, plus campus fees. Near Tulare: <b>Fresno State</b> and <b>CSU Bakersfield</b>.</p>
+          <p><b>University of California, or UC (10 campuses, 9 with undergraduates).</b> UC campuses are research universities. They offer bachelor’s, master’s, and doctoral degrees, plus professional schools such as medicine and law. Admission is more competitive and includes the Personal Insight Questions. Tuition and fees for new students in 2025–26 are $14,934, plus campus fees. The closest UC to Tulare County is <b>UC Merced</b>, the newest UC, which opened in 2005.</p>
+          <p><b>Transfer is a smart path.</b> Many students start at a community college and transfer. An <b>Associate Degree for Transfer (ADT)</b> guarantees admission to the CSU system (not always the campus you want most), and six UC campuses offer a <b>Transfer Admission Guarantee (TAG)</b>.</p>
+          <p><b>Private colleges</b>, such as Fresno Pacific University, have a higher sticker price, but many students receive grants. For every college, the price before financial aid is not what most students pay. The FAFSA or California Dream Act opens the door to Pell Grants, Cal Grants, and more.</p>
+          <div class="tw"><table><thead><tr><th></th><th>Community College</th><th>CSU</th><th>UC</th></tr></thead><tbody>
+          <tr><th>How many</th><td>116 colleges</td><td>22 universities</td><td>10 campuses (9 undergraduate)</td></tr>
+          <tr><th>Degrees</th><td>Certificates, associate, transfer</td><td>Bachelor’s, master’s</td><td>Bachelor’s through doctoral & professional</td></tr>
+          <tr><th>Getting in</th><td>Open to all graduates or 18+</td><td>15 A–G courses, C or better</td><td>A–G + Personal Insight Questions; more competitive</td></tr>
+          <tr><th>Yearly price before aid (2025–26)</th><td>≈ $46/unit (≈ $1,380 full-time)</td><td>$6,450 + campus fees</td><td>$14,934 + campus fees</td></tr>
+          <tr><th>Near Tulare</th><td>College of the Sequoias, Porterville College</td><td>Fresno State, CSU Bakersfield</td><td>UC Merced</td></tr></tbody></table></div>
+          <p class="src">Sources: California State University; University of California Office of the President; California Legislative Analyst’s Office (2025–26 tuition). Article written for this lesson.</p>` },
+        { t: "quiz", label: "reading check", items: [
+          { q: "Which system has the <b>most</b> colleges?", opts: ["University of California", "California State University", "California Community Colleges", "Private colleges"], a: 2, why: "There are 116 community colleges, 22 CSUs, and 10 UC campuses." },
+          { q: "Ana wants a welding certificate in about a year. Where should she look first?", opts: ["A UC campus", "A community college", "A CSU campus", "A private university"], a: 1, why: "Community colleges offer career certificates, many in a year or less." },
+          { q: "What does an Associate Degree for Transfer (ADT) guarantee?", opts: ["Free tuition at any UC", "Admission to the CSU system", "Admission to UCLA", "A job after college"], a: 1, why: "An ADT guarantees admission to the CSU system, though not always your first-choice campus." },
+          { q: "Which system offers professional degrees such as medicine and law?", opts: ["Community colleges", "CSU", "UC", "None of them"], a: 2, why: "UC campuses are research universities with professional schools." },
+          { q: "Why does the article say the “price before financial aid is not what most students pay”?", opts: ["Colleges hide their real prices.", "Grants like Pell and Cal Grant can lower the cost a lot.", "Tuition is always free.", "Only private colleges give aid."], a: 1, why: "Filing the FAFSA or California Dream Act opens grants that reduce the cost." }] }
+      ] },
+    { letters: ["I"], title: "Virtual Tour: Walk a College Campus", time: "15 min", goal: "Tour a campus map, watch a real campus tour, and figure out where to go for help.",
+      blocks: [
+        { t: "tour", map: CC_CAMPUS, stops: CC_STOPS, welcome: "This map shows the kinds of buildings you’ll find on most college campuses. Tap every building to learn what happens there and a skill that helps students succeed." },
+        { t: "video", yt: "eTOkTBpNwpU", title: "Real campus tour: UC Merced (Central Campus)", source: "Video from UC Merced Admissions (student ambassador tour).", notes: ["👀 I notice… (one thing you saw on the real campus)", "🤔 I wonder… (one question you would ask a student there)"] },
+        { t: "video", yt: "mIHzjIlLz4Y", title: "Optional: UC Merced academic buildings", source: "Video from UC Merced Admissions." },
+        { t: "quiz", label: "where to go", title: "Where would you go?", items: [
+          { q: "It’s week 3 and you’re lost in your math class.", opts: ["Residence Hall", "Tutoring & Writing Center", "Student Union", "Welcome Center"], a: 1, why: "Free tutoring helps most when you go early, with a specific question." },
+          { q: "You can’t afford your textbooks this semester.", opts: ["Financial Aid Office", "Science Hall", "Career Center", "Library only"], a: 0, why: "Financial Aid (and programs like EOPS) can help with books and grants." },
+          { q: "You’re not sure which classes count toward your major.", opts: ["Health Center", "Counseling & Academic Advising", "Student Union", "Residence Hall"], a: 1, why: "Counselors build your education plan with you." },
+          { q: "You want a paid internship next summer.", opts: ["Career Center", "Library", "Financial Aid Office", "Tutoring Center"], a: 0, why: "The Career Center helps with résumés, interviews, internships, and job fairs." }] }
+      ] },
+    { letters: ["C", "O"], title: "Skills to Succeed: Line-Up and Sort", time: "12 min", goal: "Stand on the line to show your confidence, talk with your neighbors, then sort college success skills.",
+      blocks: [
+        { t: "move", mode: "line", time: "4 min", seconds: 180, prompt: "How confident are you right now about asking a teacher (or professor) for help?", options: ["Not yet confident", "Somewhat confident", "Very confident"],
+          talk: "Talk with the people next to you: What makes it hard to ask for help? What makes it easier?", reflect: "Where did you stand, and what is one strategy a classmate shared for asking for help?" },
+        { t: "sort", label: "skills sort", title: "Sort the college success skills", zones: ["📚 Academic skills", "🧠 Self-management", "💵 Money skills", "🤝 People skills"],
+          tiles: [["Taking focused notes in a lecture", 0], ["Studying about 2 hours for every unit", 0], ["Citing sources in a research paper", 0], ["Using a planner for every deadline", 1], ["Getting enough sleep before exams", 1], ["Bouncing back after a low grade", 1],
+            ["Making a monthly budget", 2], ["Filing the FAFSA or CA Dream Act every year", 2], ["Avoiding credit card debt", 2], ["Introducing yourself to a professor", 3], ["Working in a study group", 3], ["Agreeing on quiet hours with a roommate", 3]],
+          why: "Every one of these skills is one you can practice in AVID right now." }
+      ] },
+    { letters: ["O"], title: "Compare Two Colleges", time: "6 min", goal: "Choose two colleges and compare them side by side.",
+      blocks: [ { t: "compare", title: "College comparison chart", how: "Pick two colleges, ideally one close to home and one dream school. Then explain which fits you better right now.", colleges: CC_COLLEGES } ] },
+    { letters: ["W"], title: "Exit Ticket", time: "4 min", goal: "Show what you learned today.",
+      blocks: [ { t: "write", label: "exit ticket", title: "Exit ticket", prompt: "Which college path fits your goals right now? Name <b>one college</b> you want to learn more about, <b>one campus resource</b> you would use, and <b>one skill</b> you will build this year.", min: 40,
+        frames: ["The path that fits me is… because…", "I want to learn more about…", "On campus, I would use… because…", "This year I will build my… skill by…"],
+        checks: [{ label: "Names a college path", re: /community college|cal state|\bcsu\b|\buc\b|university|trade|apprentice|transfer|military/i }, { label: "Names a college", re: /sequoias|\bcos\b|porterville|fresno|bakersfield|merced|davis|ucla|berkeley|cal poly|san diego|stanford|pacific|state|college of/i },
+          { label: "Names a campus resource", re: /tutor|library|financial aid|counsel|advis|career center|health|writing center|office hours|eops|union|club/i }, { label: "Names a skill to build", re: /time|manag|planner|study|note|ask|budget|sleep|organiz|advoca|confiden|speak|read|writ/i }] } ] }
+  ]
+};
+</script>
+<script src="hub-config.js?v=3"></script>
+<script src="cc-lesson.js?v=3"></script>
+</body>
+</html>

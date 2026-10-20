@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grade It: Focused Notes | AVID</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="cc-lesson.css?v=2">
+</head>
+<body>
+<script>
+/* =====================================================================
+   ✏️ GRADE IT LIKE A TEACHER: FOCUSED NOTES
+   Each sample has a rubric with the teacher's score (t) and comment (why).
+   All samples were written for this site (no real student work).
+   ===================================================================== */
+const NOTE = o => `<div class="hd"><span><b>Name:</b> ${o.name}</span><span><b>Class:</b> ${o.cls}</span><span><b>Period:</b> ${o.per}</span><span><b>Date:</b> ${o.date || '<span class="missing">(blank)</span>'}</span></div>
+  <div class="hd"><span><b>Topic:</b> ${o.topic}</span><span><b>EQ:</b> ${o.eq || '<span class="missing">(blank)</span>'}</span></div>
+  <table><tr><th style="width:34%">Questions / key terms</th><th>Notes</th></tr>${o.rows.map(r => `<tr><td>${r[0] || '<span class="missing">(empty)</span>'}</td><td>${r[1]}</td></tr>`).join("")}</table>
+  <span class="lbl">Summary</span><div>${o.sum || '<span class="missing">(no summary)</span>'}</div>`;
+const NOTE_RUBRIC = (t, why) => [
+  { c: "Setup & header", d: "Name, class, period, date, topic, and Essential Question", max: 2, t: t[0], why: why[0] },
+  { c: "Notes", d: "Main ideas in my own words, organized, with abbreviations and enough detail", max: 3, t: t[1], why: why[1] },
+  { c: "Questions / key terms", d: "Left column has a question or term for each chunk, including higher-level questions", max: 2, t: t[2], why: why[2] },
+  { c: "Processing marks", d: "Highlights, circles, margin notes, and connections added after class", max: 2, t: t[3], why: why[3] },
+  { c: "Summary", d: "3–4 sentences that answer the EQ in my own words", max: 3, t: t[4], why: why[4] }];
+
+window.CC = {
+  id: "avid-grade-notes", subject: "AVID", kind: "Grade It Like a Teacher", brand: { name: "AVID", home: "avid", mark: "🧑‍🏫" },
+  short: "Grade It: Focused Notes", color: "#e8368f", emoji: "🧑‍🏫", time: "30–40 min",
+  title: "Grade It Like a Teacher: Focused Notes",
+  intro: "Score four sets of “submitted” focused notes from grades 9–12 with the AVID rubric, then compare your scores with the teacher’s. The closer you get, the better you understand what strong notes look like.",
+  eq: "What does a teacher look for in strong focused notes, and how do my notes compare?",
+  targets: { R: "I can read and apply a focused-notes rubric.", I: "I can compare my scoring with a teacher’s and explain the difference.", W: "I can set a goal to improve my own notes." },
+  teacher: `<p>Students earn points for <b>calibration</b>: 2 points if their total is within 1 point of the teacher’s, 1 point if within 3. The samples are written for this site, not real student work.</p>`,
+  stations: [
+    { letters: ["R"], title: "How Teachers Grade Notes", time: "5 min", goal: "Read the rubric before you start.",
+      blocks: [ { t: "text", html: `<p>Your AVID teacher grades focused notes on <b>five parts</b> (12 points total):</p><div class="tw"><table><thead><tr><th>Part</th><th>Points</th><th>What full points looks like</th></tr></thead><tbody>
+        <tr><td>Setup & header</td><td>2</td><td>Name, class, period, date, topic, and EQ are all filled in.</td></tr><tr><td>Notes</td><td>3</td><td>Main ideas in your own words, organized, with abbreviations and enough detail to study from.</td></tr>
+        <tr><td>Questions / key terms</td><td>2</td><td>A question or term for every chunk of notes, including at least one higher-level (why/how) question.</td></tr><tr><td>Processing marks</td><td>2</td><td>Highlights, circles, margin notes, and connections added <i>after</i> class.</td></tr>
+        <tr><td>Summary</td><td>3</td><td>3–4 sentences that answer the Essential Question in your own words.</td></tr></tbody></table></div>
+        <p><b>How to play:</b> read each sample, tap a score for every row, then press <b>Compare with the teacher</b>. You earn points for being close to the teacher’s score.</p>` } ] },
+    { letters: ["I"], title: "Sample 1: 9th Grade Biology", time: "7 min", goal: "Score Maya’s notes on cell transport.",
+      blocks: [ { t: "calibrate", title: "Maya’s notes", tag: "Grade 9 · Biology", lesson: "Strong notes still lose points when the summary is too short. Aim for 3–4 sentences that answer the EQ.",
+        artifact: NOTE({ name: "Maya R.", cls: "Biology", per: "2", date: "10/1", topic: "Cell Transport", eq: "How do cells move materials in and out?",
+          rows: [["What is the cell membrane’s job?", "<span class='hl'>selectively permeable</span> → lets some things in, blocks others"], ["Passive vs. active?", "passive = no energy, high → low conc. (<span class='circ'>diffusion</span>, osmosis)<br>active = uses <span class='hl'>ATP</span>, low → high (Na-K pump)"], ["What happens in salt water? Why?", "<span class='ul'>hypertonic</span> → water leaves → cell shrinks<br><i>margin: like a raisin! ✏️ connects to potato lab</i>"]],
+          sum: "Cells move materials with passive transport, which needs no energy, and active transport, which uses ATP. Osmosis changes a cell’s size depending on the solution." }),
+        rubric: NOTE_RUBRIC([2, 3, 2, 2, 2], ["Every header part is filled in.", "Paraphrased, organized, and uses arrows and abbreviations.", "A question for every chunk, including a “why” question.", "Highlights, a circle, underline, and a margin connection to the lab.", "Accurate, but only 2 sentences and doesn’t fully answer “how.” Add how the membrane controls what moves."]) } ] },
+    { letters: ["I"], title: "Sample 2: 10th Grade Geometry", time: "7 min", goal: "Score Luis’s notes on similar triangles.",
+      blocks: [ { t: "calibrate", title: "Luis’s notes", tag: "Grade 10 · Geometry", lesson: "Copying examples without explaining the steps makes notes hard to study from. Add the “why” next to each step.",
+        artifact: NOTE({ name: "Luis M.", cls: "Geometry", per: "3", date: "10/9", topic: "Similar Triangles", eq: "How can we use proportions to find missing sides?",
+          rows: [["What is similar?", "Ex 1: △ABC ~ △DEF. AB = 4, DE = 8, BC = 5, EF = ?<br>4/8 = 5/x &nbsp; 4x = 40 &nbsp; x = 10"], ["", "Ex 2: 6/9 = x/12 &nbsp; 9x = 72 &nbsp; x = 8"], ["What is a proportion?", "Ex 3: shadow problem (didn’t finish)"]],
+          sum: "Today we learned about similar triangles." }),
+        rubric: NOTE_RUBRIC([2, 1, 1, 0, 1], ["Complete header.", "Examples are copied with no explanation of the steps or what “similar” means; one example is unfinished.", "Only two Level 1 questions, and one chunk has none.", "No highlights, circles, or margin notes.", "One vague sentence that doesn’t answer the EQ."]) } ] },
+    { letters: ["I"], title: "Sample 3: 11th Grade U.S. History", time: "7 min", goal: "Score Aaliyah’s notes on WWI.",
+      blocks: [ { t: "calibrate", title: "Aaliyah’s notes", tag: "Grade 11 · U.S. History", lesson: "Great notes still lose a lot of points with a missing header and no summary. Finish within 24 hours of class.",
+        artifact: NOTE({ name: "Aaliyah T.", cls: "US History", per: "5", date: "", topic: "Causes of WWI", eq: "",
+          rows: [["What does M.A.I.N. stand for?", "<span class='hl'>M</span>ilitarism: arms race (GB vs. Germany navies)<br><span class='hl'>A</span>lliances: Entente vs. Central Powers<br><span class='hl'>I</span>mperialism: colonies in Africa/Asia<br><span class='hl'>N</span>ationalism: Serbs want Bosnia free"], ["What was the spark?", "6/28/1914 Franz Ferdinand assassinated in Sarajevo → A-H declares war on Serbia"], ["Why did one war become a world war?", "alliances = chain reaction → Russia, Germany, France, Britain join in 1 wk<br><i>margin: like dominoes! connects to Cold War alliances?</i>"]],
+          sum: "" }),
+        rubric: NOTE_RUBRIC([1, 3, 2, 2, 0], ["Missing the date and the Essential Question.", "Clear, organized, paraphrased, with dates and arrows.", "Strong, including a higher-level “why” question.", "Highlights plus a margin connection.", "No summary."]) } ] },
+    { letters: ["I"], title: "Sample 4: 12th Grade English", time: "7 min", goal: "Score Jayden’s notes on rhetorical appeals.",
+      blocks: [ { t: "calibrate", title: "Jayden’s notes", tag: "Grade 12 · English", lesson: "Processing is more than highlighting. Add margin notes, questions, and connections after class.",
+        artifact: NOTE({ name: "Jayden P.", cls: "English 12", per: "1", date: "10/14", topic: "Rhetorical Appeals", eq: "How do writers persuade an audience?",
+          rows: [["What are ethos, pathos, logos?", "<span class='hl'>Ethos</span> is an appeal to the credibility or character of the speaker. <span class='hl'>Pathos</span> is an appeal to the emotions of the audience. <span class='hl'>Logos</span> is an appeal to logic and reason."], ["How do I spot each one?", "ethos → titles, experience, “as a doctor…”<br>pathos → stories, vivid words, images<br>logos → stats, facts, cause → effect"], ["Which appeal is strongest? Why?", "depends on audience + purpose; best args use all 3"]],
+          sum: "Writers persuade by appealing to credibility (ethos), emotion (pathos), and logic (logos). You can spot each one by looking for credentials, stories, or facts. The strongest arguments combine all three and fit the audience. This helps me analyze speeches and write my own arguments." }),
+        rubric: NOTE_RUBRIC([2, 2, 2, 1, 3], ["Complete header.", "The first chunk is copied word for word from the slide; the rest is paraphrased well.", "Strong questions, including “which is strongest and why?”", "Only highlights; no margin notes or connections.", "Answers the EQ in 4 sentences in his own words."]) } ] },
+    { letters: ["W"], title: "Reflect: My Own Notes", time: "5 min", goal: "Use what you learned.",
+      blocks: [ { t: "write", label: "reflection", title: "Reflection", prompt: "Open your own focused notes from this week. Using the rubric, what score would you give yourself, and what is one change that would earn more points?", min: 30,
+        checks: [{ label: "Gives yourself a score", re: /\d+ ?(\/|out of) ?12|\d+ points?|score/i }, { label: "Names a rubric part", re: /header|setup|notes|question|key term|processing|highlight|margin|summary/i }, { label: "Names a specific change", re: /will|add|write|finish|highlight|question|summary|date|eq/i }] } ] }
+  ]
+};
+
+</script>
+<script src="cc-blocks2.js?v=1"></script>
+<script src="hub-config.js?v=3"></script>
+<script src="cc-lesson.js?v=3"></script>
+</body>
+</html>

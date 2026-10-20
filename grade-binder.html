@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grade It: Binder Checks | AVID</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="cc-lesson.css?v=2">
+</head>
+<body>
+<script>
+/* =====================================================================
+   ✏️ GRADE IT LIKE A TEACHER: BINDER CHECKS
+   All samples were written for this site (no real student work).
+   ===================================================================== */
+const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri"];
+const BINDER = o => `<div class="hd"><span><b>Student:</b> ${o.name}</span><span><b>Grade:</b> ${o.gr}</span><span><b>Binder check:</b> week of ${o.week}</span></div>
+  <span class="lbl">📒 Planner this week</span><table><tr><th>Class</th>${DAYS.map(d => `<th>${d}</th>`).join("")}</tr>${o.planner.map(r => `<tr><td><b>${r[0]}</b></td>${r.slice(1).map(c => `<td>${c || '<span class="missing">—</span>'}</td>`).join("")}</tr>`).join("")}</table>
+  <span class="lbl">🗂️ What the teacher found</span><ul style="margin:4px 0;padding-left:18px">${o.found.map(f => `<li>${f}</li>`).join("")}</ul>
+  <span class="lbl">✏️ Supply pouch</span><div>${o.supplies}</div>`;
+const BINDER_RUBRIC = (t, why) => [
+  { c: "Planner", d: "Every class, every day this week, with homework and due dates", max: 3, t: t[0], why: why[0] },
+  { c: "Focused notes", d: "Current, dated notes in each class", max: 3, t: t[1], why: why[1] },
+  { c: "Organization", d: "Tabs in period order; papers behind the right tabs; no loose papers", max: 2, t: t[2], why: why[2] },
+  { c: "TRFs & tutorial work", d: "Completed TRFs and reflections for this two-week cycle", max: 2, t: t[3], why: why[3] },
+  { c: "Supplies", d: "Pencils, pens, highlighters, and paper", max: 2, t: t[4], why: why[4] }];
+
+window.CC = {
+  id: "avid-grade-binder", subject: "AVID", kind: "Grade It Like a Teacher", brand: { name: "AVID", home: "avid", mark: "🧑‍🏫" },
+  short: "Grade It: Binder Checks", color: "#0e9f6e", emoji: "🧑‍🏫", time: "25–30 min",
+  title: "Grade It Like a Teacher: Binder Checks",
+  intro: "Look at three students’ binder checks, score them with the AVID binder rubric, and compare with the teacher. Then score your own binder.",
+  eq: "What does an organized binder look like to a teacher, and how does mine measure up?",
+  targets: { R: "I can apply the binder-check rubric.", I: "I can explain why a teacher gave each score.", O: "I can set a goal for my next binder check." },
+  teacher: `<p>Students earn points for calibration (within 1 point of the teacher = 2 points; within 3 = 1 point). Samples are written for this site.</p>`,
+  stations: [
+    { letters: ["R"], title: "How Teachers Grade Binders", time: "3 min", goal: "Read the rubric.",
+      blocks: [ { t: "text", html: `<p>Binder checks are worth <b>12 points</b>: Planner (3), Focused notes (3), Organization (2), TRFs & tutorial work (2), and Supplies (2). Teachers look at the <b>whole week</b>, not just today.</p>` } ] },
+    { letters: ["I"], title: "Binder 1: 9th Grade", time: "7 min", goal: "Score Emily’s binder check.",
+      blocks: [ { t: "calibrate", title: "Emily’s binder check", tag: "Grade 9", lesson: "Planners lose points when the end of the week is blank. Write it down even when there’s “no homework.”",
+        artifact: BINDER({ name: "Emily C.", gr: "9", week: "10/5", planner: [["English", "Read ch. 3", "Vocab quiz Fri", "Ch. 4 notes", "", ""], ["Algebra", "p. 88 #1–20", "p. 92 #1–15", "Quiz review", "", ""], ["Biology", "Lab write-up", "No HW", "Read 4.2", "", ""], ["AVID", "TRF due Tue", "Tutorial", "Binder check", "", ""]],
+          found: ["Tabs in period order with AVID first", "Notes dated 10/1–10/7 in English, Algebra, and Biology", "Returned quizzes behind the right tabs", "Two completed TRFs with reflections"], supplies: "Pencils ✔ · Pens ✔ · Paper ✔ · Highlighters ✗" }),
+        rubric: BINDER_RUBRIC([2, 3, 2, 2, 1], ["Monday–Wednesday are complete, but Thursday and Friday are blank.", "Current and dated in every class.", "Everything in order with no loose papers.", "Both TRFs completed with reflections.", "Missing highlighters."]) } ] },
+    { letters: ["I"], title: "Binder 2: 11th Grade", time: "7 min", goal: "Score Andre’s binder check.",
+      blocks: [ { t: "calibrate", title: "Andre’s binder check", tag: "Grade 11", lesson: "Loose papers and tabs out of order cost points fast. A 10-minute Friday clean-out fixes most of this.",
+        artifact: BINDER({ name: "Andre W.", gr: "11", week: "10/12", planner: [["US History", "Ch. 7 notes", "", "", "", ""], ["Chemistry", "Lab", "", "", "", ""], ["English 11", "Essay draft", "", "", "", ""], ["AVID", "", "", "", "", ""]],
+          found: ["Chemistry tab is in front of AVID; History is in the back", "12 loose papers in the front pocket and backpack", "History and English notes dated through 10/16; Chemistry notes stop at 10/9", "One TRF; the second is missing"], supplies: "Pencils ✔ · Pens ✔ · Paper ✔ · Highlighters ✔" }),
+        rubric: BINDER_RUBRIC([1, 2, 0, 1, 2], ["Only Monday is filled in.", "Two classes are current; Chemistry is missing the last two days of notes.", "Tabs out of order and many loose papers.", "Only one of two TRFs.", "All supplies are there."]) } ] },
+    { letters: ["I"], title: "Binder 3: 12th Grade", time: "7 min", goal: "Score Priya’s binder check.",
+      blocks: [ { t: "calibrate", title: "Priya’s binder check", tag: "Grade 12", lesson: "Seniors juggle a lot. Notice how a detailed planner (including college deadlines) earns full points.",
+        artifact: BINDER({ name: "Priya N.", gr: "12", week: "10/19", planner: [["Gov/Econ", "Ch. 5 reading", "Debate prep", "Debate!", "Unit quiz", "No HW: review"], ["Statistics", "4.1 #1–12", "4.2 #1–10", "Quiz", "4.3 #1–8", "Study 30 min"], ["English 12", "PIQ draft 2", "Peer edit", "Final PIQ", "Read Act 2", "No HW"], ["AVID", "TRF", "Tutorial", "Cal Grant check", "Tutorial", "Binder ✔"]],
+          found: ["Tabs in period order; returned work behind each tab", "Notes dated and current in Gov/Econ and English; Statistics notes for two days are on loose paper in the pocket", "Two TRFs with reflections, plus a scholarship tracker"], supplies: "Pencils ✔ · Pens ✔ · Paper ✔ · Highlighters ✔" }),
+        rubric: BINDER_RUBRIC([3, 2, 2, 2, 2], ["Every class, every day, including college tasks.", "Two days of Statistics notes are loose instead of filed and dated in the notes section.", "Tabs in order and returned work filed.", "Both TRFs with reflections.", "All supplies."]) } ] },
+    { letters: ["O"], title: "Score Your Own Binder", time: "5 min", goal: "Be honest, then set a goal.",
+      blocks: [
+        { t: "checklist", title: "My binder right now", how: "Open your own binder and check what is true today.", items: ["My planner has every class for every day this week", "My notes are dated and current in every class", "My tabs are in period order with AVID first", "I have no loose papers", "I have two completed TRFs with reflections", "My pouch has pencils, pens, highlighters, and paper"] },
+        { t: "write", label: "binder goal", title: "My goal", prompt: "What score out of 12 would you give your binder today, and what is one specific thing you will fix before the next binder check?", min: 25,
+          checks: [{ label: "Gives a score", re: /\d+ ?(\/|out of) ?12|\d+ points?/i }, { label: "Names a specific fix", re: /planner|notes|tab|loose|trf|pouch|highlight|order|date|file/i }] }
+      ] }
+  ]
+};
+
+</script>
+<script src="cc-blocks2.js?v=1"></script>
+<script src="hub-config.js?v=3"></script>
+<script src="cc-lesson.js?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Field Trip Fundraising Toolkit | AVID</title>
+<meta name="description" content="For teachers: fundraiser ideas, a profit calculator, a trip cost estimator, a planning timeline, California rules, grant ideas, and copy-and-edit templates for funding field trips.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Colors and fonts match cc-lesson.css (Teacher Resource Hub). */
+:root{--bg:#f6f7f9;--surface:#fff;--fg:#1f2430;--muted:#5d6577;--line:#dfe3ea;--soft:#f1f3f7;--lc:#0b7a55;--onlc:#fff;--ok:#1a8f5a;--bad:#d0453a;--part:#c98a00;
+  --display:"Fredoka","Trebuchet MS",system-ui,sans-serif;--body:"Nunito","Segoe UI",system-ui,sans-serif;--shadow:0 6px 18px rgba(40,30,70,.08)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17151f;--surface:#211e2b;--fg:#ece9f5;--muted:#aaa5bd;--line:#352f45;--soft:#2a2637;--lc:#3fc493;--onlc:#10261d;--ok:#5fd39a;--bad:#ff8a80;--part:#ffc94d;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#17151f;--surface:#211e2b;--fg:#ece9f5;--muted:#aaa5bd;--line:#352f45;--soft:#2a2637;--lc:#3fc493;--onlc:#10261d;--ok:#5fd39a;--bad:#ff8a80;--part:#ffc94d;color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.55;overflow-x:hidden}
+h1,h2,h3,h4{font-family:var(--display);font-weight:600;line-height:1.15;margin:0 0 .4em}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--lc);outline-offset:2px}
+a{color:inherit}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px 70px}
+.mu{color:var(--muted)}.small{font-size:.86rem}
+header.top{position:sticky;top:0;z-index:40;background:var(--surface);border-bottom:1px solid var(--line)}
+header.top .bar{max-width:1100px;margin:0 auto;padding:9px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:9px;font:700 1.1rem var(--display);text-decoration:none}
+.brand .mark{width:34px;height:34px;border-radius:10px;background:var(--lc);display:grid;place-items:center}
+.crumb{display:flex;gap:6px;color:var(--muted);font-weight:700;font-size:.92rem;flex-wrap:wrap}.crumb a{text-decoration:none;color:var(--muted)}.crumb b{color:var(--fg)}
+.spacer{flex:1}
+.tchip{background:color-mix(in srgb,var(--part) 25%,var(--surface));padding:4px 12px;border-radius:999px;font-weight:800;font-size:.85rem;white-space:nowrap}
+.btn{border:0;border-radius:999px;padding:9px 16px;font-weight:800;background:var(--fg);color:var(--bg);cursor:pointer;line-height:1.2}
+.btn.ghost{background:var(--soft);color:var(--fg)}.btn.lc{background:var(--lc);color:var(--onlc)}.btn.sm{padding:6px 12px;font-size:.86rem}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.banner{margin:18px 0 14px;padding:24px;border-radius:26px;background:color-mix(in srgb,var(--lc) 12%,var(--surface));border:3px solid color-mix(in srgb,var(--lc) 35%,var(--surface))}
+.kick{font-weight:800;text-transform:uppercase;letter-spacing:.05em;font-size:.8rem;color:color-mix(in srgb,var(--lc) 70%,var(--fg))}
+.banner h1{font-size:clamp(1.7rem,4vw,2.6rem);margin:6px 0 8px}.banner>p{margin:0 0 12px;max-width:780px}
+.callout{background:color-mix(in srgb,var(--lc) 9%,var(--surface));border:2px solid color-mix(in srgb,var(--lc) 28%,var(--surface));border-radius:14px;padding:10px 14px;margin:10px 0}
+.callout.warn{background:color-mix(in srgb,var(--part) 12%,var(--surface));border-color:color-mix(in srgb,var(--part) 40%,var(--surface))}
+.callout p{margin:.3em 0}
+/* section nav */
+.jump{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 4px}
+.jump a{text-decoration:none;font-weight:800;font-size:.9rem;background:var(--surface);border:2px solid var(--line);border-radius:999px;padding:5px 12px}
+.jump a:hover{border-color:var(--lc)}
+section.sec{background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:20px;box-shadow:var(--shadow);margin:18px 0;scroll-margin-top:70px}
+.sec>h2{font-size:1.6rem;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.sec>h2 .num{background:var(--lc);color:var(--onlc);border-radius:10px;width:34px;height:34px;display:grid;place-items:center;font-size:1.05rem;flex:none}
+.lede{color:var(--muted);margin:0 0 12px;max-width:820px}
+.lbl{font-size:.74rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+/* forms */
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.field{display:grid;gap:4px;font-weight:800;font-size:.9rem;min-width:0}
+.field small{font-weight:600;color:var(--muted)}
+.field input,.field select,.ctl select,.ctl input{font-weight:600;padding:9px 11px;border-radius:12px;border:2px solid var(--line);background:var(--surface);min-width:0;width:100%}
+.money{position:relative}.money input{padding-left:24px}.money::before{content:"$";position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--muted);font-weight:800}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--lc)}
+.radios{display:flex;gap:14px;flex-wrap:wrap;font-weight:700;margin:4px 0 10px}.radios label{display:flex;gap:6px;align-items:center;cursor:pointer}
+.outs{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-top:14px}
+.out{background:var(--soft);border-radius:16px;padding:12px 14px}.out b{display:block;font:600 1.5rem var(--display);margin-top:2px}.out span{font-size:.85rem;color:var(--muted);font-weight:700}
+.out.hi{background:color-mix(in srgb,var(--lc) 14%,var(--surface))}
+.bar-wrap{height:22px;border-radius:999px;background:var(--soft);border:1px solid var(--line);overflow:hidden;margin:8px 0 4px}
+.bar-fill{height:100%;background:var(--lc);width:0;transition:width .3s}
+.bar-fill.done{background:var(--ok)}
+.sub{margin-top:22px;padding-top:16px;border-top:2px dashed var(--line)}
+.sub>h3{font-size:1.3rem}
+/* library */
+.ctls{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;align-items:end;margin-bottom:12px}
+.ctl{display:grid;gap:4px;font-weight:800;font-size:.85rem}
+.count{font-weight:700;color:var(--muted);margin:0 0 10px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:14px}
+.idea{border:2px solid var(--line);border-radius:20px;padding:14px 16px;background:var(--surface);display:flex;flex-direction:column;gap:8px;min-width:0}
+.idea h3{font-size:1.2rem;margin:0;display:flex;gap:8px;align-items:flex-start}
+.idea .blurb{margin:0;color:var(--muted);font-size:.95rem}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:.78rem;font-weight:800;border-radius:999px;padding:3px 10px;background:var(--soft)}
+.eff1{background:color-mix(in srgb,var(--ok) 20%,var(--surface))}.eff2{background:color-mix(in srgb,var(--part) 25%,var(--surface))}.eff3{background:color-mix(in srgb,var(--bad) 18%,var(--surface))}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;margin:0;font-size:.9rem}
+.facts div{min-width:0}.facts dt{font-size:.7rem;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}.facts dd{margin:0;font-weight:700}
+.idea details{border-top:1px dashed var(--line);padding-top:6px}
+.idea summary{cursor:pointer;font-weight:800;padding:2px 0}
+.idea ol,.idea ul{margin:6px 0 4px;padding-left:22px;font-size:.93rem}.idea li{margin:3px 0}
+.idea .acts{display:flex;gap:6px;flex-wrap:wrap;margin-top:auto;padding-top:6px}
+.watch summary{color:color-mix(in srgb,var(--bad) 80%,var(--fg))}
+/* stack */
+.stackrow{display:grid;grid-template-columns:minmax(0,2fr) minmax(0,1fr) auto;gap:8px;align-items:end;margin:8px 0}
+.stackrow .field{font-size:.82rem}
+.iconbtn{border:2px solid var(--line);background:var(--surface);border-radius:12px;width:42px;height:42px;cursor:pointer;font-weight:800}
+/* timeline */
+.tl{display:grid;gap:12px}
+.tlg{border:2px solid var(--line);border-radius:18px;padding:12px 14px}
+.tlg h3{font-size:1.15rem;margin:0 0 6px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.tlg h3 small{font:700 .85rem var(--body);color:var(--muted)}
+.chk{display:flex;gap:10px;align-items:flex-start;padding:5px 0;cursor:pointer;font-size:.95rem}
+.chk input{width:20px;height:20px;flex:none;margin-top:2px;accent-color:var(--lc)}
+.chk.on span{color:var(--muted);text-decoration:line-through}
+.print-lines{display:none}
+/* rules */
+.rules{display:grid;gap:12px}
+.rule{border:2px solid var(--line);border-radius:18px;padding:12px 16px}
+.rule h3{font-size:1.15rem;margin:0 0 4px}.rule ul{margin:4px 0;padding-left:22px}.rule li{margin:4px 0}.rule p{margin:.4em 0}
+.cite{font-size:.82rem;color:var(--muted);font-style:italic}
+/* grants */
+.gcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.gcard{border:2px solid var(--line);border-radius:18px;padding:12px 14px}
+.gcard h3{font-size:1.1rem;margin:0 0 4px}.gcard p{margin:.35em 0;font-size:.94rem}
+.gcard.caution{border-style:dashed}
+/* templates */
+.tplfields{background:var(--soft);border-radius:16px;padding:12px 14px;margin-bottom:14px}
+.tpl{border:2px solid var(--line);border-radius:18px;padding:12px 14px;margin:12px 0}
+.tpl-head{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.tpl-head h3{font-size:1.15rem;margin:0}
+.tpl textarea{width:100%;min-height:220px;border:2px solid var(--line);border-radius:12px;padding:10px 12px;background:var(--surface);font:600 .95rem/1.5 var(--body);resize:vertical}
+.tpl .pv{display:none;white-space:pre-wrap;font-size:11pt}
+.copied{font-weight:800;color:var(--ok);font-size:.9rem}
+.foot{color:var(--muted);font-size:.85rem;margin-top:24px}
+@media (max-width:560px){
+  header.top{position:static}
+  section.sec{padding:16px 14px;border-radius:18px}
+  .banner{padding:18px 16px}
+  .cards{grid-template-columns:1fr}
+  .stackrow{grid-template-columns:minmax(0,1fr) auto}.stackrow .field.amt{grid-column:1/2}
+  .stackrow .field.nm{grid-column:1/-1}
+  .facts{grid-template-columns:1fr 1fr}
+}
+/* ---------- print ---------- */
+@page{size:letter;margin:.5in}
+@media print{
+  :root,:root[data-theme="dark"]{--bg:#fff;--surface:#fff;--fg:#000;--muted:#333;--line:#999;--soft:#f2f2f2;--lc:#000;color-scheme:light}
+  body{background:#fff;color:#000;font-size:11pt;line-height:1.4}
+  header.top,.jump,.noprint,.btn,.iconbtn,.ctls,.acts,.copied{display:none!important}
+  .wrap{max-width:none;padding:0}
+  .banner{border:2px solid #000;background:#fff;margin:0 0 10px;padding:12px}
+  section.sec{box-shadow:none;border:0;padding:0;margin:0;break-before:page}
+  #cost{break-before:auto}
+  .sec>h2 .num{background:#000;color:#fff}
+  .rule,.gcard,.tlg,.tpl,.out,.stackrow,.idea details,.idea .facts{break-inside:avoid}
+  .idea{break-inside:auto}.idea h3,.idea .tags,.idea .blurb,.idea summary{break-after:avoid}
+  .cards,.gcards{display:block}.idea,.gcard{margin:0 0 10px}
+  .idea{font-size:9.5pt;padding:8px 12px;gap:4px}.idea ol,.idea ul{font-size:9.5pt;margin:2px 0}.idea li{margin:1px 0}.idea .blurb{font-size:9.5pt}
+  body.one .idea{font-size:11pt}body.one .idea ol,body.one .idea ul,body.one .idea .blurb{font-size:11pt}
+  .idea details>*{display:block}
+  .tpl textarea{display:none}.tpl .pv{display:block}
+  .tpl{break-after:page}.tpl:last-child{break-after:auto}
+  .bar-wrap{border:1px solid #000;-webkit-print-color-adjust:exact;print-color-adjust:exact}.bar-fill{background:#555!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .chk.on span{text-decoration:none;color:#000}
+  .print-lines{display:block;font-weight:700;margin:4px 0 10px}
+  input,select{border:1px solid #999!important}
+  a{text-decoration:none}
+  body.one main>*:not(.printing-host){display:none!important}
+  body.one .printing-host{break-before:auto!important}
+  body.one .printing-host>*:not(.cards):not(.printing-keep){display:none!important}
+  body.one .cards>.idea:not(.print-me){display:none!important}
+  body.one .idea.print-me{border:0}
+}
+</style>
+</head>
+<body>
+<header class="top"><div class="bar">
+  <a class="brand" href="index.html#avid"><span class="mark" aria-hidden="true">🚌</span><span>AVID</span></a>
+  <nav class="crumb" aria-label="Breadcrumb"><span aria-hidden="true">›</span><a href="index.html#avid">AVID</a><span aria-hidden="true">›</span><span>Field Trips</span><span aria-hidden="true">›</span><b>Fundraising Toolkit</b></nav>
+  <span class="spacer"></span>
+  <span class="tchip">🍎 For teachers</span>
+  <button class="btn ghost sm" type="button" id="printAll">🖨️ Print</button>
+</div></header>
+
+<main class="wrap" id="main">
+  <section class="banner">
+    <span class="kick">🍎 For teachers · AVID · Field Trips</span>
+    <h1>Field Trip Fundraising Toolkit</h1>
+    <p>Plan and pay for college tours and other field trips. Estimate what the trip costs, pick fundraisers that fit your time, check your numbers, and use the ready-to-edit letters and posts. Written for California public high schools in Tulare County and the Central Valley.</p>
+    <div class="callout">
+      <p><b>Every student goes, paid or not.</b> In California, a student can't be left off an educational field trip because the family can't pay. Treat fundraising and family donations as voluntary, and don't tie a student's spot on the trip to how much they raised. See <a href="#rules">Rules and approvals</a>.</p>
+    </div>
+    <nav class="jump" aria-label="Sections">
+      <a href="#cost">🧾 Trip cost</a><a href="#library">💡 Fundraiser ideas</a><a href="#calc">🧮 Profit calculator</a><a href="#stack">📊 Stack planner</a><a href="#timeline">📅 Timeline</a><a href="#rules">⚖️ Rules</a><a href="#grants">🎁 Grants &amp; free trips</a><a href="#templates">✉️ Templates</a>
+    </nav>
+  </section>
+
+  <!-- 1. COST -->
+  <section class="sec" id="cost" aria-labelledby="h-cost">
+    <h2 id="h-cost"><span class="num">1</span>Trip cost estimator</h2>
+    <p class="lede">Start here: figure out what the trip really costs, then turn that into your fundraising goal. Get real quotes from your district transportation office or charter company, since bus rates change.</p>
+    <div class="fgrid">
+      <label class="field">Students going<input type="number" id="c-stu" min="1" step="1" value="40"></label>
+      <label class="field">Bus cost (total)<span class="money"><input type="number" id="c-bus" min="0" step="1" value="1800"></span><small>All buses, driver, mileage, fees</small></label>
+      <label class="field">Admission per student<span class="money"><input type="number" id="c-adm" min="0" step="0.01" value="0"></span><small>Many college tours are free</small></label>
+      <label class="field">Meals per student<span class="money"><input type="number" id="c-meal" min="0" step="0.01" value="15"></span></label>
+      <label class="field">Substitutes needed<input type="number" id="c-subs" min="0" step="1" value="2"></label>
+      <label class="field">Cost per substitute (day)<span class="money"><input type="number" id="c-subcost" min="0" step="1" value="180"></span><small>Ask your office for the current rate</small></label>
+      <label class="field">Chaperones<input type="number" id="c-chap" min="0" step="1" value="4"></label>
+      <label class="field">Cost per chaperone<span class="money"><input type="number" id="c-chapcost" min="0" step="0.01" value="15"></span><small>Admission and meal, if the trip pays</small></label>
+      <label class="field">Other costs<span class="money"><input type="number" id="c-other" min="0" step="1" value="0"></span><small>Parking, tolls, supplies</small></label>
+      <label class="field">Cushion for surprises<select id="c-buf"><option value="0">None</option><option value="5">5%</option><option value="10" selected>10%</option><option value="15">15%</option></select></label>
+    </div>
+    <div class="outs" aria-live="polite">
+      <div class="out"><span>Bus + subs + other</span><b id="co-fixed">$0</b></div>
+      <div class="out"><span>Per-person costs</span><b id="co-var">$0</b></div>
+      <div class="out"><span>Total with cushion</span><b id="co-total">$0</b></div>
+      <div class="out hi"><span>Cost per student</span><b id="co-per">$0</b></div>
+    </div>
+    <div class="btnrow noprint" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px;align-items:center">
+      <button class="btn lc" type="button" id="useGoal">Use total as my fundraising goal ↓</button>
+      <span class="copied" id="goalMsg" role="status"></span>
+    </div>
+    <p class="small mu">Cost per student = total trip cost ÷ students going. The cost of chaperones and substitutes is shared across the students. Subtract any money from site funds, ASB, or grants to see what you still need to raise.</p>
+  </section>
+
+  <!-- 2. LIBRARY -->
+  <section class="sec" id="library" aria-labelledby="h-lib">
+    <h2 id="h-lib"><span class="num">2</span>Fundraiser library</h2>
+    <p class="lede">18 ideas, from "send one email" to "run a Saturday event." Filter by effort and startup cost, or sort to find the best payoff for your time. Open each card for the steps, profit tips, and things to watch out for.</p>
+    <div class="callout warn small"><p><b>About the numbers:</b> profit ranges are rough planning guesses for one class or club (about 25 to 40 students), not research data. Results vary a lot with your community, your prices, and how hard you promote. Use the calculator below with your real quotes.</p></div>
+    <div class="ctls">
+      <label class="ctl">Effort<select id="f-eff"><option value="0">Any effort</option><option value="1">Low only</option><option value="2">Low or medium</option><option value="3">Medium or high</option></select></label>
+      <label class="ctl">Startup cost<select id="f-start"><option value="99999">Any startup cost</option><option value="0">$0 to start</option><option value="50">Up to $50</option><option value="200">Up to $200</option></select></label>
+      <label class="ctl">Season<select id="f-season"><option value="">Any season</option><option value="fall">Fall</option><option value="winter">Winter</option><option value="spring">Spring</option><option value="any">Works any time</option></select></label>
+      <label class="ctl">Sort by<select id="f-sort"><option value="easy">Easiest first</option><option value="profit">Highest profit</option><option value="start">Lowest startup cost</option><option value="value">Best profit for the effort</option><option value="name">A to Z</option></select></label>
+      <label class="ctl">Search<input type="search" id="f-q" placeholder="e.g. food, online"></label>
+    </div>
+    <p class="count" id="f-count" aria-live="polite"></p>
+    <div class="cards" id="cards"></div>
+  </section>
+
+  <!-- 3. CALCULATOR -->
+  <section class="sec" id="calc" aria-labelledby="h-calc">
+    <h2 id="h-calc"><span class="num">3</span>Profit calculator</h2>
+    <p class="lede">Check one fundraiser before you commit. A "unit" is whatever you sell or count: a shirt, a car washed, a pledge, a family that eats at a give-back night. Use "🧮 Use in calculator" on any idea card to load example numbers, then change them to match your quote.</p>
+    <div class="fgrid">
+      <label class="field">Trip goal<span class="money"><input type="number" id="k-goal" min="0" step="1" value="3000"></span></label>
+      <label class="field">Number of students<input type="number" id="k-stu" min="1" step="1" value="40"></label>
+      <label class="field">What is one unit?<input type="text" id="k-unit" value="T-shirt"></label>
+      <label class="field">Cost per unit (what you pay)<span class="money"><input type="number" id="k-cost" min="0" step="0.01" value="9"></span></label>
+      <label class="field">Sale price per unit<span class="money"><input type="number" id="k-price" min="0" step="0.01" value="20"></span></label>
+    </div>
+    <div class="radios" role="radiogroup" aria-label="How to estimate sales">
+      <label><input type="radio" name="k-mode" value="units" checked> I'll guess total units sold</label>
+      <label><input type="radio" name="k-mode" value="part"> I'll use a participation rate</label>
+    </div>
+    <div class="fgrid" id="k-units-box">
+      <label class="field">Expected units sold<input type="number" id="k-units" min="0" step="1" value="150"></label>
+    </div>
+    <div class="fgrid" id="k-part-box" hidden>
+      <label class="field">Students who take part (%)<input type="number" id="k-rate" min="0" max="100" step="1" value="60"></label>
+      <label class="field">Units per student who takes part<input type="number" id="k-per" min="0" step="0.5" value="5"></label>
+    </div>
+    <div class="outs" aria-live="polite">
+      <div class="out"><span>Profit per unit</span><b id="ko-ppu">$0</b></div>
+      <div class="out hi"><span>Total profit</span><b id="ko-profit">$0</b></div>
+      <div class="out"><span>Margin</span><b id="ko-margin">0%</b></div>
+      <div class="out"><span>Percent of goal</span><b id="ko-pct">0%</b></div>
+      <div class="out"><span id="ko-needlbl">Units needed for goal</span><b id="ko-need">0</b></div>
+      <div class="out"><span>Per-student share of profit</span><b id="ko-share">$0</b></div>
+    </div>
+    <div class="bar-wrap" role="progressbar" aria-label="Percent of goal from this fundraiser" aria-valuemin="0" aria-valuemax="100" id="ko-barwrap"><div class="bar-fill" id="ko-bar"></div></div>
+    <p class="small mu" id="ko-note"></p>
+
+    <div class="sub" id="stack">
+      <h3>📊 Stack your fundraisers</h3>
+      <p class="lede">One fundraiser rarely covers a whole trip. Add 2 to 4 fundraisers and your expected profit from each to see how close you get. Your plan is saved on this computer.</p>
+      <div class="fgrid" style="max-width:420px">
+        <label class="field">Goal for this plan<span class="money"><input type="number" id="s-goal" min="0" step="1" value="3000"></span><small>Linked to the trip goal above</small></label>
+      </div>
+      <div id="s-rows"></div>
+      <div class="noprint" style="display:flex;gap:8px;flex-wrap:wrap;margin:8px 0">
+        <button class="btn ghost sm" type="button" id="s-add">➕ Add a fundraiser</button>
+        <button class="btn ghost sm" type="button" id="s-clear">Start over</button>
+      </div>
+      <div class="bar-wrap" role="progressbar" aria-label="Stacked progress toward goal" aria-valuemin="0" aria-valuemax="100" id="s-barwrap"><div class="bar-fill" id="s-bar"></div></div>
+      <p id="s-sum" style="font-weight:800;margin:4px 0" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <!-- 4. TIMELINE -->
+  <section class="sec" id="timeline" aria-labelledby="h-tl">
+    <h2 id="h-tl"><span class="num">4</span>Planning timeline</h2>
+    <p class="lede">From 8 weeks out to trip day. Check things off as you go; your checks are saved on this computer. Your district's field trip form and deadlines come first, so adjust the timing to match them.</p>
+    <div class="print-lines">Trip: ______________________________ &nbsp; Date: ______________ &nbsp; Teacher: ______________________</div>
+    <p id="tl-count" style="font-weight:800;margin:0 0 4px" aria-live="polite"></p>
+    <div class="bar-wrap" role="progressbar" aria-label="Timeline progress" aria-valuemin="0" aria-valuemax="100" id="tl-barwrap"><div class="bar-fill" id="tl-bar"></div></div>
+    <div class="noprint" style="margin:8px 0 12px"><button class="btn ghost sm" type="button" id="tl-reset">Uncheck everything</button></div>
+    <div class="tl" id="tl"></div>
+  </section>
+
+  <!-- 5. RULES -->
+  <section class="sec" id="rules" aria-labelledby="h-rules">
+    <h2 id="h-rules"><span class="num">5</span>Rules and approvals in California</h2>
+    <div class="callout warn"><p><b>This is general guidance, not legal advice.</b> Laws and district policies change, and every district does things a little differently. Before you start, confirm your plan with your <b>ASB advisor</b>, your <b>principal</b>, and your <b>district business office</b>. When this page and your district disagree, follow your district.</p></div>
+    <div class="rules">
+      <div class="rule">
+        <h3>✅ Get approval before you start</h3>
+        <ul>
+          <li>Fundraisers usually need advance approval. Depending on your site, that can mean an ASB fundraiser request (often approved by the student council or club, the ASB advisor, and the principal), a principal sign-off, and sometimes district approval.</li>
+          <li>Ask early which account the money belongs in: an ASB club account (for example, an AVID club) or a district or site account. The rules for spending each are different, and ASB money is meant for student activities chosen by students.</li>
+          <li>The field trip itself has its own approval: your district's field trip request, and often board approval for overnight or out-of-state trips. Plan for both.</li>
+          <li>Chaperones may need district volunteer clearance (such as fingerprinting or a TB screening). This can take weeks, so start early.</li>
+        </ul>
+        <p class="cite">Helpful reference: the FCMAT "ASB Accounting Manual, Fraud Prevention Guide and Desk Reference" (fcmat.org), which many California districts follow.</p>
+      </div>
+      <div class="rule">
+        <h3>💵 Handle money the safe way</h3>
+        <ul>
+          <li><b>Receipts:</b> give a receipt for money you collect, using the receipt book or system your ASB bookkeeper provides. Keep a written log of what came in.</li>
+          <li><b>Two-person counts:</b> count cash with a second adult, fill in a count sheet, and have both people sign it.</li>
+          <li><b>Deposit through the ASB bookkeeper</b> (or the district's process) the same day or as soon as possible. Don't leave cash in a classroom overnight.</li>
+          <li><b>Never</b> put fundraiser money in a personal bank account, and don't collect it through personal apps like a personal Venmo, Cash App, or PayPal. Use only the district-approved online payment system, if there is one.</li>
+          <li>Pay trip costs (buses, admission) through purchase orders or the business office, not out of pocket and not from cash on hand.</li>
+          <li>If you sell products (shirts, plants, coupon books), ask the bookkeeper whether sales tax applies.</li>
+        </ul>
+      </div>
+      <div class="rule">
+        <h3>🥨 Food sold to students on campus</h3>
+        <ul>
+          <li>Food and drinks sold to students on campus during the school day must meet the federal <b>Smart Snacks in School</b> standards and California's nutrition standards. California's rules are stricter in some areas.</li>
+          <li>Under the federal rule, the "school day" runs from midnight before until 30 minutes after the official end of the school day. Check your district's timing rules before selling anything that isn't compliant, even after school.</li>
+          <li>California has extra rules for food sales by student organizations (in the California Code of Regulations, Title 5), such as limits on what can be sold and when. Your district's food service director can explain them.</li>
+          <li>Food sold at evening games and events may still need a county health permit if it's prepared or handled. Check with your district and the Tulare County Environmental Health office.</li>
+        </ul>
+        <p class="cite">Learn more: USDA "Smart Snacks in School" and the California Department of Education (cde.ca.gov) pages on competitive foods.</p>
+      </div>
+      <div class="rule">
+        <h3>🎟️ Raffles are strictly regulated</h3>
+        <ul>
+          <li>In California, raffles are allowed only under <b>Penal Code 320.5</b>, and only for eligible nonprofit organizations that register with the California Attorney General every year and follow strict rules (for example, at least 90 percent of gross receipts must go to charitable purposes).</li>
+          <li>Many districts don't allow class or club raffles at all. Don't run a raffle, "opportunity drawing," or any game where people pay for a chance to win a prize without written approval from your district.</li>
+          <li>Safer swaps: sell votes in a "pie a teacher" contest (the most money wins, not a random draw), or ask local businesses to donate items you give as thank-you gifts to every sponsor.</li>
+        </ul>
+      </div>
+      <div class="rule">
+        <h3>🤝 Donations from businesses</h3>
+        <ul>
+          <li>Donations of money or goods to a school may need a <b>district donation form</b>, and larger gifts may need school board acceptance. Ask your office before you promise a business anything.</li>
+          <li>Checks should be made payable to the school or district (ask which name to use), never to you.</li>
+          <li>Don't give tax advice. If a donor asks about a receipt for taxes, refer them to your district business office and use the district's official receipt if one exists.</li>
+          <li>Be careful about what you offer sponsors in return (logos on shirts, signs). Your district may have advertising and logo rules.</li>
+        </ul>
+      </div>
+      <div class="rule">
+        <h3>⚖️ No student is left out for lack of money</h3>
+        <ul>
+          <li>California's Constitution guarantees free public education, and Education Code sections 49010 to 49013 prohibit charging students fees to take part in educational activities.</li>
+          <li><b>Education Code 35330</b> lets districts pay for field trips and allows them to ask for money, but says no student may be prevented from going on a field trip because there aren't enough funds.</li>
+          <li>So: ask families for <b>voluntary</b> donations, never required payments. Don't set a required amount each student must raise, and don't make a student's spot depend on fundraising. California Department of Education guidance on student fees treats required fundraising as a fee.</li>
+          <li>Plan the budget so the trip happens for everyone. Keep who paid or raised what private; don't post individual totals.</li>
+        </ul>
+        <p class="cite">Check the current text at leginfo.legislature.ca.gov and CDE's "Pupil Fees" guidance (cde.ca.gov).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. GRANTS -->
+  <section class="sec" id="grants" aria-labelledby="h-grants">
+    <h2 id="h-grants"><span class="num">6</span>Grants and free-trip ideas</h2>
+    <p class="lede">Before you sell a single shirt, see who might pay for part of the trip. Programs, amounts, and deadlines change, so check each source's current information and ask before you apply.</p>
+    <div class="gcards" id="gcards"></div>
+  </section>
+
+  <!-- 7. TEMPLATES -->
+  <section class="sec" id="templates" aria-labelledby="h-tpl">
+    <h2 id="h-tpl"><span class="num">7</span>Copy-and-edit templates</h2>
+    <p class="lede">Fill in the boxes once and every template updates. Then edit any template right in the box and tap <b>📋 Copy</b>. Check each one with your principal or district before you send it.</p>
+    <div class="tplfields noprint">
+      <div class="fgrid" id="tplf"></div>
+    </div>
+    <div id="tpls"></div>
+  </section>
+
+  <p class="foot">Field Trip Fundraising Toolkit · AVID · Tulare Joint Union High School District hub. Guidance only, not legal or tax advice. Updated for the 2026–27 school year; laws, rates, and programs change, so check current information.</p>
+</main>
+
+<script>
+/* =====================================================================
+   ✏️ FIELD TRIP FUNDRAISING TOOLKIT (teacher-facing)
+   ✏️ Edit the IDEAS, GRANTS, TIMELINE, and TEMPLATES arrays below.
+   Effort: 1 = low, 2 = medium, 3 = high. lo/hi = rough profit range ($).
+   start = typical startup cost ($, used for filtering). seasons: fall/winter/spring/any.
+   calc = example numbers for the profit calculator (unit, cost, price, units).
+   ===================================================================== */
+const IDEAS = [
+  { id: "giveback", emoji: "🍔", name: "Restaurant give-back night", effort: 1, lo: 100, hi: 500, start: 0,
+    blurb: "A local restaurant or chain donates part of the sales from customers who mention your group on one night.",
+    margin: "About 100% of what you receive (you have no costs)", startTxt: "$0 (free flyers from the restaurant)", time: "2 to 6 weeks to book, one evening to run", season: "Any time; weeknights work well", seasons: ["any"],
+    steps: ["Pick 2 or 3 restaurants your families already like. Many chains have an online fundraiser request form; local places may just need a phone call with the manager.", "Check each restaurant's current give-back rate and rules. Many donate a percentage of sales, often somewhere around 15% to 33%, but rates and rules change, so confirm.", "Request a weeknight (Monday to Wednesday is often easier to get) at least several weeks ahead. Get the approval in writing or by email.", "Ask which name the check should be made out to (your school or district, not you).", "Get the restaurant's flyer or wording and get your principal's OK to share it.", "Promote for 1 to 2 weeks: family letter, school social media, morning announcements, a reminder the day of.", "On the night, have a few students and staff eat there (and thank the manager).", "Follow up for the donation check and deposit it through your ASB bookkeeper."],
+    tips: ["Choose a restaurant near school so families can stop by after games or practice.", "Ask if takeout and online orders count. If they do, say so on the flyer.", "Plan two nights at different restaurants a month apart.", "Post a thank-you photo afterward; restaurants often say yes again."],
+    watch: ["Many restaurants require customers to show a flyer or say your group's name at the register. Without that, the sale doesn't count.", "Some exclude tax, tips, gift cards, alcohol, or third-party delivery.", "The check can take weeks to arrive. Don't count on it for an early deposit.", "Follow district rules for sending flyers home and posting online."],
+    calc: { unit: "family meal", cost: 0, price: 8, units: 40, note: "Example: a $40 average check × 20% donation = $8 per family. Change the price to match the restaurant's current rate." } },
+  { id: "readathon", emoji: "📚", name: "Read-a-thon or pledge drive", effort: 2, lo: 500, hi: 2500, start: 0,
+    blurb: "Students collect pledges from family and friends for reading minutes (or another healthy goal), and supporters donate.",
+    margin: "About 90% to 100% (small fees if you use an online platform)", startTxt: "$0 to $50 (pledge sheets, small prizes)", time: "2 to 3 weeks", season: "Winter or early spring", seasons: ["winter", "spring"],
+    steps: ["Get approval and decide: per-minute pledges or flat donations (flat is simpler to collect).", "Make a pledge sheet with your school's name, the trip, the reading dates, and where checks go.", "Kick it off with a short class talk: the trip, the goal, and that taking part is optional.", "Students read for 2 weeks and log minutes.", "Collect donations within one week of the end. Give receipts and deposit through ASB.", "Celebrate the total reading minutes as a class."],
+    tips: ["Flat pledges ('Support my reading with a donation') bring in money faster than per-minute pledges.", "Invite relatives out of town; a pledge drive works well by text or email if your district allows an approved online payment page.", "Share a class reading total, not individual dollar totals."],
+    watch: ["Online pledge platforms take a fee and must be approved by your district.", "Students should not go door-to-door alone.", "Don't rank or reward students by dollars raised; that can feel like a required fee for families who can't give."],
+    calc: { unit: "pledge", cost: 0, price: 20, units: 75, note: "Example: an average $20 flat pledge." } },
+  { id: "donorschoose", emoji: "💻", name: "Crowdfunding (DonorsChoose)", effort: 1, lo: 300, hi: 3000, start: 0,
+    blurb: "Post a project on DonorsChoose, a nonprofit site for public school teachers. Field trips are an eligible project type.",
+    margin: "About 100% of the project cost is covered if fully funded", startTxt: "$0", time: "1 to 2 hours to post; stays live for weeks or months", season: "Any time; watch for match offers", seasons: ["any"],
+    steps: ["Create a free teacher account at donorschoose.org with your school email.", "Choose the field trip project type and read DonorsChoose's current field trip guidelines (what's covered, quotes, and timing).", "Get the quote or cost details you need (for example, the bus quote).", "Write a short, specific description: who your students are, where they're going, and why it matters (for example, 'For many of my students, this will be their first visit to a university campus').", "Submit. DonorsChoose may verify the project with your school.", "Share the link with families, staff, and your community (if your district allows).", "When it funds, follow DonorsChoose's steps for the trip and send thank-yous and photos as required."],
+    tips: ["Smaller projects fund faster. Consider asking for just the bus.", "Watch for match offers, when partners double donations for certain projects.", "Post on a payday or near the start of a month, and share it more than once."],
+    watch: ["Check the trip date versus how long the project may take to fund.", "DonorsChoose has its own payment process (it doesn't give you cash). Read how field trip funds are handled.", "GoFundMe-style personal pages: only if your district allows them. Money must go to the school, never a personal account.", "Follow district rules on posting student photos."],
+    calc: { unit: "donor", cost: 0, price: 30, units: 50, note: "Example: an average $30 donation." } },
+  { id: "sponsor", emoji: "🏢", name: "Sponsor-a-student letters", effort: 1, lo: 250, hi: 2000, start: 0,
+    blurb: "Send a short letter asking local businesses to sponsor one or more students' seats on the trip.",
+    margin: "About 100%", startTxt: "$0 to $20 (printing, stamps)", time: "3 to 6 weeks", season: "Early fall, or 6+ weeks before the trip", seasons: ["fall", "any"],
+    steps: ["Ask your office about the district donation form and who checks are made out to.", "Use the sponsorship letter template below. Name a clear amount, like '$X sponsors one student's seat.'", "Make a list of 20 to 40 businesses: places where families shop, bank, and work; ag and dairy businesses; dentists, insurance offices, car dealers.", "Have students deliver letters in person with an adult, or mail and email them.", "Follow up by phone after one week.", "Send a thank-you note and a photo from the trip."],
+    tips: ["A personal visit beats an email. Bring a student who can say why the trip matters to them.", "Ask families where they work; their employers may give.", "Offer recognition you're allowed to give, like a thank-you post or a line in the school newsletter."],
+    watch: ["The district may need to approve the donation or any recognition (logos, signs).", "Don't give tax advice; send tax questions to the district business office.", "Keep a list of who said yes so you don't ask the same business twice in one year from different groups."],
+    calc: { unit: "sponsor", cost: 0, price: 100, units: 12, note: "Example: an average $100 sponsor." } },
+  { id: "carwash", emoji: "🚗", name: "Car wash with pledges", effort: 2, lo: 300, hi: 1200, start: 50,
+    blurb: "A Saturday car wash where students also collect pledges ahead of time for the number of cars they wash.",
+    margin: "About 85% to 95%", startTxt: "$25 to $75 (soap, sponges, towels, signs)", time: "2 weeks of pledges + one Saturday morning", season: "Fall or spring (avoid summer afternoon heat)", seasons: ["fall", "spring"],
+    steps: ["Get approval and find a host site (a business with a busy corner and a hose). Ask your city about runoff rules.", "Collect pledges for 2 weeks, for example a flat donation or an amount per car washed.", "Schedule shifts of 2 hours with an adult at each station and a sign holder away from traffic.", "Run it 8 a.m. to noon, with a cash box, receipts, and two adults counting.", "Collect pledges the next week and deposit everything through ASB."],
+    tips: ["Pledges usually bring in more than the car wash itself.", "Use 'donation' pricing ('$10 suggested') and accept more.", "Ask the host business to donate the water and promote it."],
+    watch: ["Many cities restrict soapy water going into storm drains. Use a host with a proper drain, a car wash kit that blocks drains, or partner with a commercial car wash.", "Central Valley heat: plan shade, water, sunscreen, and breaks.", "Keep students out of the street; sign holders stay on the sidewalk.", "Off-campus events may need extra approval and supervision."],
+    calc: { unit: "car washed", cost: 0.5, price: 10, units: 70, note: "Example: $10 suggested donation per car. Add pledges as a separate fundraiser in the stack planner." } },
+  { id: "discount", emoji: "💳", name: "Discount cards", effort: 1, lo: 500, hi: 2000, start: 0,
+    blurb: "Sell cards that give buyers discounts at local businesses for a year. Vendors print them; you sell them.",
+    margin: "Often about 50% to 90%, depending on the vendor deal", startTxt: "$0 with many vendors; some charge per card up front", time: "2 to 3 weeks of selling", season: "Fall (cards last all year)", seasons: ["fall"],
+    steps: ["Compare 2 or 3 vendors: cost per card, which local businesses are on it, and whether you can return unsold cards.", "Get the vendor agreement approved by your district before you sign anything.", "Order a number you're confident you can sell (or choose a vendor that takes returns).", "Students sell to family and friends for 2 to 3 weeks. Track cards out and money in on a sign-out sheet.", "Collect unsold cards and money, count with two adults, and deposit through ASB."],
+    tips: ["Cards with places Tulare families really use (pizza, car wash, coffee) sell best.", "Price at a round number like $10 or $20.", "Sell at back-to-school night and home games."],
+    watch: ["Contracts: some vendors require you to pay for all cards ordered.", "Track every card. Lost cards are lost money.", "Check that offers are current and the businesses are still open."],
+    calc: { unit: "card", cost: 5, price: 20, units: 120, note: "Example only; use your vendor's real cost per card." } },
+  { id: "couponbook", emoji: "📒", name: "Dine-out coupon books (DIY)", effort: 3, lo: 500, hi: 2000, start: 150,
+    blurb: "Build your own book of donated restaurant and shop coupons, print it, and sell it.",
+    margin: "About 70% to 90% after printing", startTxt: "$50 to $200 (printing)", time: "5 to 8 weeks (collecting offers takes time)", season: "Fall (offers good through the school year)", seasons: ["fall"],
+    steps: ["Get approval. Ask about district rules for advertising in school materials.", "Ask local restaurants and shops for one offer each (for example, buy one, get one), with an expiration date.", "Design a simple booklet (Canva or Google Slides). Include each offer's fine print exactly as the business wrote it.", "Have each business approve its page.", "Print through the district print shop or a local printer.", "Sell for 2 to 3 weeks; track books out and money in."],
+    tips: ["15 to 25 good offers is plenty.", "A student design team can make this an AVID collaboration project.", "Thank each business on social media."],
+    watch: ["This takes the most time of any idea here; start early.", "Printing costs come before sales, so pre-sell if you can.", "Offers that expire before the book sells will annoy buyers."],
+    calc: { unit: "coupon book", cost: 3, price: 15, units: 120, note: "Example: $3 to print, $15 to sell." } },
+  { id: "spiritwear", emoji: "👕", name: "Spirit wear / custom T-shirts (pre-order)", effort: 2, lo: 300, hi: 1500, start: 0,
+    blurb: "Take orders and payment first, then order exactly what you sold. No leftover boxes of shirts.",
+    margin: "Often about 30% to 50%", startTxt: "$0 if you pre-order", time: "2 weeks of orders + 2 to 3 weeks to print", season: "Fall (back to school, homecoming) or before the trip", seasons: ["fall", "spring"],
+    steps: ["Get approval and permission to use the school name or logo.", "Get quotes from 2 or 3 local print shops (ask about bulk price breaks and setup fees).", "Have students vote on a design. Put the trip name on it for a souvenir.", "Open a 2-week pre-order window with a size chart. Collect payment with orders and give receipts.", "Place one order for exactly what you sold, plus a few extras if your budget allows.", "Hand out shirts with a check-off list."],
+    tips: ["Pre-orders mean no risk of leftover stock.", "Offer a 'sponsor a shirt' option so every student can get one.", "Add hoodies in fall; they have a higher profit per item."],
+    watch: ["Logo use usually needs school or district permission.", "Ask your ASB bookkeeper whether sales tax applies.", "Sizes: show a size chart; exchanges are hard after printing."],
+    calc: { unit: "T-shirt", cost: 9, price: 20, units: 150, note: "Example only; use your print shop's quote." } },
+  { id: "concessions", emoji: "🌭", name: "Concessions at games", effort: 3, lo: 200, hi: 800, start: 200,
+    blurb: "Run the snack stand at a home game or event. High traffic, but lots of hands needed.",
+    margin: "About 40% to 60%", startTxt: "$100 to $300 (inventory)", time: "1 evening per game + shopping and setup", season: "Fall (football) or winter and spring sports", seasons: ["fall", "winter", "spring"],
+    steps: ["Ask the athletic director or ASB which games are open. Booster clubs often have a schedule.", "Find out the food rules: what can be sold, and whether anything needs a health permit.", "Buy prepackaged items in bulk; get a cash box and float from the bookkeeper.", "Schedule two adults plus students for each shift.", "Count with two adults after the game and deposit through ASB."],
+    tips: ["Bottled water and prepackaged snacks are simple and sell well in Central Valley heat.", "Use round prices ($1, $2, $3) for quick change.", "Ask about running it for several games."],
+    watch: ["Food that's prepared or handled may need a county health permit.", "Smart Snacks and California rules may apply depending on timing. See Rules.", "Leftover perishables are lost money; buy carefully the first time."],
+    calc: { unit: "snack", cost: 0.75, price: 2, units: 300, note: "Example: buy at $0.75, sell at $2." } },
+  { id: "snackcart", emoji: "🥤", name: "Compliant snack cart", effort: 2, lo: 100, hi: 500, start: 150,
+    blurb: "Sell snacks and drinks that meet nutrition rules. During the school day, only compliant items.",
+    margin: "About 30% to 50%", startTxt: "$100 to $200 (inventory)", time: "Ongoing; about 30 minutes a day", season: "Any time", seasons: ["any"],
+    steps: ["Talk to your district's food service director first. Ask which items, times, and places are allowed.", "Use a Smart Snacks product calculator and California's standards to check each item.", "Buy approved items in bulk; keep receipts.", "Set a schedule (for example, after school or at a set time) and staff it with students and an adult.", "Count and deposit regularly through ASB."],
+    tips: ["Bottled water, baked chips, and fruit cups that meet the standards sell well.", "Keep a simple inventory sheet to see what sells."],
+    watch: ["During the school day, everything must meet federal Smart Snacks and California nutrition standards.", "Your district may limit student-organization food sales to certain times so they don't compete with school meals.", "Cash on hand: deposit often and never keep it in your desk."],
+    calc: { unit: "item", cost: 0.75, price: 1.5, units: 400, note: "Example only; use your real costs." } },
+  { id: "gamenight", emoji: "🏐", name: "Teacher vs. student game night", effort: 3, lo: 300, hi: 1200, start: 50,
+    blurb: "Staff take on students in volleyball, basketball, or another game. Sell tickets and compliant snacks.",
+    margin: "About 80% to 95%", startTxt: "$0 to $100 (tickets, signs, prizes)", time: "3 to 4 weeks to plan, one evening", season: "Winter or spring", seasons: ["winter", "spring"],
+    steps: ["Get approval and book the gym (ask about custodial or facility costs).", "Recruit teachers and pick a low-contact game.", "Sell tickets ahead of time and at the door.", "Plan supervision, a first-aid kit, and an admin on site.", "Count the money with two adults after the event and deposit through ASB."],
+    tips: ["Add a 'vote for halftime challenge' that people pay to vote for (not a raffle).", "Have students MC and run music.", "Invite feeder middle school families."],
+    watch: ["Facility use may cost money; ask before you set prices.", "Choose low-contact games to avoid injuries.", "Evening events need enough adult supervision."],
+    calc: { unit: "ticket", cost: 0.25, price: 5, units: 150, note: "Example: $5 tickets." } },
+  { id: "pennywars", emoji: "🪙", name: "Penny wars", effort: 1, lo: 100, hi: 600, start: 0,
+    blurb: "Classes or grade levels compete: pennies add points to your jar, and silver coins or bills in a rival's jar subtract points.",
+    margin: "About 100%", startTxt: "$0 to $10 (jars and signs)", time: "1 to 2 weeks", season: "Any time (great before winter break)", seasons: ["any"],
+    steps: ["Get approval and decide teams (periods, grades, or clubs).", "Set out labeled jars in a supervised place; collect them every day.", "Count each day with two adults and post the standings.", "Announce the winner and a fun prize (for example, a class treat or picking music).", "Roll or bag coins and deposit through ASB."],
+    tips: ["Post daily standings to keep it exciting.", "A last-day 'bills count double' rule can bring a final push."],
+    watch: ["Coins are heavy and slow to count. Ask the bookkeeper how the bank wants them.", "Never leave jars out overnight.", "Keep it light so no student feels pressured."],
+    calc: { unit: "dollar in coins", cost: 0, price: 1, units: 300, note: "Each unit is $1 collected." } },
+  { id: "crv", emoji: "♻️", name: "Recycling: CRV cans and bottles", effort: 2, lo: 50, hi: 400, start: 0,
+    blurb: "Collect California Redemption Value (CRV) beverage containers and redeem them at a recycling center.",
+    margin: "About 100% (just your time)", startTxt: "$0 to $30 (bins, bags, gloves)", time: "Ongoing; best over a semester", season: "Any time", seasons: ["any"],
+    steps: ["Get approval and a safe place to store bags (away from food and pests).", "Put labeled bins in classrooms and at events; ask staff and families to donate empties.", "Sort by type (aluminum, plastic, glass).", "An adult takes them to a certified recycling center. Use CalRecycle's online locator to find one near you and check its hours.", "Deposit the payment through ASB."],
+    tips: ["As of 2025, CRV is 5 cents for containers under 24 ounces and 10 cents for 24 ounces or more. Check CalRecycle for the current amounts.", "Ask a local business or event to give you their empties.", "Good as a background fundraiser all year, plus an environmental lesson."],
+    watch: ["It takes a lot of containers to raise real money.", "Use gloves and rinse containers to avoid pests and smells.", "Some recycling centers have limits or have closed; call first."],
+    calc: { unit: "container", cost: 0, price: 0.05, units: 4000, note: "Example: 5 cents per small container (check current CRV)." } },
+  { id: "pie", emoji: "🥧", name: "\"Pie a teacher\" event", effort: 1, lo: 100, hi: 500, start: 30,
+    blurb: "Students vote with donations for which teachers get a whipped-cream pie in the face.",
+    margin: "About 85% to 95%", startTxt: "$20 to $50 (whipped cream, plates, tarps)", time: "1 week of voting + one lunch period", season: "Spring, or before a break", seasons: ["spring", "any"],
+    steps: ["Get approval and recruit willing teachers (and an admin, if you can).", "Set up a voting jar per teacher for one week. Every dollar is a vote.", "The top 2 or 3 teachers get pied at a lunch event.", "Use paper plates with whipped cream, tarps, and towels.", "Count votes with two adults and deposit through ASB."],
+    tips: ["Post daily leaderboards.", "Let top donors (classes, not individuals) do the pie-ing."],
+    watch: ["This must be a vote (most money wins), not a random drawing. Random drawings for a prize count as raffles.", "Ask about dairy allergies; use non-dairy topping if needed.", "Aim below the eyes; give teachers goggles if they want them."],
+    calc: { unit: "$1 vote", cost: 0.1, price: 1, units: 250, note: "Each vote is $1." } },
+  { id: "photobooth", emoji: "📸", name: "Photo booth at school events", effort: 2, lo: 150, hi: 600, start: 50,
+    blurb: "A fun backdrop and props at dances, games, or open house. People pay for a photo.",
+    margin: "About 70% to 90%", startTxt: "$0 to $150 (backdrop, props; use a phone or tablet)", time: "A few hours of setup + the event", season: "Fall and spring events (homecoming, prom, open house)", seasons: ["fall", "spring"],
+    steps: ["Get approval from whoever runs the event (ASB, athletics).", "Build a backdrop with your trip or school theme and simple props.", "Decide how photos get delivered: printed on site, or sent digitally through a district-approved method.", "Staff the booth with students and an adult; post prices clearly.", "Count and deposit through ASB."],
+    tips: ["Bundle pricing (one photo $3, group photo $5) sells more.", "Seasonal themes boost sales (homecoming, Valentine's Day, graduation)."],
+    watch: ["Get consent; don't post photos of students online without permission and media releases.", "Printing supplies can eat your profit; price prints higher than digital.", "Collect contact info only in ways your district allows."],
+    calc: { unit: "photo", cost: 0.5, price: 3, units: 150, note: "Example: $3 per photo." } },
+  { id: "plants", emoji: "🌷", name: "Flower or plant sale (local nursery)", effort: 2, lo: 300, hi: 1200, start: 0,
+    blurb: "Partner with a local nursery for a pre-order sale of flowers, herbs, or plants.",
+    margin: "About 30% to 50%", startTxt: "$0 if you pre-order", time: "2 weeks of orders + pickup day", season: "Spring (Mother's Day) or fall", seasons: ["spring", "fall"],
+    steps: ["Ask a local nursery about a fundraiser price list (some have one; others will make one).", "Get approval and pick a pickup date and place.", "Take pre-orders with payment for 2 weeks. Give receipts.", "Place one order for exactly what you sold.", "Hold a pickup day with order lists, and deposit money through ASB."],
+    tips: ["Time it to Mother's Day, Valentine's Day, or fall planting.", "Agriculture or FFA students may help, or partner with them.", "Offer a 'gift a plant to a teacher' option."],
+    watch: ["Plants are perishable; keep pickup to one day and plan for heat.", "Have a plan for orders no one picks up."],
+    calc: { unit: "plant", cost: 7, price: 15, units: 100, note: "Example only; use the nursery's price list." } },
+  { id: "service", emoji: "🧹", name: "Service-for-donations day", effort: 3, lo: 300, hi: 1000, start: 20,
+    blurb: "Students do light yard work or cleanup for neighbors and supporters, who make a donation.",
+    margin: "About 90% to 100%", startTxt: "$0 to $50 (gloves, bags, water)", time: "2 weeks of sign-ups + one Saturday", season: "Fall (leaves) or spring", seasons: ["fall", "spring"],
+    steps: ["Get district approval for an off-campus activity and check insurance requirements.", "Take sign-ups from staff, families, and community members you know.", "Make teams of students with an adult at each site.", "Do light jobs only: raking, weeding, picking up trash, washing windows from the ground.", "Collect donations (suggest an amount), give receipts, and deposit through ASB."],
+    tips: ["Ask for a suggested donation, not a fee.", "Pair this with a thank-you card and trip photo later."],
+    watch: ["No power tools, ladders, roofs, or chemicals.", "An approved adult must supervise each team; follow your district's rules for volunteers and off-campus work.", "Plan for heat: start early in the morning."],
+    calc: { unit: "job", cost: 2, price: 40, units: 20, note: "Example: $40 suggested donation per job." } },
+  { id: "noshow", emoji: "🎩", name: "Parent \"no-show gala\"", effort: 1, lo: 300, hi: 2000, start: 0,
+    blurb: "A fun invitation to a gala that isn't happening. Supporters donate what they'd have spent on tickets and a babysitter, and stay home.",
+    margin: "About 100%", startTxt: "$0 to $30 (printing)", time: "1 to 3 weeks", season: "Any time (good alternative in a busy month)", seasons: ["any"],
+    steps: ["Get approval and write a playful invitation: 'You're NOT invited to the gala of the year!'", "Explain the trip and the goal, and list donation options. Make it clear any amount helps, including zero.", "Send it in English and Spanish (and other home languages) through your school's usual channels.", "Collect donations through approved methods only; give receipts.", "Share a thank-you and the total raised."],
+    tips: ["Humor works: 'No dressing up. No dinner. No speeches.'", "Invite grandparents, alumni, and staff too.", "Pair with a progress bar post to show the goal."],
+    watch: ["Keep it clearly voluntary; many families can't give, and that's okay.", "Don't track or post who gave."],
+    calc: { unit: "family donation", cost: 0, price: 25, units: 40, note: "Example: an average $25 donation." } }
+];
+
+const GRANTS = [
+  { emoji: "💻", name: "DonorsChoose", txt: "A nonprofit site where public school teachers post projects and the public funds them. Field trips are an eligible project type.", how: "Create a teacher account, choose the field trip project type, and read the current guidelines. Ask for the bus first; smaller projects fund faster.", url: "https://www.donorschoose.org" },
+  { emoji: "🏛️", name: "Community foundations", txt: "Local foundations make grants to schools and youth programs. The Central Valley Community Foundation serves Fresno, Madera, Merced, Mariposa, Tulare, and Kings counties.", how: "Look at their grants page for education or youth grants, and call to ask whether a field trip project fits. Ask your district grants office too.", url: "https://www.centralvalleycf.org" },
+  { emoji: "🦁", name: "Service clubs", txt: "Rotary, Lions, Soroptimist, and Kiwanis clubs often support local students and may help with a college trip.", how: "Find your local club's meeting and contact person. Offer to have 2 or 3 students speak for 5 minutes about the trip. A student voice is powerful.", url: "" },
+  { emoji: "🏦", name: "Credit unions and local businesses", txt: "Many credit unions and businesses have community giving or school grant programs.", how: "Check their 'community' web pages, or ask a branch manager. Families' employers are good places to start.", url: "" },
+  { emoji: "👨‍👩‍👧", name: "PTSA, PTO, and booster clubs", txt: "Parent groups sometimes fund trips or share fundraising events.", how: "Bring a one-page request with the trip goal, cost per student, and what you've raised. Ask about their meeting date and deadline.", url: "" },
+  { emoji: "🏫", name: "Your school's ASB and site funds", txt: "Your school may have site budget, ASB, or program funds (for example, for college and career readiness or AVID) that can cover part of a trip.", how: "Ask your principal and AVID site coordinator what's available, and ask your ASB advisor how clubs can request funds.", url: "" },
+  { emoji: "🎓", name: "The colleges themselves", txt: "Most UC and CSU campuses offer free campus tours, and some outreach or admissions offices offer group visits or programs for schools. Some outreach offices have helped schools with transportation.", how: "Contact the admissions or outreach office at the campuses you want to visit (for example, nearby UC Merced or Fresno State). Ask about group tours, outreach programs, and whether any help with transportation is available. Don't assume it is.", url: "" },
+  { emoji: "⚔️", name: "American Battlefield Trust Field Trip Grant", caution: true, txt: "This grant is only for trips to battlefields and related historic sites connected to the wars the Trust focuses on, mostly in the eastern United States. It doesn't cover college tours.", how: "Only consider it for a history trip that fits its rules. Read the current eligibility on the Trust's website before applying.", url: "https://www.battlefields.org" }
+];
+
+const TIMELINE = [
+  { when: "8 weeks out", tag: "Plan and get approvals", items: ["Choose the destination and date; check the school calendar for testing, holidays, and big events.", "Contact the campus or site to request a group tour and ask about outreach programs or free options.", "Submit the district field trip request to your principal (find out if board approval is needed).", "Get a bus quote from district transportation or an approved charter company.", "Estimate the cost per student with the trip cost estimator.", "Ask your ASB advisor or bookkeeper which account the money belongs in.", "Submit fundraiser approval requests for your first 2 or 3 fundraisers.", "Look for grants and partners: DonorsChoose, community foundations, service clubs, PTSA, site funds."] },
+  { when: "6 weeks out", tag: "Launch fundraising", items: ["Launch your first fundraiser.", "Send business sponsorship letters (with the district donation form if needed).", "Book a restaurant give-back night.", "Send the family letter in English and Spanish (voluntary donations; every student can go).", "Post your DonorsChoose project.", "Recruit chaperones and start district volunteer clearance (it can take weeks)."] },
+  { when: "4 weeks out", tag: "Lock in the details", items: ["Send permission slips and emergency or medical forms home.", "Run your second fundraiser.", "Check progress in the stack planner; add a fundraiser or ask for site funds if you're behind.", "Confirm the bus reservation and tour reservation in writing.", "Request substitute(s) for the trip day.", "Start purchase orders or payment requests through the business office."] },
+  { when: "3 weeks out", tag: "Students and meals", items: ["Collect permission slips; follow up with families who haven't returned them.", "Plan meals: ask your nutrition services department about sack lunches, and note food allergies.", "Draft the itinerary with times, stops, and a rain or heat plan."] },
+  { when: "2 weeks out", tag: "Finalize", items: ["Final headcount; quietly cover costs for any student who needs it.", "Share the itinerary with the principal, attendance office, and school nurse.", "Plan student medications with the school nurse.", "Assign chaperone groups and share emergency contact numbers.", "Deposit all fundraiser money and reconcile with the bookkeeper."] },
+  { when: "1 week out", tag: "Confirm and prepare", items: ["Reconfirm the bus, tour, and any meal reservations.", "Write substitute plans.", "Send the student list to attendance.", "Prepare students: expectations, what to wear, and questions to ask on the tour (a great AVID Inquiry task).", "Send a reminder to families with departure and return times."] },
+  { when: "Day before", tag: "Final check", items: ["Check the weather and heat forecast.", "Print rosters, emergency contacts, and medical info for each chaperone.", "Pack a first-aid kit, water, and a charged phone."] },
+  { when: "Trip day", tag: "Go!", items: ["Take attendance before leaving and at every stop; count heads on the bus.", "Give chaperones their groups and check-in times.", "Take photos only of students with media permission.", "Collect a group photo for thank-you notes."] },
+  { when: "After the trip", tag: "Close it out", items: ["Send thank-you notes to donors, sponsors, and the restaurant.", "Finish the money reconciliation with the ASB bookkeeper.", "Have students write a reflection on what they learned."] }
+];
+
+const TFIELDS = [
+  ["teacher", "Your name", "Ms. Garcia"], ["role", "Your title", "AVID teacher"], ["school", "School", "Tulare Union High School"],
+  ["trip", "Trip destination", "a tour of Fresno State and UC Merced"], ["date", "Trip date", "March 12"], ["students", "Number of students", "40"],
+  ["goal", "Fundraising goal (number only)", "3,000"], ["perstudent", "Cost per student (number only)", "75"], ["contact", "Your email or phone", "your school email"],
+  ["payable", "Checks payable to", "Tulare Union High School"]
+];
+
+const TEMPLATES = [
+  { id: "sponsor", title: "🏢 Business sponsorship letter", text:
+`[DATE]
+
+Dear [BUSINESS OWNER OR MANAGER NAME],
+
+My name is {teacher}, and I am the {role} at {school}. On {date}, I am taking {students} students on {trip}. For many of these students, it will be their first time on a college campus, and seeing it in person helps them believe "I belong here."
+
+The trip costs about \${perstudent} per student, and our goal is \${goal}. We are inviting local businesses to help.
+
+Would you consider sponsoring one or more students?
+  • \${perstudent} sponsors one student's seat
+  • Any amount helps
+
+Please make checks payable to "{payable}." If our district needs a donation form, I will bring it to you. With your permission, we would love to thank you on our school's social media.
+
+Thank you for supporting students in our community. Please contact me at {contact} with any questions.
+
+Sincerely,
+{teacher}
+{role}, {school}` },
+  { id: "parent", title: "👨‍👩‍👧 Parent / family letter (English)", text:
+`Dear Families,
+
+On {date}, our class will go on {trip}. Students will tour the campus, hear from current college students, and learn what it takes to get there.
+
+Every student is welcome on this trip, whether or not your family can contribute. The trip costs about \${perstudent} per student. If you are able to help, a voluntary donation of any amount is appreciated. You can also help by sharing our fundraisers with friends and family. Donations are never required, and no student will be left out.
+
+Coming up:
+  • [FUNDRAISER 1 AND DATE]
+  • [FUNDRAISER 2 AND DATE]
+
+Please return the permission slip by [DUE DATE]. Questions? Contact me at {contact}.
+
+Thank you!
+{teacher}
+{role}, {school}` },
+  { id: "parentes", title: "👨‍👩‍👧 Carta para familias (español)", text:
+`Estimadas familias:
+
+El {date}, nuestra clase irá a {trip}. Los estudiantes recorrerán el campus, conocerán a estudiantes universitarios y aprenderán qué se necesita para llegar a la universidad.
+
+Todos los estudiantes están invitados a este viaje, aunque su familia no pueda contribuir. El viaje cuesta aproximadamente \${perstudent} por estudiante. Si pueden ayudar, agradecemos una donación voluntaria de cualquier cantidad. También pueden ayudar compartiendo nuestras actividades de recaudación con familiares y amigos. Las donaciones nunca son obligatorias y ningún estudiante se quedará fuera.
+
+Próximamente:
+  • [ACTIVIDAD 1 Y FECHA]
+  • [ACTIVIDAD 2 Y FECHA]
+
+Por favor, devuelvan el permiso firmado antes del [FECHA]. ¿Preguntas? Comuníquense conmigo: {contact}.
+
+¡Gracias!
+{teacher}
+{school}` },
+  { id: "social", title: "📱 Social media post", text:
+`🎓🚌 Help our students see college up close!
+
+On {date}, {students} {school} students are going on {trip}. For many, it's their first college visit.
+
+Our goal: \${goal}. Here's how you can help:
+✅ [FUNDRAISER, DATE, AND LINK OR LOCATION]
+✅ Share this post!
+
+Every student is going, and every bit helps. Thank you, community! 💚
+
+#[SCHOOLHASHTAG] #AVID #CollegeBound` },
+  { id: "thanks", title: "💌 Thank-you note to donors", text:
+`Dear [DONOR NAME],
+
+Thank you for supporting our students! Because of your generosity, {students} students from {school} were able to go on {trip}.
+
+[ADD ONE SPECIFIC MOMENT: for example, "One student told me, 'I can actually see myself here.'"]
+
+Gifts like yours show our students that their community believes in their future. We are so grateful.
+
+With thanks,
+{teacher}
+{role}, {school}
+[OPTIONAL: student signatures]` },
+  { id: "receipt", title: "🧾 Donation receipt", note: "Use your district's official receipt if one exists. This simple record is not tax advice; send tax questions to your district business office.", text:
+`DONATION RECEIPT
+{school}
+
+Received from: ______________________________
+Date received: ______________________________
+Amount: $____________   ☐ Cash   ☐ Check #________   ☐ Other: ________
+Donated items (if any): ______________________________
+Purpose: Support for {trip} (student field trip)
+
+Received by: {teacher}, {role}
+Second person (cash count): ______________________________
+Signature: ______________________________
+
+Thank you for supporting our students. For questions about this donation, contact {contact}.
+Keep a copy of this receipt with your ASB or business office deposit records.` },
+  { id: "flyer", title: "🍔 Restaurant night flyer text", text:
+`🍔 EAT OUT, HELP OUT! 🍔
+
+Support {school} students on {trip}!
+
+📅 [DATE]
+⏰ [START TIME] to [END TIME]
+📍 [RESTAURANT NAME AND ADDRESS]
+
+[RESTAURANT NAME] will donate [CHECK CURRENT %] of sales to our trip when you [SHOW THIS FLYER / MENTION OUR GROUP NAME] when you order.
+[DINE-IN, TAKEOUT, AND/OR ONLINE ORDERS: CHECK WHICH COUNT]
+
+Bring your family and friends! 💚
+Questions? {contact}` }
+];
+
+/* ---------------- helpers ---------------- */
+const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const LS = { get(k, d) { try { const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; } catch (e) { return d; } }, set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} } };
+const num = id => { const v = parseFloat($(id).value); return isFinite(v) && v > 0 ? v : 0; };
+const usd = (v, cents) => (v < 0 ? "-$" : "$") + Math.abs(v).toLocaleString("en-US", { minimumFractionDigits: cents ? 2 : 0, maximumFractionDigits: cents ? 2 : 0 });
+const usdA = v => usd(v, Math.abs(v) < 100 && Math.round(v) !== v);
+const EFF = ["", "Low effort", "Medium effort", "High effort"];
+const setBar = (wrapId, barId, pct) => { const p = Math.max(0, Math.min(100, pct)); $(barId).style.width = p + "%"; $(barId).classList.toggle("done", pct >= 100); $(wrapId).setAttribute("aria-valuenow", Math.round(p)); };
+
+/* ---------------- 1. cost estimator ---------------- */
+const COSTF = ["#c-stu", "#c-bus", "#c-adm", "#c-meal", "#c-subs", "#c-subcost", "#c-chap", "#c-chapcost", "#c-other", "#c-buf"];
+let tripTotal = 0;
+function calcCost() {
+  const stu = num("#c-stu"), chap = num("#c-chap");
+  const fixed = num("#c-bus") + num("#c-subs") * num("#c-subcost") + num("#c-other");
+  const vari = stu * (num("#c-adm") + num("#c-meal")) + chap * num("#c-chapcost");
+  const total = (fixed + vari) * (1 + num("#c-buf") / 100);
+  tripTotal = Math.ceil(Math.round(total * 100) / 100);
+  $("#co-fixed").textContent = usd(fixed); $("#co-var").textContent = usd(vari);
+  $("#co-total").textContent = usd(tripTotal); $("#co-per").textContent = stu ? usd(total / stu, true) : "Add students";
+  LS.set("ftf-cost", COSTF.map(id => $(id).value));
+}
+(LS.get("ftf-cost", null) || []).forEach((v, i) => { if (COSTF[i] && v !== "" && v != null) $(COSTF[i]).value = v; });
+COSTF.forEach(id => $(id).addEventListener("input", calcCost));
+calcCost();
+$("#useGoal").addEventListener("click", () => {
+  $("#k-goal").value = tripTotal; $("#s-goal").value = tripTotal;
+  if (num("#c-stu")) $("#k-stu").value = num("#c-stu");
+  calcProfit(); renderStackTotals(); saveStack();
+  $("#goalMsg").textContent = "Goal set to " + usd(tripTotal) + ". Scroll to the calculator.";
+});
+
+/* ---------------- 2. library ---------------- */
+const mid = i => (i.lo + i.hi) / 2;
+function renderCards() {
+  const eff = +$("#f-eff").value, start = +$("#f-start").value, season = $("#f-season").value, sort = $("#f-sort").value, q = $("#f-q").value.trim().toLowerCase();
+  let list = IDEAS.filter(i => {
+    if (eff === 1 && i.effort !== 1) return false;
+    if (eff === 2 && i.effort > 2) return false;
+    if (eff === 3 && i.effort < 2) return false;
+    if (i.start > start) return false;
+    if (season && !(i.seasons.includes(season) || (season !== "any" && i.seasons.includes("any")))) return false;
+    if (q && !JSON.stringify(i).toLowerCase().includes(q)) return false;
+    return true;
+  });
+  const S = { easy: (a, b) => a.effort - b.effort || mid(b) - mid(a), profit: (a, b) => mid(b) - mid(a), start: (a, b) => a.start - b.start || mid(b) - mid(a), value: (a, b) => mid(b) / b.effort - mid(a) / a.effort, name: (a, b) => a.name.localeCompare(b.name) };
+  list.sort(S[sort]);
+  $("#f-count").textContent = `Showing ${list.length} of ${IDEAS.length} ideas.`;
+  $("#cards").innerHTML = list.length ? list.map(i => `
+    <article class="idea" id="idea-${i.id}">
+      <h3><span aria-hidden="true">${i.emoji}</span><span>${esc(i.name)}</span></h3>
+      <div class="tags"><span class="tag eff${i.effort}">${EFF[i.effort]}</span><span class="tag">💰 ${usd(i.lo)}–${usd(i.hi)}</span><span class="tag">Start: ${i.start ? "~" + usd(i.start) : "$0"}</span></div>
+      <p class="blurb">${esc(i.blurb)}</p>
+      <dl class="facts">
+        <div><dt>Typical profit</dt><dd>${usd(i.lo)} to ${usd(i.hi)}</dd></div>
+        <div><dt>Profit margin</dt><dd>${esc(i.margin)}</dd></div>
+        <div><dt>Startup cost</dt><dd>${esc(i.startTxt)}</dd></div>
+        <div><dt>Time to run</dt><dd>${esc(i.time)}</dd></div>
+        <div style="grid-column:1/-1"><dt>Best season</dt><dd>${esc(i.season)}</dd></div>
+      </dl>
+      <details><summary>📝 How to run it</summary><ol>${i.steps.map(s => `<li>${esc(s)}</li>`).join("")}</ol></details>
+      <details><summary>📈 Tips to maximize profit</summary><ul>${i.tips.map(s => `<li>${esc(s)}</li>`).join("")}</ul></details>
+      <details class="watch"><summary>⚠️ Watch out for</summary><ul>${i.watch.map(s => `<li>${esc(s)}</li>`).join("")}</ul></details>
+      <div class="acts">
+        <button class="btn lc sm" type="button" data-stack="${i.id}">➕ Add to stack</button>
+        <button class="btn ghost sm" type="button" data-calc="${i.id}">🧮 Use in calculator</button>
+        <button class="btn ghost sm" type="button" data-print="${i.id}" aria-label="Print the ${esc(i.name)} card">🖨️ Print card</button>
+      </div>
+    </article>`).join("") : `<p class="mu">No ideas match. Try a different filter.</p>`;
+}
+["#f-eff", "#f-start", "#f-season", "#f-sort"].forEach(id => $(id).addEventListener("change", renderCards));
+$("#f-q").addEventListener("input", renderCards);
+renderCards();
+$("#cards").addEventListener("click", e => {
+  const b = e.target.closest("button"); if (!b) return;
+  if (b.dataset.calc) { loadCalc(b.dataset.calc); $("#calc").scrollIntoView({ behavior: "smooth" }); }
+  if (b.dataset.stack) { addToStack(b.dataset.stack, b); }
+  if (b.dataset.print) { printOne(b.dataset.print); }
+});
+
+/* ---------------- 3. calculator ---------------- */
+const CALCF = ["#k-goal", "#k-stu", "#k-unit", "#k-cost", "#k-price", "#k-units", "#k-rate", "#k-per"];
+let calcNote = "";
+const mode = () => $('input[name="k-mode"]:checked').value;
+function calcProfit() {
+  const goal = num("#k-goal"), stu = num("#k-stu"), cost = num("#k-cost"), price = num("#k-price"), unit = $("#k-unit").value.trim() || "unit";
+  const units = mode() === "units" ? num("#k-units") : Math.round(stu * Math.min(100, num("#k-rate")) / 100 * num("#k-per"));
+  const ppu = price - cost, profit = ppu * units;
+  $("#ko-ppu").textContent = usd(ppu, true);
+  $("#ko-profit").textContent = usd(profit);
+  $("#ko-margin").textContent = price ? Math.round(ppu / price * 100) + "%" : "0%";
+  const pct = goal ? profit / goal * 100 : 0;
+  $("#ko-pct").textContent = goal ? Math.round(pct) + "%" : "Set a goal";
+  $("#ko-needlbl").textContent = `"${unit}" units needed for goal`;
+  $("#ko-need").textContent = ppu > 0 ? (goal ? Math.ceil(goal / ppu).toLocaleString() : "Set a goal") : "Not possible";
+  $("#ko-share").textContent = stu ? usd(profit / stu, true) : "Add students";
+  setBar("#ko-barwrap", "#ko-bar", pct);
+  const parts = [];
+  if (mode() === "part") parts.push(`Estimated units sold: ${units.toLocaleString()} (${stu} students × ${num("#k-rate")}% taking part × ${num("#k-per")} each).`);
+  if (ppu <= 0) parts.push("The sale price must be higher than the cost per unit to make a profit.");
+  else if (goal && stu) parts.push(`To reach the goal with this fundraiser alone, you would need about ${Math.ceil(goal / ppu / stu)} "${unit}" units per student. That's a planning number only; participation is voluntary.`);
+  if (calcNote) parts.push(calcNote);
+  $("#ko-note").textContent = parts.join(" ");
+  LS.set("ftf-calc", { v: CALCF.map(id => $(id).value), m: mode(), n: calcNote });
+}
+function loadCalc(id) {
+  const i = IDEAS.find(x => x.id === id); if (!i) return;
+  $("#k-unit").value = i.calc.unit; $("#k-cost").value = i.calc.cost; $("#k-price").value = i.calc.price; $("#k-units").value = i.calc.units;
+  $('input[name="k-mode"][value="units"]').checked = true; syncMode();
+  calcNote = `${i.emoji} ${i.name}: ${i.calc.note}`;
+  calcProfit();
+}
+function syncMode() { const p = mode() === "part"; $("#k-part-box").hidden = !p; $("#k-units-box").hidden = p; }
+(() => { const s = LS.get("ftf-calc", null); if (!s) return; (s.v || []).forEach((v, i) => { if (CALCF[i] && v !== "" && v != null) $(CALCF[i]).value = v; }); if (s.m) $(`input[name="k-mode"][value="${s.m}"]`).checked = true; calcNote = s.n || ""; })();
+syncMode();
+CALCF.forEach(id => $(id).addEventListener("input", () => { if (id === "#k-goal") { $("#s-goal").value = $("#k-goal").value; renderStackTotals(); saveStack(); } calcProfit(); }));
+$$('input[name="k-mode"]').forEach(r => r.addEventListener("change", () => { syncMode(); calcProfit(); }));
+
+/* ---------------- stack planner ---------------- */
+let stack = LS.get("ftf-stack", null);
+if (!stack || !Array.isArray(stack.rows)) stack = { goal: $("#k-goal").value, rows: [{ id: "giveback", amt: 300 }, { id: "spiritwear", amt: 900 }] };
+$("#s-goal").value = stack.goal || $("#k-goal").value;
+const optList = sel => `<option value="">Choose a fundraiser…</option>` + IDEAS.map(i => `<option value="${i.id}" ${sel === i.id ? "selected" : ""}>${i.emoji} ${esc(i.name)}</option>`).join("") + `<option value="custom" ${sel === "custom" ? "selected" : ""}>✏️ Other (grant, site funds, donation)</option>`;
+function saveStack() { stack.goal = $("#s-goal").value; LS.set("ftf-stack", stack); }
+function renderStack() {
+  $("#s-rows").innerHTML = stack.rows.map((r, k) => `
+    <div class="stackrow" data-k="${k}">
+      <label class="field nm">Fundraiser ${k + 1}<select data-f="id">${optList(r.id)}</select></label>
+      <label class="field amt">Expected profit<span class="money"><input type="number" min="0" step="1" data-f="amt" value="${r.amt ?? ""}"></span></label>
+      <button class="iconbtn" type="button" data-rm="${k}" aria-label="Remove fundraiser ${k + 1}" ${stack.rows.length <= 1 ? "disabled" : ""}>✕</button>
+    </div>`).join("");
+  $("#s-add").disabled = stack.rows.length >= 4;
+  renderStackTotals();
+}
+function renderStackTotals() {
+  const goal = num("#s-goal"), total = stack.rows.reduce((t, r) => t + (parseFloat(r.amt) || 0), 0);
+  const pct = goal ? total / goal * 100 : 0;
+  setBar("#s-barwrap", "#s-bar", pct);
+  const stu = num("#k-stu");
+  $("#s-sum").textContent = !goal ? `Stacked total: ${usd(total)}. Set a goal to see progress.` :
+    total >= goal ? `🎉 ${usd(total)} of ${usd(goal)} (${Math.round(pct)}%). Your plan covers the goal${total > goal ? " with " + usd(total - goal) + " to spare" : ""}.` :
+    `${usd(total)} of ${usd(goal)} (${Math.round(pct)}%). Still needed: ${usd(goal - total)}${stu ? ` (about ${usd((goal - total) / stu, true)} per student)` : ""}.`;
+}
+$("#s-rows").addEventListener("input", e => {
+  const row = e.target.closest(".stackrow"); if (!row) return; const r = stack.rows[+row.dataset.k];
+  if (e.target.dataset.f === "amt") r.amt = e.target.value;
+  renderStackTotals(); saveStack();
+});
+$("#s-rows").addEventListener("change", e => {
+  const row = e.target.closest(".stackrow"); if (!row || e.target.dataset.f !== "id") return; const r = stack.rows[+row.dataset.k];
+  r.id = e.target.value; const i = IDEAS.find(x => x.id === r.id);
+  if (i && !(parseFloat(r.amt) > 0)) { r.amt = Math.round(mid(i)); renderStack(); }
+  saveStack();
+});
+$("#s-rows").addEventListener("click", e => { const b = e.target.closest("[data-rm]"); if (!b) return; stack.rows.splice(+b.dataset.rm, 1); renderStack(); saveStack(); });
+$("#s-add").addEventListener("click", () => { if (stack.rows.length < 4) { stack.rows.push({ id: "", amt: "" }); renderStack(); saveStack(); } });
+$("#s-clear").addEventListener("click", () => { stack.rows = [{ id: "", amt: "" }, { id: "", amt: "" }]; renderStack(); saveStack(); });
+$("#s-goal").addEventListener("input", () => { $("#k-goal").value = $("#s-goal").value; calcProfit(); renderStackTotals(); saveStack(); });
+function addToStack(id, btn) {
+  const i = IDEAS.find(x => x.id === id);
+  let r = stack.rows.find(x => !x.id);
+  if (stack.rows.some(x => x.id === id)) { btn.textContent = "✔ Already in stack"; return; }
+  if (!r) { if (stack.rows.length >= 4) { btn.textContent = "Stack is full (4)"; return; } r = { id: "", amt: "" }; stack.rows.push(r); }
+  r.id = id; r.amt = Math.round(mid(i)); renderStack(); saveStack();
+  btn.textContent = "✔ Added to stack";
+}
+calcProfit(); renderStack();
+
+/* ---------------- 4. timeline ---------------- */
+let checks = LS.get("ftf-timeline", {});
+function renderTL() {
+  $("#tl").innerHTML = TIMELINE.map((g, gi) => `
+    <div class="tlg"><h3><span>${esc(g.when)}</span><small>${esc(g.tag)}</small></h3>
+      ${g.items.map((t, ti) => { const k = gi + "-" + ti, on = !!checks[k]; return `<label class="chk ${on ? "on" : ""}"><input type="checkbox" data-k="${k}" ${on ? "checked" : ""}><span>${esc(t)}</span></label>`; }).join("")}
+    </div>`).join("");
+  tlCount();
+}
+function tlCount() {
+  const total = TIMELINE.reduce((t, g) => t + g.items.length, 0), done = Object.values(checks).filter(Boolean).length;
+  $("#tl-count").textContent = `${done} of ${total} tasks done`; setBar("#tl-barwrap", "#tl-bar", total ? done / total * 100 : 0);
+}
+$("#tl").addEventListener("change", e => { const c = e.target; if (!c.dataset.k) return; checks[c.dataset.k] = c.checked; if (!c.checked) delete checks[c.dataset.k]; c.closest(".chk").classList.toggle("on", c.checked); LS.set("ftf-timeline", checks); tlCount(); });
+$("#tl-reset").addEventListener("click", () => { if (!confirm("Uncheck every task in the timeline?")) return; checks = {}; LS.set("ftf-timeline", checks); renderTL(); });
+renderTL();
+
+/* ---------------- 6. grants ---------------- */
+$("#gcards").innerHTML = GRANTS.map(g => `<div class="gcard ${g.caution ? "caution" : ""}"><h3><span aria-hidden="true">${g.emoji}</span> ${esc(g.name)}</h3>
+  ${g.caution ? `<p><b>⚠️ Check carefully:</b></p>` : ""}<p>${esc(g.txt)}</p><p><b>How to ask:</b> ${esc(g.how)}</p>
+  ${g.url ? `<p class="small"><a href="${g.url}" target="_blank" rel="noopener">${esc(g.url.replace(/^https?:\/\/(www\.)?/, ""))} ↗</a></p>` : ""}</div>`).join("");
+
+/* ---------------- 7. templates ---------------- */
+let tvals = Object.assign(Object.fromEntries(TFIELDS.map(f => [f[0], ""])), LS.get("ftf-tplf", {}));
+let tedits = LS.get("ftf-tpledits", {});
+$("#tplf").innerHTML = TFIELDS.map(f => `<label class="field">${esc(f[1])}<input type="text" data-tf="${f[0]}" placeholder="${esc(f[2])}" value="${esc(tvals[f[0]] || "")}"></label>`).join("");
+const fill = t => t.replace(/\{(\w+)\}/g, (m, k) => (tvals[k] || "").trim() || "[" + (TFIELDS.find(f => f[0] === k) || [0, k])[1].replace(/ \(.*\)/, "").toUpperCase() + "]").replace(/\$\[/g, "[$");
+$("#tpls").innerHTML = TEMPLATES.map(t => `
+  <div class="tpl" data-id="${t.id}">
+    <div class="tpl-head"><h3>${t.title}</h3>
+      <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap"><span class="copied" role="status"></span>
+        <button class="btn ghost sm" type="button" data-reset>↺ Reset</button>
+        <button class="btn lc sm" type="button" data-copy>📋 Copy</button></div></div>
+    ${t.note ? `<div class="callout warn small"><p>${esc(t.note)}</p></div>` : ""}
+    <label class="sr" for="ta-${t.id}" style="position:absolute;left:-9999px">${esc(t.title.replace(/^\S+\s/, ""))} text</label>
+    <textarea id="ta-${t.id}" spellcheck="true"></textarea>
+    <div class="pv" aria-hidden="true"></div>
+  </div>`).join("");
+function renderTpl(id) {
+  const t = TEMPLATES.find(x => x.id === id), box = $(`.tpl[data-id="${id}"]`), ta = $("textarea", box);
+  ta.value = tedits[id] != null ? tedits[id] : fill(t.text);
+  $(".pv", box).textContent = ta.value;
+  const rows = ta.value.split("\n").length; ta.style.height = Math.min(560, Math.max(220, rows * 24 + 24)) + "px";
+}
+TEMPLATES.forEach(t => renderTpl(t.id));
+$("#tplf").addEventListener("input", e => { const k = e.target.dataset.tf; if (!k) return; tvals[k] = e.target.value; LS.set("ftf-tplf", tvals); TEMPLATES.forEach(t => { if (tedits[t.id] == null) renderTpl(t.id); }); });
+$("#tpls").addEventListener("input", e => { if (e.target.tagName !== "TEXTAREA") return; const box = e.target.closest(".tpl"); tedits[box.dataset.id] = e.target.value; $(".pv", box).textContent = e.target.value; LS.set("ftf-tpledits", tedits); });
+$("#tpls").addEventListener("click", async e => {
+  const b = e.target.closest("button"); if (!b) return; const box = b.closest(".tpl"), id = box.dataset.id, msg = $(".copied", box);
+  if (b.hasAttribute("data-reset")) { delete tedits[id]; LS.set("ftf-tpledits", tedits); renderTpl(id); msg.textContent = "Reset"; setTimeout(() => msg.textContent = "", 1800); return; }
+  if (b.hasAttribute("data-copy")) {
+    const ta = $("textarea", box); let ok = false;
+    try { await navigator.clipboard.writeText(ta.value); ok = true; } catch (err) { try { ta.select(); ok = document.execCommand("copy"); } catch (e2) {} }
+    msg.textContent = ok ? "✔ Copied!" : "Select the text and copy it"; setTimeout(() => msg.textContent = "", 2200);
+  }
+});
+
+/* ---------------- printing ---------------- */
+let openState = [];
+window.addEventListener("beforeprint", () => { openState = $$("details").map(d => d.open); $$("details").forEach(d => d.open = true); });
+window.addEventListener("afterprint", () => {
+  $$("details").forEach((d, i) => d.open = !!openState[i]);
+  document.body.classList.remove("one"); $$(".print-me").forEach(x => x.classList.remove("print-me")); $$(".printing-host").forEach(x => x.classList.remove("printing-host"));
+});
+function printOne(id) {
+  const card = $("#idea-" + id); if (!card) return;
+  document.body.classList.add("one"); card.classList.add("print-me"); $("#library").classList.add("printing-host");
+  window.print();
+}
+$("#printAll").addEventListener("click", () => window.print());
+</script>
+</body>
+</html>

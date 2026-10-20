@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Scholarship Finder & Essay Coach | College & Career</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="cc-lesson.css?v=2">
+</head>
+<body>
+<script>
+/* =====================================================================
+   ✏️ SCHOLARSHIP FINDER & ESSAY COACH
+   ✏️ Update the scholarship list each fall (amounts and deadlines change).
+   ===================================================================== */
+const SCHOLARSHIPS = [
+  { scope: "Local", name: "Your high school’s senior scholarships", amt: "Varies (often $250–$5,000+)", num: "", who: "Seniors at your high school. Local clubs, businesses, families, and memorial funds give these every year.", when: "Usually spring of senior year", how: "Ask your counselor for your school’s scholarship packet and deadlines. At Tulare Union, see Counseling.", url: "https://tuhs.tjuhsd.org/awards" },
+  { scope: "Local", name: "Tulare County School Boards Association (TCSBA) Scholarship", amt: "$350", num: 350, who: "One senior from each Tulare County high school (plus continuation schools). GPA 2.75+, good citizenship, activities, and community involvement; financial need is considered.", when: "Due to your counselor in March (March 13 in 2026)", how: "Three-page application + sealed transcript, turned in to your counselor.", url: "https://tcoe.org/TCSBAform" },
+  { scope: "Local", name: "Tulare County Farm Bureau Scholarships", amt: "Several awards, about $500–$2,500", num: "", who: "Tulare County students planning agriculture-related majors or careers (some for community college, trade school, or Fresno State; one for students whose parent works on a farm or dairy).", when: "Usually due around March 1", how: "Application, two recommendation letters, transcript, and an interview.", url: "https://www.tulcofb.org" },
+  { scope: "Local", name: "College of the Sequoias Foundation Scholarships", amt: "Many awards, amounts vary", num: "", who: "Students attending College of the Sequoias. One online application matches you to many scholarships.", when: "Check the COS Scholarship Office each spring", how: "Complete one online application through the COS Foundation; contact the Scholarship Office in Visalia with questions.", url: "https://www.cos.edu/en-us/administration/foundation/scholarships" },
+  { scope: "Local", name: "Central Valley Community Foundation Scholarships", amt: "About 240 awards each year", num: "", who: "Central Valley students (the foundation serves Fresno, Madera, Merced, Mariposa, Tulare, and Kings counties).", when: "Varies by scholarship", how: "Browse their scholarship page; many have separate applications. Email scholarships@centralvalleycf.org with questions.", url: "https://www.centralvalleycf.org/scholarships" },
+  { scope: "Local", name: "TCAG STEM & Business Scholarship", amt: "At least two $1,500 awards per year (planned)", num: 1500, who: "Tulare County residents studying STEM or business, including trade school; seniors need a 2.75 GPA.", when: "New program: applications expected to open in 2027", how: "Watch the Tulare County Association of Governments website and social media.", url: "https://tularecog.org/tcag-scholarship-program-committee-lays-groundwork-applications-opening-2027" },
+  { scope: "Local", name: "Provident-Salierno PVWH Scholarship (TCOE)", amt: "$500 (up to 4 awards)", num: 500, who: "Students who show strong character, leadership, and sportsmanship on and off the field.", when: "Reopens January 2027", how: "Through the Tulare County Office of Education’s Character Counts! program.", url: "https://www.tcoe.org/PVWH/pvwh-student-recognition/Scholarship" },
+  { scope: "Local", name: "Service club scholarships (Lions, Rotary, Soroptimist, Kiwanis)", amt: "Varies", num: "", who: "Local seniors; many focus on service, leadership, or a career field.", when: "Usually spring", how: "Most are in your school’s scholarship packet. Ask your counselor or AVID teacher.", url: "" },
+  { scope: "California", name: "Cal Grant", amt: "Up to full systemwide tuition at UC or CSU, plus help with costs", num: "", who: "California students who meet GPA and income rules.", when: "File the FAFSA or CA Dream Act by March 2", how: "Filing the FAFSA or CADAA (and your GPA, sent by your school) is your application.", url: "https://www.csac.ca.gov" },
+  { scope: "California", name: "Edison Scholars Program", amt: "$50,000 over four years (30 awards)", num: 50000, who: "Seniors in Southern California Edison’s service area majoring in STEM, GPA 3.0+, with financial need; first-generation students encouraged.", when: "Usually January (Jan. 22 in 2026)", how: "Apply online at edisonscholars.com.", url: "https://www.edisonscholars.com" },
+  { scope: "California", name: "Chafee Grant", amt: "Up to $5,000 per year", num: 5000, who: "Current or former foster youth.", when: "Apply as early as possible", how: "Apply through the California Student Aid Commission.", url: "https://www.csac.ca.gov" },
+  { scope: "National", name: "Dell Scholars", amt: "$20,000 + a laptop and support", num: 20000, who: "Pell-eligible seniors who take part in an approved college-readiness program (ask your AVID teacher whether AVID at your school qualifies).", when: "Usually December 1", how: "Online application with short essays.", url: "https://www.dellscholars.org" },
+  { scope: "National", name: "The Gates Scholarship", amt: "Full cost of attendance", num: "", who: "High-achieving, Pell-eligible seniors from minority groups.", when: "Usually mid-September of senior year", how: "Online application with essays.", url: "https://www.thegatesscholarship.org" },
+  { scope: "National", name: "QuestBridge National College Match", amt: "Full four-year scholarships at partner colleges", num: "", who: "High-achieving seniors from low-income families.", when: "Usually late September", how: "Online application with essays; apply in fall of senior year.", url: "https://www.questbridge.org" },
+  { scope: "National", name: "Coca-Cola Scholars", amt: "$20,000", num: 20000, who: "Seniors with leadership and service.", when: "Usually fall of senior year", how: "Online application.", url: "https://www.coca-colascholarsfoundation.org" },
+  { scope: "National", name: "Hispanic Scholarship Fund", amt: "$500–$5,000", num: "", who: "Students of Hispanic heritage with a 3.0+ GPA who file the FAFSA or a state aid application.", when: "Usually mid-February", how: "Online application.", url: "https://www.hsf.net" },
+  { scope: "National", name: "Jack Kent Cooke College Scholarship", amt: "Up to $55,000 per year", num: "", who: "High-achieving seniors with financial need.", when: "Usually November", how: "Online application with essays and recommendations.", url: "https://www.jkcf.org" }
+];
+
+const ESSAY = ["Ever since I was little, I have always wanted to help people.",
+  "Last summer I translated for my grandmother at her clinic appointments, and I saw how much calmer she felt when the nurse explained things in Spanish.",
+  "Hard work is very important to me.",
+  "Since ninth grade I have volunteered 120 hours at the Tulare Senior Center, where I lead a Thursday game night for about 15 residents.",
+  "In today’s society, education is very important.",
+  "I plan to study nursing at College of the Sequoias and transfer to Fresno State to earn my bachelor’s degree in nursing.",
+  "This scholarship would pay for my textbooks and lab fees, so I could work fewer hours and focus on anatomy and chemistry.",
+  "I would be very grateful to receive this scholarship."];
+
+window.CC = {
+  id: "cc-scholarships", subject: "College & Career", kind: "Scholarship Workshop", short: "Scholarship Finder & Essay Coach", color: "#e08a00", emoji: "🏆", time: "Two class periods or at home",
+  title: "Scholarship Finder & Essay Coach",
+  intro: "Find local, California, and national scholarships and save them to your tracker. Then brainstorm your stories, study a sample essay, outline, and draft an essay with a coach that checks your writing.",
+  eq: "How can I find scholarships and tell my story in a way that stands out?",
+  targets: {
+    I: "I can find scholarships that fit me, starting close to home.",
+    R: "I can tell the difference between specific details and vague sentences in an essay.",
+    O: "I can organize my stories into an outline that answers the prompt.",
+    W: "I can draft a scholarship essay with specific examples and a clear connection to my goals.",
+    C: "I can give and use peer feedback."
+  },
+  teacher: `<p>This works as a two-day workshop: Day 1 = Finder, Brainstorm, and Sample essay; Day 2 = Outline, Draft, Peer review, and Final checklist. Students can also do it at home. Scholarships added here show up in the hub’s <b>Scholarship Tracker</b> on the same device.</p>
+    <p><b>Please update the scholarship list each fall</b> (in scholarships.html); amounts and deadlines change every year.</p>`,
+  stations: [
+    { letters: ["I"], title: "Find Scholarships (Start Local!)", time: "15 min", goal: "Local scholarships have fewer applicants. Save at least 3 that fit you.",
+      blocks: [
+        { t: "text", html: `<div class="callout">💡 <b>Tips:</b> start with <b>local</b> scholarships, since fewer students apply. Make a list of deadlines in your tracker. Ask for recommendation letters at least <b>two weeks</b> early. <b>Never pay to apply</b> for a scholarship.</div>` },
+        { t: "scholarships", title: "Scholarship finder", how: "Filter by Local, California, or National. Tap “Add to my tracker” for every scholarship you plan to apply for.", list: SCHOLARSHIPS,
+          source: "Information gathered from each sponsor’s website and local news in 2025–26. Amounts, rules, and deadlines change every year, so always check the official site and your counselor." },
+        { t: "links", title: "More places to search", items: [{ name: "Cash for College (CSAC)", url: "https://www.cash4college.csac.ca.gov", desc: "Free FAFSA/CADAA help workshops" }, { name: "BigFuture Scholarship Search", url: "https://bigfuture.collegeboard.org", desc: "Search thousands of scholarships" }, { name: "CaliforniaColleges.edu", url: "https://www.californiacolleges.edu", desc: "Scholarship and financial aid tools with your student account" }] }
+      ] },
+    { letters: ["I", "W"], title: "Brainstorm Your Stories", time: "12 min", goal: "Most scholarship essays ask about the same few topics. Get your stories ready.",
+      blocks: [ { t: "form", title: "My story bank (STAR: Situation, Task, Action, Result)", how: "Write short notes, not full essays. Use real details: names, places, numbers.",
+        fields: [{ id: "chal", label: "A challenge I faced (what happened, what I did, what changed)", type: "area", wide: true, req: true, min: 20 }, { id: "serv", label: "Service or leadership I’m proud of (where, how long, what impact)", type: "area", wide: true, req: true, min: 20 },
+          { id: "goal", label: "My goals: major, college, career, and why", type: "area", wide: true, req: true, min: 15 }, { id: "money", label: "How a scholarship would help me (be specific)", type: "area", wide: true, req: true, min: 10 }] } ] },
+    { letters: ["R"], title: "Read a Sample Essay", time: "8 min", goal: "Find what makes writing specific, and what makes it forgettable.",
+      blocks: [ { t: "annotate", title: "Mark up this sample scholarship essay", how: "Pick a marker, then tap sentences.", parts: ESSAY, style: "",
+        feedback: "Specific details (people, places, numbers, plans) make readers remember you. Clichés and general statements could be written by anyone.",
+        tasks: [{ label: "Specific details (green)", color: "g", need: 3, key: [1, 3, 5, 6] }, { label: "Vague or cliché sentences (pink)", color: "p", need: 2, key: [0, 2, 4] }] } ] },
+    { letters: ["O"], title: "Outline Your Essay", time: "10 min", goal: "Plan before you write.",
+      blocks: [ { t: "form", title: "Essay outline", how: "Choose a prompt, then plan each part. Use your story bank.",
+        fields: [{ id: "prompt", label: "Prompt I’m answering", type: "select", req: true, opts: ["Describe your educational and career goals.", "Tell us about a challenge you overcame.", "Describe your community service and its impact.", "Why do you deserve this scholarship?", "Describe a person who influenced you."] },
+          { id: "hook", label: "Hook: open with a specific moment (not a quote or definition)", type: "area", wide: true, req: true }, { id: "story", label: "Your story (STAR)", type: "area", wide: true, req: true },
+          { id: "grow", label: "What you learned or how you grew", type: "area", wide: true, req: true }, { id: "goal", label: "Connect to your goals and how the scholarship helps", type: "area", wide: true, req: true, min: 15 }] } ] },
+    { letters: ["W"], title: "Draft with the Essay Coach", time: "25 min", goal: "Write your draft, then check it with the coach. Revise until every check is green.",
+      blocks: [ { t: "write", label: "scholarship essay", title: "My scholarship essay draft", rows: 14, prompt: "Write a 250–500 word draft for the prompt you chose. Press <b>Check my writing</b> as often as you like.", min: 250,
+        frames: ["Open with a moment", "Show, don’t tell", "Use numbers and names", "Connect to your goals", "Explain how the money helps"],
+        checks: [{ label: "Uses specific details (numbers, names, or places)", re: /\d|tulare|visalia|porterville|fresno|merced|college|school|center|club|team|church/i, min: 2 },
+          { label: "Tells a specific moment or example", re: /for example|for instance|when i|last (year|summer|spring|fall|week)|one day|in (9th|10th|11th|12th|ninth|tenth|eleventh|twelfth)|freshman|sophomore|junior|senior/i },
+          { label: "Shows growth (what you learned or how you changed)", re: /learned|realized|taught me|grew|now i|because of (this|that)|changed|discovered/i },
+          { label: "Connects to your goals (major, college, career)", re: /major|career|college|university|degree|study|become|transfer/i },
+          { label: "Avoids clichés (“ever since I was little,” “in today’s society,” dictionary definitions)", re: /ever since i was (little|young|a kid)|in today.?s society|webster|dictionary defines|since the dawn of time/i, not: true }] } ] },
+    { letters: ["C"], title: "Peer Review", time: "10 min", goal: "Trade drafts with a partner.",
+      blocks: [ { t: "partner", title: "Peer review", how: "Read your partner’s draft. Then answer the questions out loud before writing the feedback you received.", questions: ["Which sentence is the most memorable? Why?", "Where could they add a specific detail or number?", "Do they clearly connect to their goals and the scholarship?", "Is any sentence vague or a cliché?"],
+        got: "The most helpful feedback I got", change: "What I will revise because of it" } ] },
+    { letters: ["O"], title: "Final Checklist", time: "5 min", goal: "Before you hit submit.",
+      blocks: [ { t: "checklist", title: "Ready to submit?", items: ["I answered the exact prompt and stayed within the word limit", "I proofread out loud and had someone else read it", "My file is named Scholarship – Name – Date", "The deadline is in my Scholarship Tracker and my planner", "I asked for recommendation letters at least two weeks early", "I saved a copy so I can reuse paragraphs for other scholarships"] } ] }
+  ]
+};
+
+</script>
+<script src="cc-blocks2.js?v=1"></script>
+<script src="hub-config.js?v=3"></script>
+<script src="cc-lesson.js?v=3"></script>
+</body>
+</html>

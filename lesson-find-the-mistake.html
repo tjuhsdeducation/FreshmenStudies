@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Find the Mistake | WICOR Algebra 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="wicor-lesson.css">
+</head>
+<body>
+<script>
+/* =====================================================================
+   ✏️ LESSON CONTENT: Solving Multi-Step Equations (Algebra 1)
+   Reading station = a student's worked solution (visual reading).
+   The correct answer is x = −2. The student's mistake is in Step 1.
+   ===================================================================== */
+const FRAMES = [ "I agree with ___ because…", "I respectfully disagree because the math shows…", "Can you show me how you got…?",
+                 "I'd like to build on that idea…", "What evidence do you have that…?", "I used to think ___, but now I think…" ];
+const LESSON = {
+  id: "alg-find-the-mistake",
+  subject: "Algebra 1",
+  short: "Algebra 1: Find the Mistake",
+  color: "#5b5fe0",
+  emoji: "🕵️",
+  eq: "How can finding and explaining a mistake make me a stronger math problem solver?",
+  targets: {
+    R: "I can read a worked solution step by step and name the move made in each step.",
+    W: "I can write a CER that identifies a mistake, corrects it, and explains the rule that was broken.",
+    I: "I can test values of x on a balance model to find the solution and check it.",
+    C: "I can use math evidence to support my position and respond respectfully to a peer.",
+    O: "I can sort equation-solving moves by the property they use."
+  },
+  title: "Find the Mistake: Solving Multi-Step Equations",
+  intro: "Jordan solved an equation and got x = 2, but the answer key says x = −2. Read Jordan's work like a detective, find the point of confusion, prove the right answer, and organize the moves. Five stations, about 5–10 minutes each.",
+  order: ["R", "W", "I", "C", "O"],
+  stations: {
+
+    R: {
+      mode: "visual", kind: "worked solution",
+      title: "Read the Work", time: "8 min",
+      goal: "Read Jordan's solution <b>one step at a time</b>. Complete each task by clicking the matching part of the work.",
+      figureTitle: "Jordan's work: solve 3(x − 4) + 2 = 5x − 6",
+      intro: "Click a task on the right, then click the step (or part of the problem) that matches it.",
+      figure: `<div class="steps">
+        <div class="prob">Problem: <span data-hot="dist">3(x − 4)</span> + 2 = 5x − 6</div>
+        <div class="stepline" data-hot="s1"><b>Step 1</b> 3x − 4 + 2 = 5x − 6</div>
+        <div class="stepline" data-hot="s2"><b>Step 2</b> 3x − 2 = 5x − 6</div>
+        <div class="stepline" data-hot="s3"><b>Step 3</b> −2 = 2x − 6</div>
+        <div class="stepline" data-hot="s4"><b>Step 4</b> 4 = 2x</div>
+        <div class="stepline" data-hot="s5"><b>Step 5</b> x = 2</div>
+      </div>`,
+      tasks: [
+        { q: "Click the part of the problem Jordan needed to <b>distribute</b>.", hot: "dist", hint: "Look for a number multiplied by something in parentheses.", why: "3(x − 4) means 3 times x AND 3 times −4." },
+        { q: "Click the step where Jordan <b>combined like terms</b> (−4 + 2).", hot: "s2", hint: "Find where two constant numbers on the left became one.", why: "−4 + 2 = −2, so Step 2 combined like terms." },
+        { q: "Click the step where Jordan <b>subtracted 3x from both sides</b>.", hot: "s3", hint: "Which step has no x term left on the left side?", why: "3x − 3x = 0 and 5x − 3x = 2x." },
+        { q: "Click the step where Jordan <b>added 6 to both sides</b>.", hot: "s4", hint: "Where did −6 disappear from the right side?", why: "−2 + 6 = 4, and −6 + 6 = 0." },
+        { q: "Click the step where the <b>mistake</b> happened.", hot: "s1", hint: "Check the distributing: what is 3 × (−4)?", why: "3 × (−4) = −12, not −4. Jordan only multiplied the x by 3." }
+      ],
+      gist: "In one sentence, explain what went wrong in Jordan's work."
+    },
+
+    W: {
+      title: "Write a CER: Prove the Right Answer", time: "8–10 min",
+      goal: "Write a <b>Claim–Evidence–Reasoning</b> paragraph that names the mistake, shows the corrected math, and explains the rule.",
+      prompt: "Jordan says x = 2. The answer key says x = −2. Who is right, and where did the mistake happen? Use math as your evidence.",
+      parts: [
+        { key: "claim", label: "Claim", sub: "Who is right?", starter: "The answer key is right because Jordan's mistake is in Step…",
+          hint: "Name who is right AND the step with the mistake.", checkLabel: "Claim names the correct answer and the step",
+          check: v => words(v) >= 8 && /step/i.test(v) && /(-|−)\s?2|negative 2|answer key/i.test(v) },
+        { key: "evidence", label: "Evidence", sub: "Show the correct work", rows: 4, starter: "3(x − 4) + 2 = 5x − 6 → 3x − 12 + 2 = 5x − 6 → …",
+          hint: "Rewrite the solution correctly. Then <b>check</b> it: substitute x = −2 into both sides.",
+          checkLabel: "Evidence shows the corrected steps with −12 and checks the answer",
+          check: v => words(v) >= 8 && /12/.test(v) && /(-|−)\s?2/.test(v) && /=/.test(v) },
+        { key: "reasoning", label: "Reasoning", sub: "Why the rule matters", rows: 3, starter: "This shows that… because the distributive property says…",
+          hint: "Explain the rule Jordan broke and why checking your answer catches mistakes.",
+          checkLabel: "Reasoning explains the rule (uses \"because\" or \"this shows\")",
+          check: v => words(v) >= 15 && /because|this shows|this means|therefore|which means/i.test(v) }
+      ],
+      minTerms: 2, minWords: 40,
+      terms: [ ["distributive property", /distribut/i], ["like terms", /like terms/i], ["inverse operation", /inverse|both sides/i],
+               ["substitute / check", /substitut|check/i], ["coefficient", /coefficient/i], ["equation", /equation/i] ]
+    },
+
+    I: {
+      title: "Predict, Balance & Graph", time: "10 min",
+      goal: "Use a <b>balance model</b> to test values of x, graph how far off the balance is, and find the value that makes both sides equal.",
+      predict: {
+        q: "Predict: Which value of x will make 3(x − 4) + 2 and 5x − 6 perfectly balanced?",
+        placeholder: "If x = ___, then both sides will balance because…",
+        options: [ { v: "2", label: "x = 2", sub: "Jordan's answer" }, { v: "-2", label: "x = −2", sub: "the answer key" },
+                   { v: "4", label: "x = 4" }, { v: "none", label: "No value works" } ]
+      },
+      lab: {
+        title: "Test it: Balance Lab",
+        intro: "Slide x to a value. The scale shows the <b>left side</b> and the <b>right side</b>. Record the difference (left − right) for <b>at least 5 values of x</b>. Where does the graph cross 0?",
+        controls: [ { type: "range", id: "x", label: "🎚️ Value of x", min: -6, max: 6, step: 1, value: 2, short: "x" } ],
+        model: c => (3 * (c.x - 4) + 2) - (5 * c.x - 6),
+        noise: 0, digits: 0,
+        x: { id: "x", label: "Value of x", min: -6, max: 6, tick: 2 },
+        y: { label: "Left side − right side", min: -20, max: 20, tick: 5 },
+        readout: "Left − Right (0 means balanced)", yShort: "Left − Right",
+        need: { distinct: 5, groups: 1 }, needLabel: "Recorded 5+ values of x",
+        scene: `<svg viewBox="0 0 320 210" style="width:100%;display:block">
+          <polygon points="160,190 145,210 175,210" fill="#5d6577"/><rect x="157" y="80" width="6" height="112" fill="#5d6577"/>
+          <g id="beam"><rect x="40" y="76" width="240" height="8" rx="4" fill="#5b5fe0"/>
+            <rect x="40" y="40" width="86" height="34" rx="8" fill="#e9eefb" stroke="#5b5fe0" stroke-width="2"/><text id="lv" x="83" y="62" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="13" fill="#1f2430"></text>
+            <rect x="194" y="40" width="86" height="34" rx="8" fill="#fdece8" stroke="#f05a28" stroke-width="2"/><text id="rv" x="237" y="62" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="13" fill="#1f2430"></text></g>
+          <text x="83" y="22" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="11" fill="#5b5fe0">3(x − 4) + 2</text>
+          <text x="237" y="22" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="11" fill="#f05a28">5x − 6</text>
+          <text id="bal" x="160" y="140" text-anchor="middle" font-family="Nunito" font-weight="900" font-size="14"></text>
+        </svg>`,
+        draw(svg, c) {
+          const L = 3 * (c.x - 4) + 2, R = 5 * c.x - 6, d = L - R;
+          svg.querySelector("#lv").textContent = "= " + L; svg.querySelector("#rv").textContent = "= " + R;
+          const ang = Math.max(-14, Math.min(14, -d * 1.2));
+          svg.querySelector("#beam").setAttribute("transform", `rotate(${ang} 160 80)`);
+          const b = svg.querySelector("#bal"); b.textContent = d === 0 ? "⚖️ Balanced! Both sides equal " + L : (d > 0 ? "Left side is heavier" : "Right side is heavier");
+          b.setAttribute("fill", d === 0 ? "#1aa36f" : "#5d6577");
+        }
+      },
+      analyze: {
+        placeholder: "The graph crosses 0 at x = ___. That means… This proves the solution is… because…",
+        hint: "Explain where your graph crosses 0 and what that tells you about the <b>solution</b>. Use the word <b>balance</b> or <b>equal</b>.",
+        must: /balanc|equal/i, minWords: 25, checkLabel: "Analyzed the graph (25+ words, uses \"balance\" or \"equal\")",
+        stems: [ "What would happen if…", "How would the graph change if…", "Why does the line…", "What if the equation were…" ]
+      }
+    },
+
+    C: {
+      title: "Philosophical Chairs", time: "5–8 min",
+      goal: "Take a position, back it up with <b>math evidence</b>, and respond respectfully to a classmate's argument.",
+      statement: "Showing your work matters more than getting the right answer.",
+      reasonStarter: "I agree / disagree because in Jordan's work, I noticed…",
+      peer: { name: "Mateo", says: "Teachers only care about the answer. If I get it right in my head, I shouldn't have to write every step." },
+      frames: FRAMES
+    },
+
+    O: {
+      title: "Organize It", time: "5–8 min",
+      goal: "Sort each equation move by the <b>property or operation</b> it uses, then write a <b>summary</b> you could add to your notes.",
+      sortTitle: "Which move is it?",
+      zones: [ "✖️ Distributive property", "➕ Combine like terms", "↔️ Add or subtract both sides", "➗ Multiply or divide both sides" ],
+      tiles: [ ["3(x − 4) → 3x − 12", 0], ["−2(x + 5) → −2x − 10", 0],
+               ["3x − 12 + 2 → 3x − 10", 1], ["4x + x → 5x", 1],
+               ["3x − 10 = 5x − 6 → −10 = 2x − 6", 2], ["x − 7 = 3 → x = 10", 2],
+               ["−4 = 2x → x = −2", 3], ["x ÷ 3 = 5 → x = 15", 3] ],
+      summaryPrompt: "Write 2–3 sentences explaining the steps for solving a multi-step equation and one tip for avoiding Jordan's mistake.",
+      summaryStarter: "To solve a multi-step equation, first…"
+    }
+  }
+};
+function words(s) { return (String(s).trim().match(/[A-Za-z0-9'’%₂₆−-]+/g) || []).length; }
+</script>
+<script src="hub-config.js?v=3"></script>
+<script src="wicor-lesson.js?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Google Docs, Slides & Importing | AVID</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="cc-lesson.css?v=2">
+</head>
+<body>
+<script>
+/* =====================================================================
+   ✏️ DIGITAL LITERACY: Google Docs, Google Slides, and Importing
+   (about 55–60 minutes). The practice screens are simplified copies of
+   Google’s apps; buttons may move slightly when Google updates them.
+   ===================================================================== */
+const MENUS = (list, hot) => `<div class="m-menu">${list.map(m => `<span ${hot[m] ? `data-hot="${hot[m]}"` : ""}>${m}</span>`).join("")}</div>`;
+const DOCS_UI = `<div class="m-top"><div class="m-logo" style="background:#4285f4">≡</div><div><div class="m-title">English – Ozymandias Essay – 2026-10-12</div>${MENUS(["File", "Edit", "View", "Insert", "Format", "Tools", "Extensions", "Help"], { Insert: "insert", Tools: "tools", File: "file" })}</div>
+  <div class="m-right"><span class="m-ic" data-hot="history" title="Version history">🕘</span><span class="m-ic" data-hot="comments" title="Open comment history">💬</span><span class="m-btn m-share" data-hot="share">🔒 Share</span></div></div>
+  <div class="m-tool"><span>🔍</span><span data-hot="undo" title="Undo">↶</span><span>↷</span><span>🖨️</span><span class="sep"></span><span>100% ▾</span><span class="sep"></span><span data-hot="styles" style="min-width:90px">Normal text ▾</span><span class="sep"></span><span>Arial ▾</span><span>11</span><span class="sep"></span><span data-hot="bold"><b>B</b></span><span><i>I</i></span><span><u>U</u></span><span class="sep"></span><span data-hot="link" title="Insert link">🔗</span><span data-hot="addcomment" title="Add comment">➕💬</span><span data-hot="image" title="Insert image">🖼️</span><span class="sep"></span><span>≡</span><span>☑</span><span>•</span><span data-hot="editmode" style="margin-left:auto">✏️ Editing ▾</span></div>
+  <div class="m-page"><div class="m-doc"><b style="font-size:16px">Ozymandias: The Fall of Power</b><p>In Percy Bysshe Shelley’s sonnet “Ozymandias,” a traveler describes a shattered statue in the desert. The poem shows that power and pride do not last…</p></div></div>`;
+const SLIDES_UI = `<div class="m-top"><div class="m-logo" style="background:#f4b400">▭</div><div><div class="m-title">Bio – Photosynthesis Slides – 2026-10-14</div>${MENUS(["File", "Edit", "View", "Insert", "Format", "Slide", "Arrange", "Tools", "Help"], { Insert: "insert", Slide: "slidemenu" })}</div>
+  <div class="m-right"><span class="m-btn" style="border:1px solid #747775" data-hot="present">▶ Slideshow</span><span class="m-btn m-share" data-hot="share">🔒 Share</span></div></div>
+  <div class="m-tool"><span data-hot="newslide" title="New slide">＋ ▾</span><span>↶</span><span>↷</span><span class="sep"></span><span>🔍</span><span>⬚</span><span>🖼️</span><span>⬭</span><span class="sep"></span><span>Background</span><span data-hot="layout">Layout ▾</span><span data-hot="theme">Theme</span><span data-hot="transition">Transition</span></div>
+  <div class="m-slides"><div class="m-thumbs"><div class="m-thumb on">1 Photosynthesis</div><div class="m-thumb">2 Inputs</div><div class="m-thumb">3 Outputs</div></div>
+  <div class="m-stage"><div class="m-slide">🌿 Photosynthesis</div><div class="m-notes" data-hot="notes">Click to add speaker notes</div></div></div>`;
+const IMPORT_UI = `<div style="display:grid;grid-template-columns:1fr 1fr;gap:0">
+  <div style="border-right:1px solid #dadce0;padding:10px"><b style="font-size:13px">Google Drive</b><div style="display:flex;gap:10px;margin-top:8px;align-items:flex-start"><div class="m-new">＋ New</div>
+    <div style="background:#fff;box-shadow:0 2px 8px #0004;border-radius:6px;padding:4px 0;font-size:13px">${[["📁 New folder", ""], ["⬆️ File upload", "upload"], ["📂 Folder upload", "folderupload"], ["📄 Google Docs", ""], ["📗 Google Sheets", ""], ["📙 Google Slides", ""]].map(x => `<div style="padding:6px 14px" ${x[1] ? `data-hot="${x[1]}"` : ""}>${x[0]}</div>`).join("")}</div></div>
+    <div style="margin-top:12px;font-size:13px;border:1px solid #dadce0;border-radius:8px;padding:8px">📘 history-essay.docx (Word file) <div style="margin-top:6px;display:flex;gap:6px;flex-wrap:wrap"><span style="background:#f1f3f4;border-radius:12px;padding:3px 10px" data-hot="openwith">Open with ▸ Google Docs</span><span style="background:#f1f3f4;border-radius:12px;padding:3px 10px">Download</span><span style="background:#f1f3f4;border-radius:12px;padding:3px 10px">Rename</span></div></div></div>
+  <div style="padding:10px"><b style="font-size:13px">Google Docs → Insert menu</b><div style="background:#fff;box-shadow:0 2px 8px #0004;border-radius:6px;padding:4px 0;font-size:13px;margin-top:8px;display:grid;grid-template-columns:1fr 1fr">
+    <div>${["🖼️ Image ▸", "▦ Table ▸", "📊 Chart ▸", "— Horizontal line", "😀 Emoji", "🔗 Link"].map((x, i) => `<div style="padding:6px 12px;${i === 0 ? "background:#e8f0fe" : ""}">${x}</div>`).join("")}</div>
+    <div style="border-left:1px solid #eee">${[["⬆️ Upload from computer", "upcomputer"], ["🔎 Search the web", "searchweb"], ["🗂️ Drive", "imgdrive"], ["🌄 Photos", ""], ["🔗 By URL", "byurl"], ["📷 Camera", ""]].map(x => `<div style="padding:6px 12px" ${x[1] ? `data-hot="${x[1]}"` : ""}>${x[0]}</div>`).join("")}</div></div>
+    <b style="font-size:13px;display:block;margin-top:12px">Google Slides → Insert menu</b><div style="background:#fff;box-shadow:0 2px 8px #0004;border-radius:6px;padding:4px 0;font-size:13px;margin-top:6px">${[["🖼️ Image ▸", ""], ["T Text box", ""], ["🔊 Audio", "audio"], ["🎬 Video", "video"], ["⬭ Shape ▸", ""]].map(x => `<div style="padding:6px 12px" ${x[1] ? `data-hot="${x[1]}"` : ""}>${x[0]}</div>`).join("")}</div></div></div>`;
+
+window.CC = {
+  id: "avid-digital", subject: "AVID", kind: "Digital Literacy Lesson", brand: { name: "AVID", home: "avid", mark: "💻" },
+  short: "Google Docs, Slides & Importing", color: "#4285f4", emoji: "💻", time: "55–60 min",
+  title: "Digital Literacy: Google Docs, Slides, and Importing Files",
+  intro: "Practice the Google Docs and Slides tools you’ll use in high school and college, learn how to bring in files, images, and videos the right way, and then make a real Doc and Slides deck.",
+  eq: "How can I use Google’s tools to create, share, and present my work like a professional?",
+  targets: {
+    I: "I can find and use important tools in Google Docs and Google Slides.",
+    O: "I can import files, images, and videos into Drive, Docs, and Slides.",
+    R: "I can use images and videos responsibly and give credit to the source.",
+    C: "I can share files with the right permissions for teachers and classmates.",
+    W: "I can create and submit a real Doc and Slides deck."
+  },
+  teacher: `<p><b>Pacing (≈ 58 min):</b> Warm-up 4 · Docs 14 · Slides 12 · Importing 12 · Do it for real 14 · Exit 2.</p>
+    <p>The practice screens are simplified versions of Google Docs, Slides, and Drive. Students need their school Google accounts for the “Do it for real” station.</p>`,
+  stations: [
+    { letters: ["C"], title: "Warm-Up: Tech Confidence Line-Up", time: "4 min", goal: "Show how confident you are, then help a neighbor.",
+      blocks: [ { t: "move", mode: "line", seconds: 120, prompt: "How confident are you making a Google Doc look professional (headings, images, comments, sharing)?", options: ["Brand new", "I know the basics", "I could teach it"],
+        talk: "Pair up with someone from the other end of the line. What is one Google trick you know?", reflect: "Where did you stand, and what Google trick did you learn from someone else?" } ] },
+    { letters: ["I"], title: "Google Docs: Find the Tools", time: "14 min", goal: "Find the tools you’ll use for every essay and project.",
+      blocks: [
+        { t: "hotspot", title: "Google Docs practice screen", ui: DOCS_UI,
+          tasks: [{ q: "Share your essay with your teacher.", hot: "share", hint: "Look at the top right.", why: "Share lets you choose people and their role: Viewer, Commenter, or Editor." },
+            { q: "Add a <b>comment</b> asking a peer for feedback on your thesis.", hot: "addcomment", hint: "Look in the toolbar for a speech bubble with a plus.", why: "Comments let people give feedback without changing your words. Shortcut: Ctrl+Alt+M." },
+            { q: "Your partner deleted a paragraph. Open <b>version history</b> to get it back.", hot: "history", hint: "Look for a clock near Share.", why: "Version history shows every saved version, so you can restore old work." },
+            { q: "Turn your essay title into a <b>Heading</b> so it shows in the document outline.", hot: "styles", hint: "Find the box that says “Normal text.”", why: "Headings organize long papers and build a clickable outline." },
+            { q: "Insert an <b>image</b> from the toolbar.", hot: "image", hint: "Look for the picture icon.", why: "Insert image lets you upload, search, or pick from Drive." },
+            { q: "Find the menu with <b>Word count</b> and <b>Voice typing</b>.", hot: "tools", hint: "It’s in the menu bar.", why: "Tools → Word count (Ctrl+Shift+C) and Tools → Voice typing." },
+            { q: "Switch to <b>Suggesting</b> mode to peer-edit without changing the writer’s text directly.", hot: "editmode", hint: "Look at the right end of the toolbar.", why: "Suggesting mode shows your edits as suggestions the writer can accept or reject." }] },
+        { t: "quiz", label: "Docs check", items: [
+          { q: "Your teacher should be able to leave feedback but not change your words. Which sharing role?", opts: ["Viewer", "Commenter", "Editor", "Owner"], a: 1, why: "Commenters can comment and suggest but can’t edit directly." },
+          { q: "Which shortcut inserts a link?", opts: ["Ctrl+K", "Ctrl+L", "Ctrl+P", "Ctrl+Z"], a: 0, why: "Ctrl+K (Cmd+K on a Mac) inserts a link." },
+          { q: "Which shortcut shows a list of all keyboard shortcuts in Docs?", opts: ["Ctrl+/", "Ctrl+S", "Ctrl+Shift+C", "Ctrl+M"], a: 0, why: "Ctrl+/ opens the shortcut list. (Ctrl+Shift+C is word count.)" }] }
+      ] },
+    { letters: ["I", "O"], title: "Google Slides: Present Like a Pro", time: "12 min", goal: "Find the Slides tools and learn what makes slides effective.",
+      blocks: [
+        { t: "hotspot", title: "Google Slides practice screen", ui: SLIDES_UI,
+          tasks: [{ q: "Add a <b>new slide</b>.", hot: "newslide", hint: "Look at the far left of the toolbar.", why: "The + button adds a slide (shortcut: Ctrl+M)." },
+            { q: "Change the look of every slide at once with a <b>theme</b>.", hot: "theme", hint: "It’s in the toolbar.", why: "Themes keep fonts and colors consistent." },
+            { q: "Add <b>speaker notes</b> so you know what to say.", hot: "notes", hint: "Look under the big slide.", why: "Speaker notes are visible to you in Presenter view, not to the audience." },
+            { q: "Open the menu you’d use to add a <b>video</b>.", hot: "insert", hint: "It’s in the menu bar.", why: "Insert → Video." },
+            { q: "Add a <b>transition</b> between slides.", hot: "transition", hint: "Look in the toolbar.", why: "Use simple transitions; flashy ones distract." },
+            { q: "Start <b>presenting</b>.", hot: "present", hint: "Top right.", why: "Slideshow presents full screen. Use the arrow next to it for Presenter view." }] },
+        { t: "sort", label: "slide habits", title: "Strong slides or weak slides?", zones: ["✅ Strong slide habit", "❌ Weak slide habit"],
+          tiles: [["One main idea per slide", 0], ["Short phrases, not paragraphs", 0], ["High-contrast text and background", 0], ["Cite the source of every image", 0], ["Put what you’ll say in speaker notes", 0],
+            ["Read every word off the slide", 1], ["Tiny 10-point font", 1], ["Five different fonts and colors", 1], ["Loud sound effects on every slide", 1]] }
+      ] },
+    { letters: ["O", "R"], title: "Importing Files, Images, and Videos", time: "12 min", goal: "Bring files into Drive, images into Docs, and videos into Slides, and give credit.",
+      blocks: [
+        { t: "hotspot", title: "Import practice screen", ui: IMPORT_UI,
+          tasks: [{ q: "Upload a PDF from your computer to Google Drive.", hot: "upload", hint: "Look in Drive’s New menu.", why: "New → File upload (or drag the file into Drive)." },
+            { q: "Your teacher emailed a Word file. Turn it into a Google Doc you can edit.", hot: "openwith", hint: "Look at the Word file’s options.", why: "Open with → Google Docs makes an editable Google copy." },
+            { q: "Insert a photo you took (saved on your computer) into a Doc.", hot: "upcomputer", hint: "Insert → Image → …", why: "Upload from computer." },
+            { q: "Insert an image you already saved in your Drive.", hot: "imgdrive", hint: "Insert → Image → …", why: "Drive opens a side panel with your Drive images." },
+            { q: "Add a YouTube video to your Slides.", hot: "video", hint: "Look in the Slides Insert menu.", why: "Insert → Video lets you search YouTube or paste a link." }] },
+        { t: "order", title: "Put the steps in order: add a YouTube clip to Slides", items: ["Click Insert in the menu bar", "Choose Video", "Search YouTube or paste the video’s link", "Select the video and click Insert", "Resize it and set the start and end time"] },
+        { t: "quiz", label: "responsible use", title: "Use it responsibly", items: [
+          { q: "Which image is best to use in a school project?", opts: ["Any image from a Google search, no credit needed", "An image labeled for reuse (like Creative Commons), with the source cited", "A photo of a classmate posted without asking", "A logo copied from a company website"], a: 1, why: "Use images you have permission to use, and always give credit." },
+          { q: "Where should you give credit for images and videos in Slides?", opts: ["Nowhere", "A small caption on the slide or a Works Cited slide at the end", "Only out loud", "In the file name"], a: 1, why: "Cite on the slide or on a final Works Cited slide." },
+          { q: "You uploaded a file to Drive. Who can see it?", opts: ["Everyone on the internet", "Only you, until you share it", "Your whole school automatically", "Google employees"], a: 1, why: "Files are private to you until you share them." }] }
+      ] },
+    { letters: ["W"], title: "Do It for Real", time: "14 min", goal: "Make a real Doc and Slides deck and submit the links.",
+      blocks: [ { t: "checklist", title: "Create and share", how: "Use your school Google account. Name files with the rule: Class – Assignment – Date.",
+        items: ["My Google Doc has a title formatted as a Heading", "My Doc has an image I inserted and a caption giving credit", "I added one comment to my Doc", "My Slides deck has 3 slides with a theme", "One slide has a video or image I imported, with credit", "One slide has speaker notes", "I shared both files with my teacher as Commenter"],
+        links: [{ label: "Paste the link to your Google Doc", ph: "https://docs.google.com/document/d/…", re: /^https:\/\/docs\.google\.com\/document\/(u\/\d+\/)?d\/[\w-]+/, kind: "Google Doc" },
+          { label: "Paste the link to your Google Slides", ph: "https://docs.google.com/presentation/d/…", re: /^https:\/\/docs\.google\.com\/presentation\/(u\/\d+\/)?d\/[\w-]+/, kind: "Google Slides" }] } ] },
+    { letters: ["W"], title: "Exit Ticket", time: "2 min", goal: "Reflect.",
+      blocks: [ { t: "write", label: "exit ticket", title: "Exit ticket", prompt: "Name two Google tools you learned today and how you will use each one in a class this month.", min: 25,
+        checks: [{ label: "Names at least two tools", re: /comment|share|version|heading|image|word count|voice|suggest|theme|speaker notes|transition|upload|insert|video|present|link/i, min: 2 }, { label: "Names a class or assignment", re: /class|essay|project|english|math|science|history|biology|avid|presentation|lab/i }] } ] }
+  ]
+};
+
+</script>
+<script src="cc-blocks2.js?v=1"></script>
+<script src="hub-config.js?v=3"></script>
+<script src="cc-lesson.js?v=3"></script>
+</body>
+</html>

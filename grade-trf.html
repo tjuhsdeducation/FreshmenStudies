@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grade It: TRFs | AVID</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="cc-lesson.css?v=2">
+</head>
+<body>
+<script>
+/* =====================================================================
+   ✏️ GRADE IT LIKE A TEACHER: TRFs (Tutorial Request Forms)
+   All samples were written for this site (no real student work).
+   ===================================================================== */
+const TRF = o => `<div class="hd"><span><b>Name:</b> ${o.name}</span><span><b>Subject:</b> ${o.cls}</span><span><b>Grade:</b> ${o.gr}</span><span><b>Date:</b> ${o.date}</span></div>
+  <span class="lbl">Initial question (write it exactly, with the source)</span><div>${o.q}</div>
+  <span class="lbl">Key academic vocabulary</span><div>${o.vocab || '<span class="missing">(blank)</span>'}</div>
+  <span class="lbl">What I know / steps I tried</span><div>${o.know}</div>
+  <span class="lbl">My point of confusion (POC)</span><div>${o.poc}</div>
+  <span class="lbl">After tutorial: what I learned and how I’d solve a similar problem</span><div>${o.refl || '<span class="missing">(blank)</span>'}</div>`;
+const TRF_RUBRIC = (t, why) => [
+  { c: "Initial question", d: "Written exactly, with the class and source (textbook page, worksheet #)", max: 2, t: t[0], why: why[0] },
+  { c: "Key vocabulary", d: "3+ academic terms with definitions", max: 2, t: t[1], why: why[1] },
+  { c: "What I know / steps", d: "Shows prior knowledge and the steps attempted", max: 3, t: t[2], why: why[2] },
+  { c: "Point of confusion", d: "Specific question that pinpoints the exact step where you got stuck", max: 3, t: t[3], why: why[3] },
+  { c: "Reflection", d: "Explains the solution path and how to solve a similar problem", max: 2, t: t[4], why: why[4] }];
+
+window.CC = {
+  id: "avid-grade-trf", subject: "AVID", kind: "Grade It Like a Teacher", brand: { name: "AVID", home: "avid", mark: "🧑‍🏫" },
+  short: "Grade It: TRFs", color: "#8a54e0", emoji: "🧑‍🏫", time: "25–35 min",
+  title: "Grade It Like a Teacher: Tutorial Request Forms (TRFs)",
+  intro: "Score three “submitted” TRFs from different classes and grades, then compare with the teacher. Learn what makes a point of confusion strong enough for a great tutorial.",
+  eq: "What makes a TRF ready for a productive tutorial?",
+  targets: { R: "I can apply the TRF rubric to real examples.", I: "I can tell a vague point of confusion from a specific one.", W: "I can improve my own TRF." },
+  teacher: `<p>Students earn points for calibration (within 1 point of the teacher = 2 points; within 3 = 1 point). Samples are written for this site.</p>`,
+  stations: [
+    { letters: ["R"], title: "How Teachers Grade TRFs", time: "4 min", goal: "Read the rubric.",
+      blocks: [ { t: "text", html: `<p>A TRF is graded on five parts (12 points). The most important part is the <b>point of confusion (POC)</b>: a specific question that pinpoints the exact step where you got stuck.</p>
+        <div class="callout"><b>Vague POC:</b> “I don’t get it.”<br><b>Specific POC:</b> “After I distribute, why do I subtract 2x from both sides instead of adding it?”</div>` } ] },
+    { letters: ["I"], title: "TRF 1: 9th Grade Algebra 1", time: "8 min", goal: "Score Daniel’s TRF.",
+      blocks: [ { t: "calibrate", title: "Daniel’s TRF", tag: "Grade 9 · Algebra 1", lesson: "This is close to a model TRF. The only thing missing is a third vocabulary term.",
+        artifact: TRF({ name: "Daniel S.", cls: "Algebra 1", gr: "9", date: "10/7", q: "Solve 3(x − 4) = 2x + 5. (Textbook p. 112, #18)", vocab: "<b>distribute</b>: multiply the outside number by each term inside. <b>like terms</b>: terms with the same variable.",
+          know: "3x − 12 = 2x + 5 ✔<br>I know I need to get x by itself. I subtracted 3x from both sides and got −12 = −x + 5, then I got stuck.",
+          poc: "After distributing, which x-term should I move first so I don’t end up with a negative x, and does it matter?", refl: "It doesn’t matter which side, but moving the smaller x-term (subtract 2x) keeps x positive: x − 12 = 5, so x = 17. Check: 3(13) = 39 and 2(17) + 5 = 39 ✔." }),
+        rubric: TRF_RUBRIC([2, 1, 3, 3, 2], ["Exact question with the page and problem number.", "Only two terms; needs at least three.", "Shows his work and exactly where he stopped.", "Specific and pinpoints the step.", "Explains the strategy and checks the answer."]) } ] },
+    { letters: ["I"], title: "TRF 2: 10th Grade Chemistry", time: "8 min", goal: "Score Sofia’s TRF.",
+      blocks: [ { t: "calibrate", title: "Sofia’s TRF", tag: "Grade 10 · Chemistry", lesson: "“I don’t get it” gives the tutorial group nowhere to start. Show your work so the POC can point to a step.",
+        artifact: TRF({ name: "Sofia G.", cls: "Chemistry", gr: "10", date: "10/15", q: "Balance: Al + O₂ → Al₂O₃ (Worksheet 4, #6)", vocab: "coefficient: the number in front",
+          know: "I counted the atoms.", poc: "I don’t get balancing.", refl: "We balanced it. 4Al + 3O₂ → 2Al₂O₃" }),
+        rubric: TRF_RUBRIC([2, 1, 1, 0, 1], ["Exact question and source.", "One term with a partial definition.", "Says she counted atoms but shows no counts or attempts.", "Too vague: doesn’t say what part of balancing is confusing.", "Gives the answer but not how to solve a similar problem."]) } ] },
+    { letters: ["I"], title: "TRF 3: 12th Grade Economics", time: "8 min", goal: "Score Marcus’s TRF.",
+      blocks: [ { t: "calibrate", title: "Marcus’s TRF", tag: "Grade 12 · Economics", lesson: "A TRF isn’t finished until the reflection is done. That part proves you learned it.",
+        artifact: TRF({ name: "Marcus L.", cls: "Economics", gr: "12", date: "10/20", q: "If a big harvest increases the supply of strawberries, what happens to the equilibrium price and quantity? Draw it. (Ch. 5 review, #3)",
+          vocab: "<b>supply</b>: how much producers will sell at each price · <b>demand</b>: how much buyers want at each price · <b>equilibrium</b>: where supply = demand",
+          know: "I drew supply and demand. A bigger harvest means more supply. I think the supply line moves but I’m not sure which way.", poc: "When supply increases, does the supply curve shift right or up, and why?", refl: "" }),
+        rubric: TRF_RUBRIC([2, 2, 2, 2, 0], ["Exact question and source.", "Three terms with clear definitions.", "Explains his thinking, but no graph attempt is shown.", "Specific, but could name what he expects to happen to price.", "Blank."]) } ] },
+    { letters: ["W"], title: "Reflect: Fix a POC", time: "5 min", goal: "Practice writing a strong point of confusion.",
+      blocks: [ { t: "write", label: "POC rewrite", title: "Rewrite Sofia’s point of confusion", prompt: "Rewrite Sofia’s POC (“I don’t get balancing”) so it pinpoints a specific step. Then explain why your version would lead to a better tutorial.", min: 25,
+        checks: [{ label: "Your POC is a question", re: /\?/ }, { label: "Mentions a specific step or part (coefficient, oxygen, atoms, subscript…)", re: /coefficient|oxygen|o2|o₂|aluminum|al\b|subscript|atoms|each side|count/i }, { label: "Explains why it helps the tutorial", re: /because|so |helps|tutor|group|specific/i }] } ] }
+  ]
+};
+
+</script>
+<script src="cc-blocks2.js?v=1"></script>
+<script src="hub-config.js?v=3"></script>
+<script src="cc-lesson.js?v=3"></script>
+</body>
+</html>

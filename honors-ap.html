@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Honors & AP Check-In | AVID Student Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="rc-style.css?v=3">
+</head>
+<body class="locked">
+<!--
+  Honors & AP 15-minute check-ins and AP-style practice quizzes.
+  The page shows the set named in the link, for example:
+      honors-ap.html?id=apush-gilded
+  Sets live in hap-honors.js, hap-ap-stem.js, hap-ap-hum.js.
+  The engine (no need to edit) is rc-engine.js.
+-->
+<header class="top"><div class="bar">
+  <a class="brand" href="index.html#lessons"><span class="mark">🎓</span><span>Honors & AP</span></a>
+  <span class="crumb" id="crumb"></span>
+  <span class="spacer"></span>
+  <span class="timer" id="timer" title="Suggested time" hidden>⏱ <b>0:00</b></span>
+  <span class="who" id="whoChip"></span>
+</div></header>
+<div id="app"><p style="padding:40px;text-align:center">Loading…</p></div>
+
+<script>window.RC_KIND = "Honors & AP";</script>
+<script src="hub-config.js?v=3"></script>
+<script src="rc-engine.js?v=4"></script>
+<script src="rc-sims.js?v=1"></script>
+<script src="hap-honors.js?v=1"></script>
+<script src="hap-ap-stem.js?v=1"></script>
+<script src="hap-ap-hum.js?v=1"></script>
+</body>
+</html>

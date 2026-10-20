@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shadow Math | WICOR Geometry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="wicor-lesson.css">
+</head>
+<body>
+<script>
+/* =====================================================================
+   ✏️ LESSON CONTENT: Similar Triangles & Proportions (Geometry)
+   Reading station = a diagram (visual reading).
+   Student: 1.6 m tall, 2 m shadow. Flagpole: 10 m shadow → 8 m tall.
+   ===================================================================== */
+const FRAMES = [ "I agree with ___ because…", "I respectfully disagree because the math shows…", "Can you show me how you set up…?",
+                 "I'd like to build on that idea…", "What evidence do you have that…?", "I used to think ___, but now I think…" ];
+const LESSON = {
+  id: "geo-shadow-math",
+  subject: "Geometry",
+  short: "Geometry: Shadow Math",
+  color: "#ee7d1c",
+  emoji: "🌞",
+  eq: "How can similar triangles help us measure things that are too tall to reach?",
+  targets: {
+    R: "I can read a diagram and identify corresponding sides and angles of similar triangles.",
+    W: "I can write a CER that uses a proportion to find a missing length.",
+    I: "I can predict, test, and graph the relationship between an object's height and its shadow.",
+    C: "I can use geometric evidence to support my position and respond respectfully to a peer.",
+    O: "I can decide whether two triangles are similar by comparing side ratios or angles."
+  },
+  title: "Shadow Math: Measuring with Similar Triangles",
+  intro: "How tall is the school flagpole? You can't climb it, but the sun can help. Read a diagram, set up a proportion, run a shadow lab, debate, and sort similar triangles. Five stations, about 5–10 minutes each.",
+  order: ["R", "W", "I", "C", "O"],
+  stations: {
+
+    R: {
+      mode: "visual", kind: "diagram",
+      title: "Read the Diagram", time: "8 min",
+      goal: "Read the diagram carefully. Complete each task by clicking the matching side or angle.",
+      figureTitle: "A student and a flagpole at the same time of day",
+      intro: "Sunlight hits the student and the flagpole at the same angle, so the two shaded triangles are <b>similar</b>. Pick a task, then click the diagram.",
+      figure: `<svg viewBox="0 0 460 300" role="img" aria-label="Diagram of a student and a flagpole with their shadows forming similar triangles">
+        <circle cx="420" cy="34" r="20" fill="#ffd166"/><g stroke="#ffd166" stroke-width="3">${[0,45,90,135,180,225,270,315].map(a => `<line x1="${420 + 26 * Math.cos(a * Math.PI / 180)}" y1="${34 + 26 * Math.sin(a * Math.PI / 180)}" x2="${420 + 34 * Math.cos(a * Math.PI / 180)}" y2="${34 + 34 * Math.sin(a * Math.PI / 180)}"/>`).join("")}</g>
+        <line x1="10" y1="250" x2="450" y2="250" stroke="#7cb342" stroke-width="4"/>
+        <polygon points="30,250 70,250 70,218" fill="#ffe0b2" opacity=".9"/>
+        <polygon points="170,250 370,250 370,90" fill="#ffe0b2" opacity=".9"/>
+        <g data-hot="pShadow"><line x1="30" y1="252" x2="70" y2="252" stroke="#ee7d1c" stroke-width="5"/><line x1="30" y1="252" x2="70" y2="252" stroke="transparent" stroke-width="18"/></g>
+        <g data-hot="pHeight"><line x1="70" y1="250" x2="70" y2="218" stroke="#2b7de9" stroke-width="6"/><line x1="70" y1="250" x2="70" y2="218" stroke="transparent" stroke-width="18"/></g>
+        <circle cx="70" cy="212" r="6" fill="#2b7de9"/>
+        <line x1="30" y1="250" x2="70" y2="212" stroke="#c9a227" stroke-width="2" stroke-dasharray="5 4"/>
+        <g data-hot="pAngle"><path d="M44 250 A14 14 0 0 0 41 240" fill="none" stroke="#8a54e0" stroke-width="3"/><circle cx="40" cy="245" r="11" fill="transparent"/></g>
+        <g data-hot="fShadow"><line x1="170" y1="252" x2="370" y2="252" stroke="#ee7d1c" stroke-width="5"/><line x1="170" y1="252" x2="370" y2="252" stroke="transparent" stroke-width="18"/></g>
+        <g data-hot="fHeight"><line x1="370" y1="250" x2="370" y2="90" stroke="#5d6577" stroke-width="7"/><line x1="370" y1="250" x2="370" y2="90" stroke="transparent" stroke-width="18"/></g>
+        <path d="M370 92 l32 10 l-32 10z" fill="#e8368f"/>
+        <line x1="170" y1="250" x2="370" y2="90" stroke="#c9a227" stroke-width="2" stroke-dasharray="5 4"/>
+        <g data-hot="fAngle"><path d="M190 250 A20 20 0 0 0 186 238" fill="none" stroke="#8a54e0" stroke-width="3"/><circle cx="184" cy="244" r="13" fill="transparent"/></g>
+        <g data-hot="fRight"><path d="M358 250 v-12 h12" fill="none" stroke="#1f2430" stroke-width="2.5"/><rect x="352" y="232" width="20" height="20" fill="transparent"/></g>
+        <path d="M60 250 v-10 h10" fill="none" stroke="#1f2430" stroke-width="2"/>
+        <g font-family="Nunito, sans-serif" font-weight="800" font-size="13">
+          <text x="50" y="272" text-anchor="middle" fill="#ee7d1c">2 m</text>
+          <text x="78" y="238" fill="#2b7de9">1.6 m</text>
+          <text x="270" y="272" text-anchor="middle" fill="#ee7d1c">10 m</text>
+          <text x="378" y="175" fill="#5d6577">h = ?</text>
+          <text x="58" y="292" text-anchor="middle" fill="#1f2430">Student</text>
+          <text x="370" y="292" text-anchor="middle" fill="#1f2430">Flagpole</text>
+        </g>
+      </svg>`,
+      tasks: [
+        { q: "Click the side you are trying to <b>find</b>.", hot: "fHeight", hint: "Look for the label with a question mark.", why: "The flagpole's height, h, is the unknown." },
+        { q: "Click the side in the flagpole triangle that <b>corresponds</b> to the student's 2 m shadow.", hot: "fShadow", hint: "Shadows match shadows.", why: "The 10 m shadow corresponds to the 2 m shadow." },
+        { q: "Click the side in the student triangle that corresponds to the flagpole's <b>height</b>.", hot: "pHeight", hint: "Heights match heights.", why: "The student's 1.6 m height corresponds to the flagpole's height h." },
+        { q: "Click the angle in the student triangle that <b>matches the sun's angle</b> at the tip of the flagpole's shadow.", hot: "pAngle", hint: "The sun's rays hit the ground at the same angle for both shadows.", why: "Both triangles have the same sun angle, which is one reason they are similar." },
+        { q: "Click the <b>right angle</b> in the flagpole triangle.", hot: "fRight", hint: "Where does the flagpole meet the ground?", why: "The flagpole stands straight up, making a 90° angle with the ground." }
+      ],
+      gist: "In one sentence, explain why the two triangles in the diagram are similar."
+    },
+
+    W: {
+      title: "Write a CER Paragraph", time: "8–10 min",
+      goal: "Use the diagram to write a <b>Claim–Evidence–Reasoning</b> paragraph with a <b>proportion</b> as your evidence.",
+      prompt: "How tall is the flagpole? Set up and solve a proportion using the diagram.",
+      parts: [
+        { key: "claim", label: "Claim", sub: "Answer the question", starter: "The flagpole is ___ meters tall because…",
+          hint: "One sentence with the height and units.", checkLabel: "Claim gives the height (6+ words)",
+          check: v => words(v) >= 6 && /\d/.test(v) && /flag|pole|tall|height/i.test(v) },
+        { key: "evidence", label: "Evidence", sub: "Show the proportion", rows: 3, starter: "1.6 / 2 = h / 10, so…",
+          hint: "Write a proportion comparing <b>height ÷ shadow</b> for both triangles, then solve it.",
+          checkLabel: "Evidence shows a proportion with the numbers from the diagram",
+          check: v => words(v) >= 6 && /1\.6/.test(v) && /10/.test(v) && /=|\/|÷|ratio|proportion/i.test(v) },
+        { key: "reasoning", label: "Reasoning", sub: "Why it works", rows: 3, starter: "This works because similar triangles…",
+          hint: "Explain why the triangles are similar and why that means their sides are proportional.",
+          checkLabel: "Reasoning explains WHY (uses \"because\" or \"this shows\")",
+          check: v => words(v) >= 15 && /because|this shows|this means|therefore|which means/i.test(v) }
+      ],
+      minTerms: 2, minWords: 40,
+      terms: [ ["similar", /similar/i], ["proportion", /proportion/i], ["corresponding", /correspond/i], ["ratio", /ratio/i], ["angle", /angle/i], ["scale factor", /scale factor/i] ]
+    },
+
+    I: {
+      title: "Predict, Test & Graph", time: "10 min",
+      goal: "Investigate how an object's <b>height</b> relates to its <b>shadow</b>. Predict, run the lab, graph it, and ask a <b>Level 3 question</b>.",
+      predict: {
+        q: "Predict: At the same time of day, if an object is twice as tall, what happens to its shadow?",
+        placeholder: "If an object is taller, then its shadow will … because …",
+        options: [
+          { v: "double", label: "Shadow doubles (straight line from 0)", d: "M14 58 L106 10" },
+          { v: "curve", label: "Shadow grows faster and faster", d: "M14 58 C 60 56, 90 40, 106 8" },
+          { v: "same", label: "Shadow stays the same", d: "M14 34 L106 34" },
+          { v: "shorter", label: "Shadow gets shorter", d: "M14 10 L106 56" } ]
+      },
+      lab: {
+        title: "Test it: Shadow Lab",
+        intro: "Pick a time of day (sun angle) and an object height, then record the shadow length. Record <b>at least 5 heights</b> at one sun angle, then try another time of day.",
+        controls: [
+          { type: "seg", id: "sun", label: "☀️ Sun angle (time of day)", options: [[30, "30° (morning)"], [45, "45° (mid-morning)"], [60, "60° (near noon)"]], value: 45, short: "Sun", fmt: v => v + "°" },
+          { type: "range", id: "h", label: "📏 Object height", min: 1, max: 10, step: 1, value: 4, unit: " m", short: "Height" } ],
+        model: c => c.h / Math.tan(c.sun * Math.PI / 180),
+        noise: 0, digits: 1,
+        x: { id: "h", label: "Object height (m)", min: 0, max: 10, tick: 2 },
+        y: { label: "Shadow length (m)", min: 0, max: 18, tick: 3 },
+        readout: "Shadow length", unit: " m", yShort: "Shadow (m)",
+        group: c => "Sun at " + c.sun + "°",
+        need: { distinct: 5, groups: 1 }, needLabel: "Recorded 5+ heights at one sun angle",
+        scene: `<svg viewBox="0 0 320 200" style="width:100%;display:block">
+          <line x1="0" y1="170" x2="320" y2="170" stroke="#7cb342" stroke-width="4"/>
+          <circle id="sunc" cx="280" cy="40" r="14" fill="#ffd166"/>
+          <line id="ray" x1="280" y1="40" x2="60" y2="170" stroke="#ffd166" stroke-width="2" stroke-dasharray="5 4"/>
+          <rect id="obj" x="230" y="120" width="10" height="50" fill="#5d6577"/>
+          <line id="sh" x1="235" y1="172" x2="100" y2="172" stroke="#ee7d1c" stroke-width="6"/>
+          <text id="lab" x="160" y="194" text-anchor="middle" font-family="Nunito" font-weight="800" font-size="12" fill="#1f2430"></text>
+        </svg>`,
+        draw(svg, c) {
+          const s = 9, base = 235, hpx = c.h * s, shadow = c.h / Math.tan(c.sun * Math.PI / 180), spx = shadow * s;
+          svg.querySelector("#obj").setAttribute("y", 170 - hpx); svg.querySelector("#obj").setAttribute("height", hpx);
+          svg.querySelector("#sh").setAttribute("x2", base - spx);
+          const ang = c.sun * Math.PI / 180, sx = base + 70 * Math.cos(ang), sy = 170 - hpx - 70 * Math.sin(ang);
+          svg.querySelector("#sunc").setAttribute("cx", Math.min(305, sx)); svg.querySelector("#sunc").setAttribute("cy", Math.max(14, sy));
+          svg.querySelector("#ray").setAttribute("x1", base); svg.querySelector("#ray").setAttribute("y1", 170 - hpx);
+          svg.querySelector("#ray").setAttribute("x2", base - spx); svg.querySelector("#ray").setAttribute("y2", 170);
+          svg.querySelector("#lab").textContent = `${c.h} m object → ${shadow.toFixed(1)} m shadow  (ratio ${(c.h / shadow).toFixed(2)})`;
+        }
+      },
+      analyze: {
+        placeholder: "My graph is a straight line through 0, which means… The ratio of height to shadow stays… because…",
+        hint: "Explain the shape of your graph using the words <b>proportional</b>, <b>ratio</b>, or <b>similar</b>. What changed when the sun angle changed?",
+        must: /proportion|ratio|similar/i, minWords: 25, checkLabel: "Analyzed the graph (25+ words, uses \"proportional,\" \"ratio,\" or \"similar\")",
+        stems: [ "What would happen if…", "How would the graph change if…", "Why might shadows at noon…", "Predict the shadow of…" ]
+      }
+    },
+
+    C: {
+      title: "Philosophical Chairs", time: "5–8 min",
+      goal: "Take a position, back it up with <b>geometric evidence</b>, and respond respectfully to a classmate's argument.",
+      statement: "You could measure the height of ANY building using only a meter stick and the sun.",
+      reasonStarter: "I agree / disagree because in the shadow lab I noticed…",
+      peer: { name: "Leo", says: "That only works on sunny days with flat ground. You'd need a drone or a really long tape measure for a real building." },
+      frames: FRAMES
+    },
+
+    O: {
+      title: "Organize It", time: "5–8 min",
+      goal: "Check each pair of triangles and <b>sort</b> them as similar or not similar, then write a <b>summary</b>.",
+      sortTitle: "Similar or not? (Compare the ratios of matching sides, or the angles.)",
+      zones: [ "✅ Similar triangles", "❌ Not similar" ],
+      tiles: [ ["Sides 3-4-5 and 6-8-10", 0], ["Sides 5-12-13 and 10-24-26", 0], ["Sides 2-3-4 and 4-6-8", 0], ["Angles 30°-60°-90° and 30°-60°-90°", 0], ["Sides 1-1-1 and 5-5-5", 0],
+               ["Sides 3-4-5 and 4-5-6", 1], ["Sides 2-3-4 and 4-6-9", 1], ["Sides 6-8-10 and 9-12-16", 1], ["Angles 40°-60°-80° and 40°-70°-70°", 1] ],
+      summaryPrompt: "Write 2–3 sentences explaining how to tell if two triangles are similar and how similar triangles help find a missing length.",
+      summaryStarter: "Two triangles are similar when…"
+    }
+  }
+};
+function words(s) { return (String(s).trim().match(/[A-Za-z0-9'’%₂₆−-]+/g) || []).length; }
+</script>
+<script src="hub-config.js?v=3"></script>
+<script src="wicor-lesson.js?v=3"></script>
+</body>
+</html>

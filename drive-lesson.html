@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Organize Your Google Drive | AVID</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="cc-lesson.css?v=2">
+</head>
+<body>
+<script>
+/* =====================================================================
+   ✏️ ORGANIZE YOUR GOOGLE DRIVE (about 45–50 minutes)
+   ===================================================================== */
+const DRIVE_UI = `<div class="m-drive"><div class="m-dside"><div class="m-new" data-hot="new">＋ New</div><div data-hot="home">🏠 Home</div><div data-hot="mydrive">🗂️ My Drive</div><div data-hot="shared">👥 Shared with me</div><div data-hot="recent">🕘 Recent</div><div data-hot="starred">⭐ Starred</div><div data-hot="trash">🗑️ Trash</div><div data-hot="storage" style="font-size:12px;color:#5f6368">☁️ Storage: 2.1 GB used</div></div>
+  <div class="m-dmain"><div style="display:flex;gap:8px;align-items:center"><div data-hot="search" style="flex:1;background:#e9eef6;border-radius:24px;padding:9px 16px;color:#5f6368">🔍 Search in Drive</div><span class="m-ic" data-hot="filter">☰</span></div>
+  <div style="margin:12px 0 6px;font-weight:600">My Drive ▸ 2026–27 School</div>
+  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">${["P1 English 10", "P2 Biology", "P3 Algebra 2"].map((f, i) => `<div style="border:1px solid #dadce0;border-radius:10px;padding:10px;display:flex;justify-content:space-between"><span>📁 ${f}</span>${i === 1 ? `<span class="m-ic" data-hot="folderMenu" style="width:24px;height:24px">⋮</span>` : "<span>⋮</span>"}</div>`).join("")}</div>
+  <div style="margin-top:10px;display:grid;gap:4px">${["📄 Bio – Cell Lab Report – 2026-10-05", "📙 English – Poetry Slides – 2026-10-08", "📗 Algebra – Unit 2 Practice"].map((f, i) => `<div style="padding:6px 8px;border-bottom:1px solid #eee;display:flex;justify-content:space-between"><span>${f}</span>${i === 0 ? `<span data-hot="star" title="Add to Starred">☆</span>` : "<span>☆</span>"}</div>`).join("")}</div></div></div>`;
+
+window.CC = {
+  id: "avid-drive", subject: "AVID", kind: "Digital Organization Lesson", brand: { name: "AVID", home: "avid", mark: "🗄️" },
+  short: "Organize Your Google Drive", color: "#1a73e8", emoji: "🗄️", time: "45–50 min",
+  title: "Digital Binder: Organizing Your Google Drive",
+  intro: "Your Google Drive is your digital binder. Build a folder system, name files so you can find them in seconds, practice the Drive buttons, and organize your real Drive.",
+  eq: "How can an organized Google Drive save me time and help me find my work when I need it?",
+  targets: {
+    R: "I can explain a folder and naming system for Google Drive.",
+    O: "I can sort files into class folders and rename them with a clear naming rule.",
+    I: "I can find and use Drive tools like New, Search, Starred, Shared with me, and Trash.",
+    W: "I can explain how I will keep my Drive organized."
+  },
+  teacher: `<p><b>Pacing (≈ 48 min):</b> Warm-up 4 · Read 8 · Drive sort 10 · Rename 7 · Find the button 7 · Real Drive 10 · Exit 2.</p>
+    <p>Students need their school Google accounts for the “Do it for real” station.</p>`,
+  stations: [
+    { letters: ["W"], title: "Warm-Up: How Do You Find Your Files?", time: "4 min", goal: "Think about your Drive right now.",
+      blocks: [ { t: "write", title: "Quickwrite", prompt: "Open your Google Drive in your head. How many files do you think are called “Untitled document”? How do you usually find an old assignment?", min: 20,
+        checks: [{ label: "Describes how you find files now", re: /search|scroll|recent|classroom|folder|find|look/i }] } ] },
+    { letters: ["R"], title: "Read: A Drive That Works Like a Binder", time: "8 min", goal: "Learn a simple system.",
+      blocks: [
+        { t: "text", html: `<p><b>1. One folder for the school year</b>, like <i>2026–27 School</i>. Inside it, <b>one folder per class</b> in period order: <i>P1 English 10</i>, <i>P2 Biology</i>… Add an <i>AVID</i> folder and a <i>College &amp; Scholarships</i> folder. For big classes, add unit folders inside.</p>
+          <p><b>2. Color-code folders</b> to match your binder tabs (right-click a folder → <b>Organize</b> → <b>Change color</b>).</p>
+          <p><b>3. Name every file the same way:</b> <code>Class – Assignment – Date</code>, for example <code>Bio – Cell Lab Report – 2026-10-05</code>. Writing the date as year-month-day makes files sort in order. Never leave a file as “Untitled document.”</p>
+          <p><b>4. Know your shortcuts.</b> <b>Google Classroom</b> automatically makes a <i>Classroom</i> folder with a folder for each class. Files others share with you live in <b>Shared with me</b>; add a shortcut to your own folders so you can find them. <b>Star</b> files you use every day. <b>Search</b> finds files by name or by words inside them. Deleted files stay in <b>Trash</b> for 30 days, so you can restore them.</p>` },
+        { t: "quiz", label: "reading check", items: [
+          { q: "Which file name follows the naming rule best?", opts: ["Untitled document", "lab report final FINAL", "Bio – Cell Lab Report – 2026-10-05", "my stuff"], a: 2, why: "Class – Assignment – Date (year-month-day)." },
+          { q: "Why write dates as 2026-10-05 instead of Oct 5?", opts: ["It looks fancy", "Files sort in the right order by date", "Google requires it", "It is shorter"], a: 1, why: "Year-month-day sorts correctly." },
+          { q: "A classmate shared a group project with you. Where is it, and how do you keep it with your class files?", opts: ["In Trash; restore it", "In Shared with me; add a shortcut to your class folder", "It is automatically in your class folder", "You can’t"], a: 1, why: "Shared files live in Shared with me until you add a shortcut." },
+          { q: "You deleted an essay by accident yesterday. What should you do?", opts: ["Rewrite it", "Open Trash and restore it", "Email Google", "Nothing can be done"], a: 1, why: "Drive keeps deleted files in Trash for 30 days." }] }
+      ] },
+    { letters: ["O"], title: "Organize a Messy Drive", time: "10 min", goal: "Move every file into the right folder.",
+      blocks: [ { t: "drive", title: "Clean up Jordan’s Drive", how: "Tap a file, then tap the folder where it belongs.", root: "2026–27 School",
+        folders: [{ n: "P1 English 10", c: "#2b7de9" }, { n: "P2 Biology", c: "#0e9f6e" }, { n: "P3 Algebra 2", c: "#e08a00" }, { n: "P4 US History", c: "#e8368f" }, { n: "P6 AVID", c: "#8a54e0" }, { n: "College & Scholarships", c: "#5d6577" }],
+        files: [{ n: "Poetry Analysis Essay", t: "doc", f: 0 }, { n: "Of Mice and Men Ch. 3 notes", t: "doc", f: 0 }, { n: "Cell Lab Data", t: "sheet", f: 1 }, { n: "Photosynthesis slides (group)", t: "slide", f: 1 }, { n: "Quadratics practice", t: "pdf", f: 2 }, { n: "Graphing calculator screenshot", t: "img", f: 2 },
+          { n: "New Deal research notes", t: "doc", f: 3 }, { n: "WWII propaganda poster", t: "img", f: 3 }, { n: "TRF – week 6", t: "doc", f: 4 }, { n: "Tutorial reflection log", t: "form", f: 4 }, { n: "Scholarship essay draft", t: "doc", f: 5 }, { n: "UC Merced tour video", t: "vid", f: 5 }] } ] },
+    { letters: ["O", "W"], title: "Rename the Files", time: "7 min", goal: "Use the naming rule so you can find anything in seconds.",
+      blocks: [ { t: "rename", title: "Fix these file names", how: "Rename each file using the rule. Use a dash between parts (– or -).", rule: "Class – Assignment – YYYY-MM-DD   (example: Bio – Cell Lab Report – 2026-10-05)",
+        items: [{ old: "Untitled document", about: "English essay on the poem “Ozymandias,” written Oct 12, 2026", t: "doc", ex: "English – Ozymandias Essay – 2026-10-12", re: /^\S.*\s[-–]\s.*\s[-–]\s2026-10-12$/ },
+          { old: "Copy of Untitled presentation", about: "Biology slides about photosynthesis, Oct 14, 2026", t: "slide", ex: "Bio – Photosynthesis Slides – 2026-10-14", re: /^\S.*\s[-–]\s.*\s[-–]\s2026-10-14$/ },
+          { old: "lab", about: "Chemistry lab data spreadsheet, Oct 20, 2026", t: "sheet", ex: "Chem – Reaction Rate Lab Data – 2026-10-20", re: /^\S.*\s[-–]\s.*\s[-–]\s2026-10-20$/ },
+          { old: "IMG_4421.jpg", about: "Photo of your Algebra homework, Oct 21, 2026", t: "img", ex: "Algebra – Homework 3.2 Photo – 2026-10-21", re: /^\S.*\s[-–]\s.*\s[-–]\s2026-10-21$/ },
+          { old: "essay final FINAL v2", about: "Scholarship essay for the TCSBA scholarship, Nov 2, 2026", t: "doc", ex: "Scholarship – TCSBA Essay – 2026-11-02", re: /^\S.*\s[-–]\s.*\s[-–]\s2026-11-02$/ }] } ] },
+    { letters: ["I"], title: "Find the Button", time: "7 min", goal: "Practice the Drive tools on a practice screen.",
+      blocks: [ { t: "hotspot", title: "Google Drive practice screen", ui: DRIVE_UI,
+        tasks: [{ q: "Click the button to <b>create a new folder or upload a file</b>.", hot: "new", hint: "Look at the top left.", why: "“New” makes folders, uploads files, and creates Docs and Slides." },
+          { q: "Find files that a <b>classmate shared with you</b>.", hot: "shared", hint: "Look in the left menu.", why: "Shared files live in “Shared with me.”" },
+          { q: "<b>Star</b> the Bio lab report so it’s easy to find.", hot: "star", hint: "Look at the end of the file’s row.", why: "Starred files show up in the Starred list." },
+          { q: "Open the menu to <b>change the color</b> of the P2 Biology folder.", hot: "folderMenu", hint: "Look for the three dots on that folder.", why: "⋮ → Organize → Change color." },
+          { q: "You deleted a file by accident. Where do you <b>restore</b> it?", hot: "trash", hint: "Deleted files go somewhere for 30 days.", why: "Trash keeps files for 30 days." },
+          { q: "Find an old essay by typing a word from it.", hot: "search", hint: "Look at the top.", why: "Search looks at file names and the words inside files." }] } ] },
+    { letters: ["O"], title: "Do It for Real", time: "10 min", goal: "Organize your own school Drive.",
+      blocks: [ { t: "checklist", title: "Organize your real Google Drive", how: "Open drive.google.com with your school account. Check off each step as you finish it.",
+        items: ["I made a folder called “2026–27 School” (or this year)", "I made a folder for each class inside it, in period order", "I color-coded my class folders", "I moved at least 5 files into the right folders", "I renamed at least 3 files with the naming rule", "I starred one file I use every week"],
+        links: [{ label: "Paste the link to your school-year folder (Share → Copy link)", ph: "https://drive.google.com/drive/folders/…", re: /^https:\/\/drive\.google\.com\/drive\/(u\/\d+\/)?folders\/[\w-]+/, kind: "Google Drive folder" }] } ] },
+    { letters: ["W"], title: "Exit Ticket", time: "2 min", goal: "Keep it up.",
+      blocks: [ { t: "write", label: "exit ticket", title: "Exit ticket", prompt: "How will you keep your Drive organized all year? Mention folders, file names, and when you will clean it up.", min: 25,
+        checks: [{ label: "Mentions folders", re: /folder/i }, { label: "Mentions naming files", re: /name|rename|title/i }, { label: "Names when you will clean up", re: /week|friday|monday|sunday|every|end of|after|daily/i }] } ] }
+  ]
+};
+
+</script>
+<script src="cc-blocks2.js?v=1"></script>
+<script src="hub-config.js?v=3"></script>
+<script src="cc-lesson.js?v=3"></script>
+</body>
+</html>

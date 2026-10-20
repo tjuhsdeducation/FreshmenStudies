@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Degree to Paycheck | College & Career</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="cc-lesson.css?v=2">
+</head>
+<body>
+<script src="cc-data.js?v=1"></script>
+<script>
+/* =====================================================================
+   ✏️ LESSON 3: Degree to Paycheck (about 55–60 minutes)
+   Jobs and pay live in cc-data.js (CC_JOBS). Update yearly from BLS.
+   ===================================================================== */
+const BUDGET_JOBS = ["Medical assistant", "Electrician", "Dental hygienist", "Elementary school teacher", "Police officer or detective", "Registered nurse", "Accountant or auditor", "Mechanical engineer", "Software developer", "Pharmacist"].map(n => CC_JOBS.find(j => j[0] === n));
+window.CC = {
+  id: "cc-careers", subject: "College & Career", short: "Lesson 3: Degree to Paycheck", color: "#0e9f6e", emoji: "💼", time: "55–60 min",
+  title: "Degree to Paycheck: Careers, Salaries, and Applications",
+  intro: "Guess and check real salaries, read national data on education and pay, explore careers by degree, test a monthly budget, and practice reading a job posting and filling out an application.",
+  eq: "How does the education I choose connect to the jobs I can get and the life I can afford?",
+  targets: {
+    C: "I can share and adjust my thinking about salaries with classmates.",
+    R: "I can read a data chart and a job posting to find key information.",
+    I: "I can research careers by education level and pay.",
+    O: "I can organize a monthly budget based on a real salary.",
+    W: "I can complete a job application and explain my career plan in writing."
+  },
+  teacher: `<p><b>Pacing (≈ 58 min):</b> Salary Line-Up 8 · Read the Data 9 · Career Explorer 12 · Budget 10 · Job Posting & Application 12 · Interview Carousel 7 (optional to shorten) · Exit 4.</p>
+    <p><b>Movement:</b> For the Salary Line-Up, post signs along a wall: $30,000, $60,000, $90,000, $120,000+. Read a job aloud, students stand by their guess, then reveal the BLS median. For the Interview Carousel, make an inside circle (interviewers) and outside circle (applicants); rotate every 90 seconds.</p>
+    <p><b>Real job boards</b> are linked in Station 5. The posting in the lesson is fictional practice; students never submit personal information.</p>
+    <p><b>Data:</b> Salaries are BLS median pay (May 2025); education pays chart is BLS 2024. Taxes in the budget are an estimate.</p>`,
+  stations: [
+    { letters: ["C", "I"], title: "Warm-Up: Salary Line-Up", time: "8 min", goal: "Stand where you think the salary is, talk about it, then test your guesses.",
+      blocks: [
+        { t: "move", mode: "line", time: "4 min", seconds: 180, prompt: "Line up by your guess: How much does a dental hygienist earn in a year?", options: ["$30,000", "$60,000", "$90,000", "$120,000+"],
+          talk: "Why did you guess that? Reveal: the national median is $98,100, and the job usually needs an associate degree (2 years).", reflect: "Where did you stand, and were you surprised by the real answer? Why?" },
+        { t: "quiz", label: "which pays more", title: "Which pays more? (BLS median pay, 2025)", items: [
+          { q: "Pharmacist or software developer?", opts: ["Pharmacist", "Software developer"], a: 0, why: "Pharmacist $140,910 vs. software developer $135,980. Both need a lot of school: a doctorate vs. a bachelor’s." },
+          { q: "Radiologic (X-ray/MRI) technologist or elementary school teacher?", opts: ["Radiologic technologist", "Elementary school teacher"], a: 0, why: "$81,390 with an associate degree vs. $63,820 with a bachelor’s." },
+          { q: "Registered nurse or accountant?", opts: ["Registered nurse", "Accountant"], a: 0, why: "$97,550 vs. $83,680." },
+          { q: "Aircraft mechanic or police officer?", opts: ["Aircraft mechanic", "Police officer"], a: 0, why: "$80,180 vs. $77,310. Trade careers can pay well!" }] }
+      ] },
+    { letters: ["R"], title: "Read the Data: Does Education Pay?", time: "9 min", goal: "Read a national data chart and explain what it shows.",
+      blocks: [
+        { t: "chart", title: "Median weekly earnings by education, 2024", fmt: v => "$" + v.toLocaleString("en-US"), max: 2500, h: 330,
+          rows: [["Doctoral degree", 2278], ["Professional degree", 2363, 1], ["Master's degree", 1840], ["Bachelor's degree", 1543], ["Associate degree", 1099], ["Some college, no degree", 1020], ["High school diploma", 930], ["Less than high school", 738]],
+          alt: "Bar chart of median weekly earnings in 2024: doctoral $2,278, professional $2,363, master's $1,840, bachelor's $1,543, associate $1,099, some college no degree $1,020, high school diploma $930, less than high school $738.",
+          cap: "Unemployment rates (2024): doctoral 1.2%, professional 1.3%, master’s 2.2%, bachelor’s 2.5%, associate 2.8%, some college 3.8%, high school 4.2%, less than high school 6.2%. Source: U.S. Bureau of Labor Statistics, full-time workers age 25+." },
+        { t: "text", html: `<p>A <b>median</b> is the middle value: half of workers earn more and half earn less. These numbers are national averages. Your own pay depends on your career, where you live, and your experience. Some careers that need a certificate or apprenticeship, like electricians and aircraft mechanics, pay more than some careers that need a bachelor’s degree.</p>` },
+        { t: "quiz", label: "data check", items: [
+          { q: "About how much does a worker with a bachelor’s degree earn in a <b>year</b>? (Hint: 52 weeks)", opts: ["$15,430", "$48,360", "$80,236", "$154,300"], a: 2, why: "$1,543 × 52 = $80,236." },
+          { q: "How much more per <b>week</b> does a bachelor’s degree earn than a high school diploma?", opts: ["$413", "$613", "$930", "$1,543"], a: 1, why: "$1,543 − $930 = $613 per week (about $31,900 a year)." },
+          { q: "Which education level had the <b>lowest</b> unemployment rate?", opts: ["High school diploma", "Bachelor’s degree", "Doctoral degree", "Some college, no degree"], a: 2, why: "Doctoral degree: 1.2%." },
+          { q: "What does “some college, no degree” suggest?", opts: ["Starting college and finishing a degree or certificate matters.", "College never helps.", "It pays the same as a doctorate.", "It is the highest-paying group."], a: 0, why: "Finishing pays: an associate degree earns more and has lower unemployment than some college with no degree." }] }
+      ] },
+    { letters: ["I"], title: "Career Explorer", time: "12 min", goal: "Research careers by education level and pay, and star the ones that interest you.",
+      blocks: [
+        { t: "jobs", title: "Career explorer: 45 careers", how: "Filter by education, sort by pay, and ⭐ star at least 3 careers that interest you. Try one with a certificate, one with an associate degree, and one with a bachelor’s or more.", jobs: CC_JOBS, source: CC_JOBS_SRC },
+        { t: "write", label: "career pick", title: "My top career", prompt: "Pick one starred career. What education does it need, what is the median pay, and how does it connect to the major you explored last lesson (or your interests)?", min: 35,
+          checks: [{ label: "Names the education needed", re: /diploma|certificate|nondegree|associate|bachelor|master|doctor|professional|apprentice|training|license/i }, { label: "Gives the pay", re: /\$ ?\d|\d{2},\d{3}|\d+k|thousand/i }, { label: "Connects to a major or your interests", re: /major|interest|helper|thinker|doer|creator|persuader|organizer|enjoy|like|love|good at/i }] },
+        { t: "links", title: "Keep researching (opens a new tab)", items: [{ name: "Occupational Outlook Handbook", url: "https://www.bls.gov/ooh/", desc: "Pay, education, and job outlook for hundreds of careers" }, { name: "CaliforniaColleges.edu", url: "https://www.californiacolleges.edu", desc: "Career and major quizzes with your free student account" }, { name: "CareerOneStop", url: "https://www.careeronestop.org", desc: "Career videos, training finder, and salary info by state" }] }
+      ] },
+    { letters: ["O"], title: "Budget Reality Check", time: "10 min", goal: "Use a real salary to build a monthly budget that works.",
+      blocks: [ { t: "budget", title: "Monthly budget", how: "Choose a job, then move the sliders to build a budget. Try to make every check green: spend less than you take home, save at least 10%, and keep rent at 30% of gross pay or less.", jobs: BUDGET_JOBS, tax: 0.25,
+        source: "Take-home pay is estimated at about 75% of gross pay after federal and state income tax, Social Security, and Medicare. Real taxes depend on your situation. Salaries: BLS median pay, May 2025." } ] },
+    { letters: ["R", "W"], title: "Read a Job Posting and Apply", time: "12 min", goal: "Find the key information in a job posting, then practice filling out an application.",
+      blocks: [
+        { t: "text", html: `<div class="callout"><h3>Pharmacy Technician Trainee</h3><p><b>Valley Family Health Clinic</b> (a fictional employer for practice) · Tulare, CA<br><b>Pay:</b> $19.00–$22.00 per hour · <b>Schedule:</b> Part-time, about 20 hours per week, weekday evenings and Saturdays</p>
+          <p><b>What you’ll do:</b> Count and label medicine under a pharmacist’s supervision, help patients at the pickup counter, answer phones, and keep shelves organized.</p>
+          <p><b>Required:</b> High school diploma or equivalent by your start date; at least 18 years old; must earn a California pharmacy technician license within 6 months (the clinic pays for the training course); reliable transportation.</p>
+          <p><b>Preferred:</b> Bilingual in English and Spanish; customer service experience; interest in a health career.</p>
+          <p><b>To apply:</b> Submit an application, a résumé, and two references (not family members) by <b>November 20</b>.</p></div>` },
+        { t: "quiz", label: "posting check", items: [
+          { q: "Which is a <b>preferred</b> (nice to have) qualification, not a required one?", opts: ["High school diploma", "Being bilingual in English and Spanish", "Being 18 or older", "Reliable transportation"], a: 1, why: "Bilingual is listed under Preferred. Required items must be met to be hired." },
+          { q: "About how much would you earn in one week at $20 per hour for 20 hours?", opts: ["$40", "$200", "$400", "$800"], a: 2, why: "$20 × 20 hours = $400 before taxes." },
+          { q: "What must you send to apply?", opts: ["Only a résumé", "An application, a résumé, and two references", "A college transcript", "A letter from your parents"], a: 1, why: "The posting asks for all three, by November 20." },
+          { q: "Which part of this job connects to future education?", opts: ["Answering phones", "The clinic pays for training toward a state license", "Working on Saturdays", "Organizing shelves"], a: 1, why: "Paid training and a license are a first step toward health careers like pharmacist." }] },
+        { t: "form", title: "Practice job application", how: "Fill this out as if you were applying for the posting above (or a job you starred). Use school-appropriate information.",
+          fields: [{ id: "pos", label: "Position you are applying for", req: true, ph: "Pharmacy Technician Trainee" }, { id: "name", label: "Full name", req: true }, { id: "email", label: "Professional email (practice)", req: true, ph: "first.last@email.com" },
+            { id: "avail", label: "Availability", req: true, type: "select", opts: ["Weekday evenings", "Weekends", "Evenings and weekends", "Full-time in summer"] }, { id: "edu", label: "Education (school and expected graduation)", req: true, ph: "Tulare Union High School, June 2028" },
+            { id: "skills", label: "Three skills (for example: bilingual, customer service, Microsoft Word)", req: true, wide: true }, { id: "exp", label: "Experience (jobs, volunteering, clubs, sports, family responsibilities)", type: "area", wide: true },
+            { id: "refs", label: "Two references (name and how they know you; not family)", type: "area", wide: true, rows: 2 }, { id: "why", label: "Why are you a good fit for this job? (30+ words)", type: "area", wide: true, req: true, min: 30 }] },
+        { t: "links", title: "Where to find real job applications", items: [{ name: "CalJOBS", url: "https://www.caljobs.ca.gov", desc: "California’s free job board from the state’s workforce agency" }, { name: "CalCareers", url: "https://www.calcareers.ca.gov", desc: "Jobs with the State of California" }, { name: "USAJOBS", url: "https://www.usajobs.gov", desc: "Federal government jobs and internships" }, { name: "Your college’s Career Center", url: "https://www.cos.edu", desc: "College of the Sequoias and other colleges post campus jobs and internships" }] }
+      ] },
+    { letters: ["C"], title: "Interview Carousel", time: "7 min", goal: "Practice answering interview questions with classmates, then reflect.",
+      blocks: [
+        { t: "move", mode: "circle", time: "5 min", seconds: 90, prompt: "Interview Carousel: Inside circle asks, outside circle answers. Rotate when the timer ends!", options: ["Tell me about yourself.", "Why do you want this job?", "Tell me about a time you solved a problem.", "What questions do you have for us?"],
+          talk: "Interviewer: give one tip (eye contact, specific example, confident voice).", reflect: "Which question was hardest, and how did you answer it?" },
+        { t: "partner", title: "Interview feedback", how: "Write down feedback from your interviewer.", got: "The tip my interviewer gave me", change: "How I will answer better next time" }
+      ] },
+    { letters: ["W"], title: "Exit Ticket", time: "4 min", goal: "Connect today to your future.",
+      blocks: [ { t: "write", label: "exit ticket", title: "Exit ticket", prompt: "Describe a career you are considering: the <b>education</b> it needs, the <b>pay</b>, whether your budget worked on that salary, and <b>one step</b> you can take this year toward it.", min: 45,
+        checks: [{ label: "Names a career", re: /nurse|engineer|developer|scientist|teacher|counselor|police|officer|accountant|manager|analyst|lawyer|therapist|technician|mechanic|electrician|hygienist|pharmac|assistant|driver|firefighter|paramedic|career|job/i },
+          { label: "Names the education needed", re: /diploma|certificate|associate|bachelor|master|doctor|degree|apprentice|training|license/i }, { label: "Mentions pay or the budget", re: /\$|salary|pay|budget|afford|earn|income/i },
+          { label: "Names a step for this year", re: /this year|class|grade|volunteer|job|intern|club|study|apply|research|talk|counselor|AVID|A.G/i }] } ] }
+  ]
+};
+</script>
+<script src="hub-config.js?v=3"></script>
+<script src="cc-lesson.js?v=3"></script>
+</body>
+</html>

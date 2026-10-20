@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unit Study Guide | AVID Student Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="rc-style.css?v=3">
+</head>
+<body class="locked">
+<!--
+  Unit Study Guides: reading + simulation on the left, graded review questions on the right.
+  The page shows the guide named in the link, for example:
+      study-guide.html?id=sg-alg1-linear
+  Guides live in sg-math.js, sg-chem.js, sg-bio.js, sg-history.js, sg-english.js.
+  The engine (no need to edit) is rc-engine.js; simulations are in rc-sims.js.
+-->
+<header class="top"><div class="bar">
+  <a class="brand" href="index.html#lessons"><span class="mark">📘</span><span>Study Guide</span></a>
+  <span class="crumb" id="crumb"></span>
+  <span class="spacer"></span>
+  <span class="timer" id="timer" title="Suggested time" hidden>⏱ <b>0:00</b></span>
+  <span class="who" id="whoChip"></span>
+</div></header>
+<div id="app"><p style="padding:40px;text-align:center">Loading…</p></div>
+
+<script>window.RC_KIND = "Study Guide";</script>
+<script src="hub-config.js?v=3"></script>
+<script src="rc-engine.js?v=4"></script>
+<script src="rc-sims.js?v=1"></script>
+<script src="sg-math.js?v=1"></script>
+<script src="sg-chem.js?v=1"></script>
+<script src="sg-bio.js?v=1"></script>
+<script src="sg-history.js?v=1"></script>
+<script src="sg-english.js?v=1"></script>
+</body>
+</html>

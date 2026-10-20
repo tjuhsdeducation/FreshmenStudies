@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pick a Major, Plan Your Classes | College & Career</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="cc-lesson.css?v=2">
+</head>
+<body>
+<script src="cc-data.js?v=1"></script>
+<script>
+/* =====================================================================
+   ✏️ LESSON 2: Major Moves (about 60 minutes)
+   Majors, courses, and units live in cc-data.js (CC_MAJORS, CC_GE).
+   ===================================================================== */
+window.CC = {
+  id: "cc-major", subject: "College & Career", short: "Lesson 2: Major Moves", color: "#8a54e0", emoji: "🧭", time: "≈ 60 min",
+  title: "Major Moves: Pick a Major and Plan Your Classes",
+  intro: "Find your interest areas, learn how majors and units work, choose a major, build a first-year college schedule, and balance a realistic week.",
+  eq: "How do my interests connect to a major, and how do I plan and prioritize my classes and time to finish?",
+  majors: CC_MAJORS,
+  targets: {
+    I: "I can connect my interests to a college major and the careers it leads to.",
+    R: "I can explain how units, majors, general education, and prerequisites work.",
+    O: "I can build a full-time first-year schedule and a balanced weekly plan.",
+    C: "I can give and use feedback from a partner to improve my plan.",
+    W: "I can explain my major choice and my plan in writing."
+  },
+  teacher: `<p><b>Pacing (≈ 60 min):</b> Warm-Up 8 · Read 9 · Pick a Major 9 · Schedule 13 · Balance & Prioritize 10 · Speed Advising 7 · Exit 4.</p>
+    <p><b>Movement:</b> Stand Up / Sit Down: project the statements and have students stand when a statement is true for them. Speed Advising: two lines facing each other; partners trade screens for 90 seconds, then one line shifts down one person.</p>
+    <p><b>Tip:</b> Students must pick a major in Station 3 before the schedule builder opens. All course numbers are sample community college courses.</p>`,
+  stations: [
+    { letters: ["C", "I"], title: "Warm-Up: Stand Up If…", time: "8 min", goal: "Stand up when a statement is true for you, then take the interest survey.",
+      blocks: [
+        { t: "move", mode: "standsit", time: "3 min", seconds: 150, prompt: "Stand up if this sounds like you!",
+          statements: ["Stand up if you like fixing or building things.", "Stand up if you love solving puzzles or science mysteries.", "Stand up if you like drawing, music, or writing.", "Stand up if friends come to you for help.", "Stand up if you like being in charge of a group.", "Stand up if you like keeping things organized."],
+          talk: "Look around: who stood up with you? Ask one of them what job they might like.", reflect: "Which statements made you stand up? What did you notice about the class?" },
+        { t: "survey", title: "🎯 Interest survey (Holland codes)", items: CC_SURVEY, types: CC_RIASEC, how: "Tap every statement that sounds like you. Your top two interest areas will appear below. Use them to choose a major in Station 3." }
+      ] },
+    { letters: ["R"], title: "Read: How Majors and Units Work", time: "9 min", goal: "Learn the vocabulary of college planning.",
+      blocks: [
+        { t: "text", html: `<h3>Majors, Units, and Prerequisites</h3>
+          <p>Your <b>major</b> is the subject you specialize in, like nursing or business. About one-third to one-half of your college classes are in your major. Most of the rest are <b>general education (GE)</b> classes in English, math, science, history, and the arts, which every student takes. <b>Electives</b> are classes you choose for fun or to explore.</p>
+          <p>College classes are measured in <b>units</b> (also called credits). A typical class is 3 or 4 units. A bachelor’s degree usually takes about <b>120 semester units</b>, and an associate degree about <b>60 units</b>. To finish a bachelor’s in four years, you need to average about <b>15 units a semester</b>. Taking <b>12 or more units</b> makes you a full-time student, which many financial aid programs require.</p>
+          <p>A good rule of thumb: plan about <b>2 hours of study outside class for every unit</b>. A 15-unit schedule means about 15 hours in class and 30 hours of studying each week. That is a full-time job!</p>
+          <p>Some courses have <b>prerequisites</b>, classes you must pass first. For example, you usually need Calculus I before Calculus II. That is why the order of your classes matters.</p>
+          <p>Your plan starts now. The high school classes you take, including your A–G courses, open or close doors to majors. For example, engineering and computer science move faster if you take math every year, and nursing programs look for biology and chemistry.</p>
+          <p class="src">Article written for this lesson. Units and requirements vary by college; always check with a counselor.</p>` },
+        { t: "quiz", label: "reading check", items: [
+          { q: "About how many semester units does a bachelor’s degree usually take?", opts: ["30", "60", "120", "200"], a: 2, why: "About 120 semester units (an associate degree is about 60)." },
+          { q: "What is the minimum number of units to be a full-time student?", opts: ["6", "9", "12", "20"], a: 2, why: "12 units makes you full-time." },
+          { q: "Using the rule of thumb, about how many hours should you study each week if you take 15 units?", opts: ["5", "15", "30", "60"], a: 2, why: "2 hours × 15 units = 30 hours." },
+          { q: "What is a prerequisite?", opts: ["A class you must pass before taking another class", "An elective you take for fun", "A type of financial aid", "A club for your major"], a: 0, why: "Like Calculus I before Calculus II." }] }
+      ] },
+    { letters: ["I"], title: "Pick Your Major", time: "9 min", goal: "Explore majors that match your interests and choose one to plan with today.",
+      blocks: [
+        { t: "picker", title: "🎓 Choose a major to explore", options: CC_MAJORS },
+        { t: "write", label: "major choice", title: "Why this major?", prompt: "Why did you choose this major? Connect it to your interest areas from the survey and to at least one career.", min: 30, starter: "I chose … because my interest areas are … and I could become a …",
+          checks: [{ label: "Names an interest area (Doer, Thinker, Creator, Helper, Persuader, Organizer…)", re: /realistic|investigative|artistic|social|enterprising|conventional|doer|thinker|creator|helper|persuader|organizer|interest/i }, { label: "Names a career", re: /nurse|engineer|developer|scientist|teacher|counselor|police|officer|accountant|manager|analyst|lawyer|therapist|technician|farmer|rancher|drafter|designer|career|job/i }] }
+      ] },
+    { letters: ["O"], title: "Build Your First-Year College Schedule", time: "13 min", goal: "Place courses into Fall and Spring to make a full-time plan for your major.",
+      blocks: [
+        { t: "text", html: `<div class="callout"><b>Your mission:</b> Build a first year at a community college (like College of the Sequoias) for your major. Use these rules from a real counselor: <b>12–16 units</b> each semester, <b>English Composition in your first semester</b>, a <b>math course</b> this year, at least <b>3 major-prep courses</b>, and take prerequisites <b>first</b>.</div>` },
+        { t: "schedule", title: "First-year schedule", ge: CC_GE, minMajor: 3 }
+      ] },
+    { letters: ["O", "I"], title: "Balance Your Week and Prioritize", time: "10 min", goal: "Plan a realistic college week, then decide what to do first.",
+      blocks: [
+        { t: "week", title: "Plan a realistic week", how: "Move the sliders to plan a week as a full-time college student. Try to meet every goal below." },
+        { t: "sort", label: "prioritize sort", title: "Prioritize: what would you do?", zones: ["🔥 Do it now", "📅 Schedule it", "🙋 Ask for help", "🗑️ Drop it or do it later"],
+          tiles: [["Biology exam is tomorrow", 0], ["Financial aid form is due tonight", 0], ["Essay due in 6 days", 1], ["Start studying for finals in 3 weeks", 1], ["You don’t understand the calculus homework due Friday", 2], ["A group project partner stopped answering texts", 2], ["Scroll social media for an hour", 3], ["Rewatch a whole TV series", 3]],
+          why: "Urgent and important = now. Important but not urgent = schedule it. Stuck = ask for help (tutoring, professor). Not important = drop it." }
+      ] },
+    { letters: ["C"], title: "Speed Advising", time: "7 min", goal: "Trade plans with a partner, give advice like a college counselor, and improve your plan.",
+      blocks: [
+        { t: "move", mode: "circle", time: "4 min", seconds: 90, prompt: "Speed Advising: trade screens with your partner. When the timer ends, rotate!", options: ["Is each semester 12–16 units?", "Is English Composition in Fall?", "Does the week leave 2 hours of study per unit?"],
+          talk: "Be a kind counselor: give one compliment and one suggestion.", reflect: "What was one compliment or suggestion you gave your partner?" },
+        { t: "partner", title: "Partner feedback", how: "Write down the best advice you got and how you will use it.", got: "The best advice my partner gave me about my plan", change: "What I will change or add to my schedule or week" }
+      ] },
+    { letters: ["W"], title: "Exit Ticket", time: "4 min", goal: "Explain your plan.",
+      blocks: [ { t: "write", label: "exit ticket", title: "Exit ticket", prompt: "Name your major, <b>two courses</b> you will take your first year and why they matter, and <b>how you will balance your time</b> (study, work, sleep).", min: 45,
+        checks: [{ label: "Names your major", re: /nursing|computer|agricultur|business|psycholog|liberal|teach|engineer|criminal|justice|major/i }, { label: "Names two courses (with a course code or name)", re: /[A-Z]{2,5} ?\d+[A-Z]?|english|calculus|statistics|anatomy|physiology|chemistry|programming|accounting|economics|biology|sociology|physics|criminal law|plant|animal|soil|teaching|child/i, min: 2 },
+          { label: "Explains how you will balance your time", re: /study|sleep|work|hours|planner|schedule|balance|prioritiz/i }] } ] }
+  ]
+};
+</script>
+<script src="hub-config.js?v=3"></script>
+<script src="cc-lesson.js?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Note-Taking Studio | AVID</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="cc-lesson.css?v=2">
+</head>
+<body>
+<script>
+/* =====================================================================
+   ✏️ NOTE-TAKING STUDIO (AVID Focused Note-Taking), about 55–60 minutes
+   ===================================================================== */
+const PAPER = inner => `<svg viewBox="0 0 400 250" role="img"><rect width="400" height="250" fill="#fffdf6"/>${inner}</svg>`;
+const LN = (x1, y, x2, c = "#c9d6ea") => `<line x1="${x1}" y1="${y}" x2="${x2}" y2="${y}" stroke="${c}" stroke-width="1.5"/>`;
+const TX = (x, y, t, s = 11, w = 700, c = "#2a2433", a = "start") => `<text x="${x}" y="${y}" font-family="Nunito,Arial" font-size="${s}" font-weight="${w}" fill="${c}" text-anchor="${a}">${t}</text>`;
+const lines = (x1, x2, y0, n, gap = 16) => Array.from({ length: n }, (_, i) => LN(x1, y0 + i * gap, x2)).join("");
+const FORMATS = [
+  { name: "Focused Notes (two-column)", emoji: "📝", what: "AVID’s focused notes: a header with the topic and Essential Question, questions and key terms on the left, notes on the right, and a summary at the bottom.",
+    best: "Almost any class, especially when you will be tested on the material later.", college: "Leave the left column empty during lecture. Within 24 hours, add questions, then cover the right side and quiz yourself.", study: "Cover the notes column and answer the left-column questions out loud.",
+    svg: PAPER(`${TX(14, 20, "Name · Class · Period · Date", 10, 700, "#6b6250")}${TX(14, 36, "Topic: Cell Transport   EQ: How do cells move materials?", 10.5)}${LN(10, 44, 390, "#8a7f63")}
+      <line x1="120" y1="44" x2="120" y2="196" stroke="#e8368f" stroke-width="2"/>${TX(18, 62, "What is osmosis?", 10, 800, "#e8368f")}${TX(18, 108, "Active vs passive?", 10, 800, "#e8368f")}${TX(18, 150, "Key term: ATP", 10, 800, "#e8368f")}
+      ${lines(128, 388, 62, 9)}${TX(130, 60, "diffusion of water → high to low conc.", 10, 600)}${TX(130, 76, "no energy needed (passive)", 10, 600)}${TX(130, 108, "active = uses ATP, low → high", 10, 600)}<rect x="128" y="96" width="70" height="14" fill="#ffe86b" opacity=".6"/>
+      ${LN(10, 196, 390, "#8a7f63")}${TX(14, 214, "Summary: Cells move materials by passive transport (no energy)", 10, 700)}${TX(14, 230, "and active transport (uses ATP)…", 10, 700)}`) },
+  { name: "Outline", emoji: "🧾", what: "Main ideas on the left margin, with supporting details indented under them (I, A, 1).",
+    best: "Well-organized lectures and textbook chapters with clear headings.", college: "Use the professor’s slide titles as your Roman numerals. Leave space to add details later.", study: "Turn each main idea into a question and explain the details under it.",
+    svg: PAPER(`${TX(14, 24, "Causes of World War I", 13, 800)}${TX(18, 50, "I. Militarism", 11, 800)}${TX(40, 68, "A. Arms race: Germany vs. Britain navies", 10, 600)}${TX(40, 86, "B. Large standing armies", 10, 600)}
+      ${TX(18, 112, "II. Alliances", 11, 800)}${TX(40, 130, "A. Triple Entente: France, Russia, Britain", 10, 600)}${TX(40, 148, "B. Germany + Austria-Hungary", 10, 600)}${TX(60, 166, "1. one war pulled in partners", 10, 600)}
+      ${TX(18, 192, "III. Imperialism", 11, 800)}${TX(18, 218, "IV. Nationalism", 11, 800)}${TX(40, 236, "A. Serbs vs. Austria-Hungary → spark", 10, 600)}`) },
+  { name: "Concept Map", emoji: "🕸️", what: "A main idea in the center with branches to related ideas, examples, and connections.",
+    best: "Big-picture topics with many connected parts, like ecosystems, characters, or causes and effects.", college: "Great for processing after lecture: turn your two-column notes into a map to see how ideas connect.", study: "Redraw the map from memory, then check it against your notes.",
+    svg: PAPER(`<g stroke="#8a54e0" stroke-width="2">${[[200, 125, 80, 50], [200, 125, 320, 50], [200, 125, 70, 200], [200, 125, 330, 200], [200, 125, 200, 225]].map(l => `<line x1="${l[0]}" y1="${l[1]}" x2="${l[2]}" y2="${l[3]}"/>`).join("")}</g>
+      <ellipse cx="200" cy="125" rx="70" ry="28" fill="#e5dbff" stroke="#8a54e0" stroke-width="2"/>${TX(200, 129, "PHOTOSYNTHESIS", 11, 900, "#2a2433", "middle")}
+      ${[[80, 50, "Inputs: CO₂ + H₂O"], [320, 50, "Output: glucose"], [70, 200, "Where: chloroplast"], [330, 200, "Needs: sunlight"], [200, 232, "Releases O₂"]].map(n => `<rect x="${n[0] - 62}" y="${n[1] - 14}" width="124" height="24" rx="12" fill="#fff" stroke="#8a54e0"/>${TX(n[0], n[1] + 3, n[2], 10, 700, "#2a2433", "middle")}`).join("")}`) },
+  { name: "Chart / Table", emoji: "📊", what: "Rows and columns that compare several things across the same categories.",
+    best: "Comparing: types of government, cell organelles, characters, math formulas.", college: "When a lecture compares items, draw the table first and fill it in as you listen.", study: "Cover one column and recall it, then check.",
+    svg: PAPER(`${TX(14, 22, "Economic Systems", 13, 800)}<g stroke="#8a7f63" stroke-width="1.5" fill="none"><rect x="12" y="32" width="376" height="200"/><line x1="12" y1="62" x2="388" y2="62"/><line x1="12" y1="118" x2="388" y2="118"/><line x1="12" y1="174" x2="388" y2="174"/><line x1="110" y1="32" x2="110" y2="232"/><line x1="250" y1="32" x2="250" y2="232"/></g>
+      ${TX(20, 52, "System", 10, 900)}${TX(118, 52, "Who owns businesses?", 10, 900)}${TX(258, 52, "Who sets prices?", 10, 900)}${TX(20, 94, "Capitalism", 10, 800)}${TX(118, 94, "Private owners", 10, 600)}${TX(258, 94, "Supply & demand", 10, 600)}
+      ${TX(20, 150, "Socialism", 10, 800)}${TX(118, 150, "Gov’t: key industries", 10, 600)}${TX(258, 150, "Mixed", 10, 600)}${TX(20, 206, "Communism", 10, 800)}${TX(118, 206, "The state", 10, 600)}${TX(258, 206, "Central planners", 10, 600)}`) },
+  { name: "Flow / Sequence", emoji: "➡️", what: "Boxes and arrows that show steps, a process, or a timeline in order.",
+    best: "Processes and procedures: solving equations, protein synthesis, how a bill becomes a law, historical timelines.", college: "Science and math lectures are full of processes. Number every step and draw the arrows.", study: "Explain each arrow: what causes the next step?",
+    svg: PAPER(`${TX(14, 24, "Solving 2(x + 4) = 18", 13, 800)}${[[20, "Distribute", "2x + 8 = 18"], [150, "Subtract 8", "2x = 10"], [280, "Divide by 2", "x = 5"]].map((b, i) => `<rect x="${b[0]}" y="60" width="100" height="70" rx="10" fill="#d9ecff" stroke="#2b7de9" stroke-width="2"/>${TX(b[0] + 50, 86, b[1], 11, 800, "#2a2433", "middle")}${TX(b[0] + 50, 108, b[2], 11, 700, "#2a2433", "middle")}${i < 2 ? `<path d="M${b[0] + 104} 95 h22" stroke="#2b7de9" stroke-width="3" marker-end="url(#ah)"/>` : ""}`).join("")}
+      <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#2b7de9"/></marker></defs>${TX(20, 168, "✔ Check: 2(5 + 4) = 18", 11, 800, "#0e9f6e")}${TX(20, 196, "Why distribute first? Undo the parentheses so you can isolate x.", 10, 600)}`) },
+  { name: "Annotated Slides / Handout", emoji: "🖍️", what: "Notes written directly on a printed slide deck, handout, or article: highlights, margin notes, circles, and questions.",
+    best: "Classes where the teacher gives you the slides or a reading, and most college lectures that post slides online.", college: "Print or download the slides before class so you can spend lecture time adding the professor’s explanations, not copying slides.", study: "Turn your margin notes into a two-column page or flashcards.",
+    svg: PAPER(`<rect x="14" y="20" width="200" height="120" fill="#fff" stroke="#8a7f63"/>${TX(24, 42, "Slide 4: Supply & Demand", 11, 800)}${TX(24, 64, "• Price ↑ → quantity demanded ↓", 10, 600)}${TX(24, 82, "• Price ↑ → quantity supplied ↑", 10, 600)}<rect x="22" y="70" width="168" height="14" fill="#ffe86b" opacity=".55"/>
+      ${lines(228, 388, 34, 6, 18)}${TX(230, 32, "Prof: think of concert tickets", 10, 700, "#e8368f")}${TX(230, 50, "→ resale prices ↑ when sold out", 10, 600, "#e8368f")}${TX(230, 86, "? why curve slopes down", 10, 700, "#2b7de9")}
+      <rect x="14" y="150" width="200" height="88" fill="#fff" stroke="#8a7f63"/>${TX(24, 172, "Slide 5: Equilibrium", 11, 800)}${TX(24, 194, "Where supply = demand", 10, 600)}<circle cx="122" cy="190" r="34" fill="none" stroke="#e8368f" stroke-width="2"/>${TX(230, 182, "★ on the test (said twice!)", 10, 800, "#0e9f6e")}`) },
+  { name: "Sketchnotes", emoji: "🎨", what: "Words plus simple drawings, icons, arrows, and boxes on one page. Pictures help memory.",
+    best: "Visual learners, presentations, guest speakers, and reviewing a whole unit on one page.", college: "Keep drawings simple (stick figures, boxes, arrows). The goal is meaning, not art.", study: "Use your sketchnote as a one-page review sheet before the test.",
+    svg: PAPER(`${TX(200, 26, "THE WATER CYCLE", 15, 900, "#2b7de9", "middle")}<circle cx="70" cy="80" r="24" fill="#ffd23f"/>${TX(70, 120, "sun heats", 10, 700, "#2a2433", "middle")}
+      <path d="M150 190 q20 -40 0 -80" stroke="#2b7de9" stroke-width="3" fill="none"/>${TX(160, 150, "evaporation ↑", 10, 800)}<ellipse cx="270" cy="70" rx="50" ry="20" fill="#e8eef7" stroke="#8a7f63"/>${TX(270, 74, "condensation", 10, 800, "#2a2433", "middle")}
+      ${[250, 270, 290].map(x => `<line x1="${x}" y1="96" x2="${x - 6}" y2="122" stroke="#2b7de9" stroke-width="2"/>`).join("")}${TX(320, 118, "precipitation", 10, 800)}<path d="M40 210 q80 -18 160 0 t160 0" stroke="#2b7de9" stroke-width="3" fill="none"/>${TX(200, 238, "collection: rivers, lakes, ocean, groundwater", 10, 700, "#2a2433", "middle")}`) }
+];
+
+const DEP = [{ h: "Causes of the Great Depression · U.S. History · 10/6" }, "In October 1929 the", "stock market crash", "wiped out billions of dollars in savings.", { br: 1 },
+  "Many investors had been", "buying on margin", "(borrowing money to buy stocks), so they could not repay their loans.", { br: 1 },
+  "Banks failed when people rushed to withdraw money in", "bank runs", ", and about 9,000 banks closed during the 1930s.", { br: 1 },
+  "Farmers already struggled with low crop prices and debt;", "the Dust Bowl", "later destroyed farms on the Great Plains.", { br: 1 },
+  "The", "Smoot-Hawley Tariff", "(1930) raised taxes on imports, other countries raised theirs, and world trade fell.", { br: 1 },
+  "By 1933, about one in four workers was unemployed.", { br: 1 }, "Big idea:", "weak banks + debt + falling trade created a downturn that kept getting worse."];
+const IDX = t => DEP.indexOf(t);
+
+window.CC = {
+  id: "avid-notes-studio", subject: "AVID", kind: "Focused Note-Taking Lesson", brand: { name: "AVID", home: "avid", mark: "📝" },
+  short: "Note-Taking Studio", color: "#2b7de9", emoji: "📝", time: "55–60 min",
+  title: "Note-Taking Studio: Take It, Process It, Revisit It",
+  intro: "See why revisiting notes matters, explore seven ways to take notes, annotate and process real notes, practice with a college-style lecture, fix an old quiz, and build a study plan.",
+  eq: "How does revisiting and processing my notes help me remember more and do better on tests?",
+  targets: {
+    I: "I can use a model of memory to explain why I should revisit my notes.",
+    R: "I can choose a note-taking format that fits the class and the task.",
+    W: "I can process notes by adding questions, marks, and a summary.",
+    O: "I can plan spaced study sessions using my notes and old quizzes.",
+    C: "I can share how I will use my notes with a partner."
+  },
+  teacher: `<p><b>Pacing (≈ 58 min):</b> Forgetting curve 8 · Formats 10 · Annotate & process 12 · Lecture 12 · Quiz corrections 8 · Study plan 5 · Exit 3.</p>
+    <p><b>Lecture station:</b> the computer reads the lecture aloud (headphones help), or read the transcript to the class while students take notes.</p>
+    <p><b>Connect to AVID:</b> the stations follow the focused note-taking phases: taking, processing, connecting thinking, summarizing and reflecting, and applying learning.</p>`,
+  stations: [
+    { letters: ["I", "R"], title: "Why Revisit? The Forgetting Curve", time: "8 min", goal: "Find out how fast we forget, and how reviewing changes that.",
+      blocks: [
+        { t: "text", html: `<p>In 1885, psychologist Hermann Ebbinghaus tested his own memory and found that we forget new information quickly, often more than half of it within a day, unless we review. Each time we <b>revisit</b> information, the memory gets stronger and fades more slowly. This is why AVID asks you to go back to your notes again and again, not just take them.</p>` },
+        { t: "curve", title: "Try it: plan your reviews", test: 21, how: "Your test is on Day 21. Tap days to add a review of your notes. Try to remember at least 75% on test day with as few reviews as possible." },
+        { t: "quiz", label: "curve check", items: [
+          { q: "What happens to memory each time you revisit your notes?", opts: ["It resets and fades more slowly afterward", "Nothing changes", "You forget faster", "You only remember the summary"], a: 0, why: "Each review strengthens the memory, so the curve drops more slowly." },
+          { q: "Which plan works best for a test in three weeks?", opts: ["Read your notes once the night before", "Short reviews spread out: the next day, a few days later, then each week", "Never review; just take good notes", "Review only the day you take the notes"], a: 1, why: "Spaced reviews beat one long cram session." }] }
+      ] },
+    { letters: ["R", "O"], title: "Seven Ways to Take Notes", time: "10 min", goal: "Explore each format, then decide which fits each situation.",
+      blocks: [
+        { t: "formats", title: "Note-taking formats", formats: FORMATS },
+        { t: "quiz", label: "format match", title: "Which format fits best?", items: [
+          { q: "Your biology professor explains the 6 steps of protein synthesis in order.", opts: ["Flow / Sequence", "Chart / Table", "Sketchnotes", "Outline"], a: 0, why: "Steps in order = flow chart with arrows." },
+          { q: "In history, you compare three empires by government, economy, and religion.", opts: ["Concept map", "Chart / Table", "Flow", "Annotated handout"], a: 1, why: "Same categories for several items = a table." },
+          { q: "Your college professor posts the slides online before every lecture.", opts: ["Copy every slide word for word", "Annotated slides: print or download, then add the professor’s explanations", "Sketchnotes only", "Don’t take notes"], a: 1, why: "Spend lecture time adding explanations and examples, not copying." },
+          { q: "You need to study for a test on a whole unit and want to see how everything connects.", opts: ["Concept map", "Outline", "Flow", "Table"], a: 0, why: "A concept map shows connections between big ideas." },
+          { q: "Which format is built to help you quiz yourself later?", opts: ["Sketchnotes", "Focused notes (two-column)", "Table", "Outline"], a: 1, why: "The left-column questions let you cover the notes and self-test." }] }
+      ] },
+    { letters: ["R", "W"], title: "Process the Notes: Annotate and Question", time: "12 min", goal: "Mark up a page of notes, then add questions and a summary.",
+      blocks: [
+        { t: "annotate", title: "Annotate these notes", parts: DEP, style: "", feedback: "Nice processing! Key terms, the big idea, a question, and a connection are the marks your teacher looks for.",
+          tasks: [{ label: "Key terms (yellow)", color: "y", need: 4, key: [IDX("stock market crash"), IDX("buying on margin"), IDX("bank runs"), IDX("the Dust Bowl"), IDX("Smoot-Hawley Tariff")] },
+            { label: "The big idea (blue)", color: "b", need: 1, key: [IDX("weak banks + debt + falling trade created a downturn that kept getting worse.")] },
+            { label: "Something to ask about (pink)", color: "p", need: 1 }, { label: "A connection to today or another class (green)", color: "g", need: 1 }] },
+        { t: "cornell", title: "Add questions and a summary", topic: "Causes of the Great Depression", cls: "U.S. History · 10/6", how: "Write a question in the left column that each note answers (end with “?”). Then write a summary.",
+          rows: [{ n: "Oct 1929: stock market crash → billions in savings lost. Many bought stocks <b>on margin</b> (borrowed $)." }, { n: "<b>Bank runs</b> → about 9,000 banks failed in the 1930s; people lost savings." }, { n: "Farm crisis: low prices + debt. <b>Dust Bowl</b> destroyed Plains farms." }, { n: "<b>Smoot-Hawley Tariff</b> (1930) → other nations retaliated → world trade ↓" }, { n: "1933: about 25% unemployed." }],
+          sumChecks: [{ label: "Names at least two causes", re: /crash|margin|bank|dust|tariff|debt|trade|farm/i, min: 2 }, { label: "Explains how the causes connect (because, led to, caused…)", re: /because|led to|caused|so |as a result|which|made/i }] }
+      ] },
+    { letters: ["W", "I"], title: "College Lecture Practice", time: "12 min", goal: "Take notes during a short lecture, like in a college class.",
+      blocks: [
+        { t: "text", html: `<div class="callout"><b>College lecture tips:</b> listen for signal words (“the main reason…”, “for the exam…”, “first, second…”), paraphrase instead of copying, and use abbreviations: <b>w/</b> with, <b>b/c</b> because, <b>→</b> leads to, <b>↑ ↓</b> increase/decrease, <b>≈</b> about, <b>★</b> important.</div>` },
+        { t: "lecture", title: "Mini-lecture: California’s Water and the Sierra Snowpack (about 2 minutes)", how: "Press Play and take notes. Put questions and key terms on the left and notes on the right. Then check your notes.", min: 30,
+          text: ["Good morning, everyone. Today we’re talking about where California’s water comes from, and why it matters right here in the Valley.",
+            "First, the water cycle has four main stages: evaporation, condensation, precipitation, and collection. The sun heats water in oceans and lakes, and it evaporates. The vapor cools and condenses into clouds. Then it falls as precipitation, and it collects in rivers, lakes, the ocean, and underground.",
+            "In California, most of our precipitation falls in winter, and a lot of it falls as snow in the Sierra Nevada. That snowpack works like a natural reservoir. It stores water during the winter and melts slowly in spring and summer, right when farms and cities need it most. On average, the Sierra snowpack supplies about thirty percent of California’s water. That’s why the state measures the snowpack every year around April first.",
+            "Here in the San Joaquin Valley, snowmelt feeds rivers like the Kaweah and the Tule, which help irrigate farms.",
+            "Now, here is the main concern. As the climate warms, more precipitation falls as rain instead of snow, and the snow melts earlier. Water rushes downhill in winter, reservoirs can’t hold it all, and less is left for the dry summer. Some solutions include storing more water underground, which is called groundwater recharge, and using water more efficiently.",
+            "For the exam, be ready to explain the four stages of the water cycle and why the snowpack matters."],
+          checks: [{ label: "Notes include at least 3 water-cycle stages", re: /evaporat|condens|precipit|collect/i, min: 3 }, { label: "Explains the snowpack as natural storage", re: /reservoir|stor|snow ?pack/i }, { label: "Captures the number (about 30%)", re: /30|thirty/i }, { label: "Notes the main concern (warming, rain instead of snow, early melt)", re: /warm|rain instead|earlier|climate|melt/i }, { label: "Includes at least one question", re: /\?/ }] }
+      ] },
+    { letters: ["I", "O"], title: "Revisit an Old Quiz", time: "8 min", goal: "Turn mistakes into study notes with quiz corrections.",
+      blocks: [
+        { t: "text", html: `<p>Returned quizzes are some of your best study tools: they show exactly what your teacher thinks is important and what you still need to learn. Keep them behind the class tab, and do <b>quiz corrections</b>: name why you missed it, find the right answer in your notes, and explain it.</p>` },
+        { t: "correct", title: "Quiz corrections", header: "Biology · Unit 3 Quiz: Cells · Score 7/10", how: "This student missed three questions. For each one, choose why it was missed, pick the correct answer, and explain it.",
+          items: [{ q: "Which organelle makes most of the cell’s energy (ATP)?", opts: ["Nucleus", "Mitochondria", "Ribosome", "Cell wall"], a: 1, was: 0, why: "Mitochondria carry out cellular respiration and make ATP." },
+            { q: "During osmosis, water moves toward the side with…", opts: ["more dissolved solute", "less dissolved solute", "no membrane", "more light"], a: 0, was: 1, why: "Water moves toward more solute (and less water)." },
+            { q: "A red blood cell placed in a very salty (hypertonic) solution will…", opts: ["swell and burst", "shrink", "stay the same", "divide"], a: 1, was: 0, why: "Water leaves the cell toward the saltier side, so it shrinks." }] }
+      ] },
+    { letters: ["O"], title: "Plan to Study: Spaced Review", time: "5 min", goal: "Plan when and how you will revisit your notes before a test.",
+      blocks: [ { t: "plan", title: "My 10-day study plan", how: "Your unit test is on Friday the 16th. Tap days to plan study sessions and choose what you will do each time.",
+        days: [["Wed", "7"], ["Thu", "8"], ["Fri", "9"], ["Sat", "10"], ["Sun", "11"], ["Mon", "12"], ["Tue", "13"], ["Wed", "14"], ["Thu", "15"], ["Fri", "16"]],
+        acts: ["Revisit & add to notes", "Self-quiz (cover notes)", "Fix old quiz", "Concept map / summary"] } ] },
+    { letters: ["W", "C"], title: "Exit Ticket", time: "3 min", goal: "Commit to a change.",
+      blocks: [ { t: "write", label: "exit ticket", title: "Exit ticket", prompt: "Which note-taking format will you try in one of your classes, and how will you <b>revisit</b> your notes before your next test? Share your answer with a partner.", min: 35,
+        checks: [{ label: "Names a format", re: /focused|two.column|cornell|outline|concept map|map|table|chart|flow|sequence|annotat|slides|sketch/i }, { label: "Names a class", re: /math|algebra|geometry|english|history|biology|chemistry|science|spanish|art|avid|class/i }, { label: "Explains how you will revisit (review, quiz, questions, summary…)", re: /review|revisit|quiz|question|summary|cover|flashcard|study|correct/i }] } ] }
+  ]
+};
+
+</script>
+<script src="cc-blocks2.js?v=1"></script>
+<script src="hub-config.js?v=3"></script>
+<script src="cc-lesson.js?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Get Hired: Resumes, Applications & Interviews | College & Career</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="cc-lesson.css?v=2">
+</head>
+<body>
+<script>
+/* =====================================================================
+   ✏️ JOB READY: Get Hired: Resumes, Applications & Interviews (about 50 min)
+   New block types (bullets, star, mock) live in cc-career.js.
+   ✏️ Check the work-permit rules in Station 3 each school year
+      (California Labor Code and CDE forms can change).
+   ===================================================================== */
+window.CC = {
+  id: "job-ready", subject: "College & Career", short: "Get Hired", color: "#1f6fd1", emoji: "💼", time: "≈ 50 min",
+  kind: "College & Career lesson",
+  title: "Get Hired: Resumes, Applications & Interviews",
+  intro: "Learn what employers look for, turn weak resume lines into strong ones, understand California work permits and hour limits, build a STAR interview answer, try a timed mock interview, and write a thank-you email.",
+  eq: "How can I show an employer, on paper and in person, that I am ready to work?",
+  targets: {
+    R: "I can read about the skills employers want and the California rules for teen workers.",
+    O: "I can sort strong and weak resume lines and organize an interview answer with STAR.",
+    I: "I can figure out which of my own experiences (school, family, volunteering) prove my skills.",
+    C: "I can practice interview questions out loud with a partner and give helpful feedback.",
+    W: "I can write strong resume bullets, a clear interview answer, and a professional thank-you email."
+  },
+  teacher: `<p><b>Pacing (≈ 50 min):</b> What Employers Want 7 · Resume Do’s and Don’ts 9 · Applications and Work Permits 8 · Interview Skills: STAR 9 · Mock Interview 12 · Follow-Up 5.</p>
+    <p><b>Collaboration:</b> In Station 5, pair students. Partner A reads the question aloud (or uses the 🔊 button), Partner B answers out loud during think time, then types. Switch after each question. Students with headphones can use the read-aloud button on their own.</p>
+    <p><b>Timers:</b> the mock interview gives 60 seconds to think and 90 seconds to type. Students can press “I’m ready” to skip the think time. Typing is never locked when time runs out, so slower typists and English learners can finish.</p>
+    <p><b>Pair with:</b> <a href="resume-builder.html">Resume Builder</a> (students build a real one-page resume) and the printable <a href="interview-guide.html">Interview & Job Search Guide</a>.</p>
+    <p><b>Accuracy note:</b> Station 3 summarizes California rules for minors as of 2025 (work permit forms CDE B1-1 and B1-4; school-year hour limits). Rules can change, and some schools handle permits differently, so students are told to check with the school’s work-permit office. The NACE survey is described without percentages because the numbers change each year.</p>`,
+  stations: [
+    { letters: ["R", "I"], title: "What Employers Look For", time: "7 min", goal: "Learn the skills employers say they want most, and find proof of them in your own life.",
+      blocks: [
+        { t: "text", html: `<h3>Skills that get you hired</h3>
+          <p>Every year, the <b>National Association of Colleges and Employers (NACE)</b> runs a <b>Job Outlook</b> survey. It asks employers what they look for on a resume when they hire new college graduates. Year after year, near the top of the list are skills like <b>problem-solving</b>, <b>teamwork</b>, <b>communication</b> (especially writing), and a <b>strong work ethic</b> (showing initiative and working hard without being told).</p>
+          <p>These are called <b>soft skills</b> or <b>durable skills</b>: ways you work with people and handle problems. <b>Hard skills</b> are things you learn to do, like using a cash register, making a spreadsheet, or speaking two languages.</p>
+          <p>For a first job, managers in places like restaurants, stores, camps, and farm offices often say the same thing in simple words: <b>show up on time, be friendly, be willing to learn, and work well with others.</b> You can learn to run a register in a day. Being dependable is harder to teach.</p>
+          <div class="callout"><b>Good news:</b> you already have proof of these skills. Group projects (teamwork), AVID tutorials (problem-solving), babysitting or helping in a family business (responsibility), translating for family (communication), and sports or band practice (work ethic) all count.</div>
+          <p class="src">Source: NACE Job Outlook surveys (naceweb.org). The exact rankings and percentages change each year, so this lesson lists the skills without numbers.</p>` },
+        { t: "quiz", label: "employer skills", items: [
+          { q: "What does the NACE Job Outlook survey ask employers?", opts: ["Which colleges are the best", "Which skills and qualities they look for when hiring", "How much they pay teens", "Which phones they use"], a: 1, why: "NACE asks employers which skills and qualities they want in new hires." },
+          { q: "Which of these is a soft skill?", opts: ["Typing 40 words a minute", "Using Excel", "Teamwork", "Driving a forklift"], a: 2, why: "Teamwork is about how you work with people. The others are hard skills you can be trained to do." },
+          { q: "Maria translates at the doctor’s office for her grandparents. Which skill does this show best?", opts: ["Communication", "Coding", "Sales", "Nothing, it doesn’t count"], a: 0, why: "Translating clearly between two people is strong communication, and being bilingual is a valued hard skill too." },
+          { q: "A manager hiring for a first job says “I can teach the register.” What is the manager probably looking for most?", opts: ["Lots of past job titles", "Someone dependable, friendly, and willing to learn", "A college degree", "Expensive clothes"], a: 1, why: "For first jobs, attitude and reliability matter a lot because the tasks can be taught." }] }
+      ] },
+    { letters: ["O", "W"], title: "Resume Do’s and Don’ts", time: "9 min", goal: "Sort strong and weak resume lines, then rewrite weak bullets into strong ones.",
+      blocks: [
+        { t: "text", html: `<p>A resume is a <b>one-page summary</b> of your skills and experience. Employers often look at it for less than a minute, so every line has to work. Strong lines start with an <b>action verb</b>, show <b>what you did</b>, and include a <b>number or result</b>. Leave out “I”, and skip anything private or unprofessional.</p>
+          <p class="mu small">Want to build your own? Open the <a href="resume-builder.html" target="_blank" rel="noopener">Resume Builder</a> after class.</p>` },
+        { t: "sort", label: "resume line sort", title: "Strong line or weak line?", zones: ["✅ Strong resume line", "❌ Weak or risky line"],
+          tiles: [["Trained 4 new volunteers to run the snack bar at home games", 0], ["Email: xXsk8rboiXx@email.com", 1], ["Bilingual: Spanish and English (speak, read, write)", 0], ["I did stuff at my uncle’s shop", 1], ["Raised $450 for the AVID field trip by organizing a car wash", 0], ["Hobbies: sleeping and watching TV", 1], ["Social Security number and date of birth at the top", 1], ["Cared for 2 siblings after school, 15 hours a week, including homework help", 0], ["Responsible for duties", 1], ["Expected graduation: June 2028 · Tulare Western High School", 0]],
+          why: "Strong lines are specific and professional. Use a simple email (first.last), and never put your Social Security number or birth date on a resume." },
+        { t: "bullets", label: "resume bullets", title: "Bullet makeover", items: [
+          { weak: "I babysat my cousins.", hint: "How many kids? How often? What did you do with them?", ph: "Cared for …", ex: "Cared for 3 cousins ages 4 to 9 every Saturday, making lunch and helping with reading homework." },
+          { weak: "Helped at my family’s taco truck.", hint: "What tasks? How many customers? How busy was it?", ph: "Took orders …", ex: "Took orders and handled cash for 100+ customers on busy weekend nights at a family taco truck." },
+          { weak: "I did yard work for neighbors.", hint: "How many yards? How often? Did they keep hiring you?", ph: "Mowed …", ex: "Mowed and edged lawns for 5 neighbors each week, earning repeat customers all summer." },
+          { weak: "Was in charge of the club fundraiser.", hint: "What kind of fundraiser? How much money? What was it for?", ph: "Organized …", ex: "Organized a club bake sale with 8 members that raised $320 for a college field trip." }] }
+      ] },
+    { letters: ["R"], title: "Applications & Work Permits in California", time: "8 min", goal: "Learn how teens get a work permit and how many hours you can work during the school year.",
+      blocks: [
+        { t: "text", html: `<h3>Before your first day: the work permit</h3>
+          <p>In California, workers under 18 usually need a <b>work permit</b> before they start a job (the official name is a “Permit to Employ and Work”). Here is how it usually works:</p>
+          <ol><li><b>Get hired.</b> The employer offers you the job.</li>
+            <li><b>Fill out form B1-1</b>, the “Statement of Intent to Employ a Minor and Request for a Work Permit.” This form is from the California Department of Education (CDE). <b>You and your employer</b> complete it, and a parent or guardian signs it too.</li>
+            <li><b>Turn it in at school.</b> Your school checks your grades and attendance and then issues the work permit, <b>form B1-4</b>.</li>
+            <li><b>Start working.</b> Your employer keeps the permit on file. Permits usually need to be <b>renewed each school year</b> and when you change jobs.</li></ol>
+          <h3>How many hours can you work?</h3>
+          <div class="tw"><table><thead><tr><th>Age</th><th>On a school day</th><th>On a non-school day</th><th>In a school week</th></tr></thead>
+            <tbody><tr><td><b>14–15</b></td><td>3 hours</td><td>8 hours</td><td>18 hours</td></tr>
+            <tr><td><b>16–17</b></td><td>4 hours</td><td>8 hours</td><td>28 hours</td></tr></tbody></table></div>
+          <p class="src">California rules for minors during the school year, as of 2025. There are also limits on what time of day you can work and which jobs teens can do. Summer rules are different.</p>
+          <div class="callout">📍 <b>Check with your school’s work-permit office</b> (often in the counseling office, career center, or front office). They have the current forms and rules, and they can answer questions about your situation.</div>
+          <h3>Filling out a job application</h3>
+          <p>Write neatly or type carefully. Fill in every box (write “N/A” if it does not apply). Be honest about your <b>availability</b> (the days and hours you can work). Have your references ready: names and phone numbers of adults who know you, like a teacher or coach, who said yes ahead of time. A family member is usually not a good reference.</p>` },
+        { t: "quiz", label: "work permits", items: [
+          { q: "Which form do you and your employer fill out to request a work permit in California?", opts: ["W-2", "B1-1, Statement of Intent to Employ a Minor and Request for a Work Permit", "FAFSA", "I-20"], a: 1, why: "The B1-1 is completed by the student, parent or guardian, and employer, then turned in at school." },
+          { q: "Who issues the work permit (form B1-4)?", opts: ["The employer", "The DMV", "Your school", "The police department"], a: 2, why: "Your school (often a counselor or work-permit office) issues the B1-4 permit." },
+          { q: "Diego is 16. During the school year, what is the most he can work on a Tuesday when he has school?", opts: ["2 hours", "4 hours", "8 hours", "As long as he wants"], a: 1, why: "Ages 16–17 can work up to 4 hours on a school day." },
+          { q: "Ana is 17. What is the most she can work in a school week?", opts: ["18 hours", "28 hours", "40 hours", "48 hours"], a: 1, why: "Ages 16–17 can work up to 28 hours in a school week." },
+          { q: "Kevin is 15. What are his limits during the school year?", opts: ["3 hours on a school day, 18 hours a week", "4 hours on a school day, 28 hours a week", "8 hours a day, 40 hours a week", "No limits"], a: 0, why: "Ages 14–15: 3 hours on a school day and 18 hours in a school week." },
+          { q: "You have a question about your own work permit. What should you do?", opts: ["Guess", "Ask the school’s work-permit office or your counselor", "Skip the permit", "Ask a friend"], a: 1, why: "Rules can change. Your school’s work-permit office has current forms and answers." }] }
+      ] },
+    { letters: ["W", "O"], title: "Interview Skills: The STAR Method", time: "9 min", goal: "Organize an interview answer into Situation, Task, Action, and Result.",
+      blocks: [
+        { t: "text", html: `<h3>Answer with a story: STAR</h3>
+          <p>Many interview questions start with “Tell me about a time…”. The interviewer wants a <b>real example</b>, not “I’m a hard worker.” The <b>STAR method</b> keeps your story short and clear:</p>
+          <div class="tw"><table><thead><tr><th>Part</th><th>What to say</th><th>Example</th></tr></thead><tbody>
+            <tr><td><b>S</b>ituation</td><td>Where and when</td><td>“In my AVID class last semester, our group had a big presentation.”</td></tr>
+            <tr><td><b>T</b>ask</td><td>Your job or the problem</td><td>“Two members were absent, and it was due in three days.”</td></tr>
+            <tr><td><b>A</b>ction</td><td>What <i>you</i> did (use “I”)</td><td>“I made a shared plan, split the slides, and stayed after school to practice with the group.”</td></tr>
+            <tr><td><b>R</b>esult</td><td>What happened and what you learned</td><td>“We finished on time and earned a B+. I learned to plan early and check in with everyone.”</td></tr></tbody></table></div>
+          <p><b>Other interview basics:</b> arrive 10 minutes early, smile and greet the interviewer by name, sit up, make eye contact, put your phone away, and have one or two questions ready to ask at the end.</p>` },
+        { t: "star", label: "STAR answer", title: "Build your STAR answer", qs: ["Tell me about a time you worked on a team.", "Tell me about a time you solved a problem.", "Tell me about a time you showed responsibility.", "Tell me about a time you helped someone."] }
+      ] },
+    { letters: ["C", "W"], title: "Mock Interview", time: "12 min", goal: "Answer 3 random interview questions under time, then use the feedback to improve.",
+      blocks: [
+        { t: "text", html: `<div class="callout"><b>How to practice:</b> work with a partner if you can. Your partner reads the question out loud (or use the 🔊 button). <b>Say your answer out loud first</b> during think time, then type it. Strong answers have <b>a specific example</b>, <b>connect to the job</b>, and stay <b>positive</b>, even about mistakes.</div>` },
+        { t: "mock", label: "mock interview", title: "Mock interview: 3 questions", n: 3, think: 60, answer: 90 }
+      ] },
+    { letters: ["W"], title: "Follow-Up: The Thank-You Email", time: "5 min", goal: "Write a short, professional thank-you email after an interview.",
+      blocks: [
+        { t: "text", html: `<p>Send a thank-you email <b>within 24 hours</b> of an interview. Few teen applicants do this, so it helps you stand out. Keep it short: a clear subject line, a greeting with the interviewer’s name, a thank-you, one detail from the interview, why you are still interested, and a professional closing with your full name and phone number.</p>` },
+        { t: "write", label: "thank-you email", title: "Write your thank-you email", rows: 9, min: 60,
+          prompt: "Pretend you just interviewed for the job you chose in the mock interview. Write the full email, starting with a subject line.",
+          frames: ["Subject: Thank you for the interview", "Dear Ms./Mr. ___,", "Thank you for taking the time to…", "I enjoyed learning about…", "I am excited about…", "Sincerely,"],
+          starter: "Subject: Thank you for the interview\n\nDear Ms. Lopez,\n\nThank you for…",
+          checks: [
+            { label: "Has a subject line", re: /subject\s*:/i },
+            { label: "Greets the interviewer by name (Dear Ms. ___ / Hello Mr. ___)", re: /\b([Dd]ear|[Hh]ello|[Hh]i|[Gg]ood (morning|afternoon))\s+((Mr|Mrs|Ms|Miss|Dr)\.?\s+)?[A-Z][a-z]+/ },
+            { label: "Says thank you", re: /thank/i },
+            { label: "Shows you are still interested in the job", re: /interest|excit|look(ing)? forward|eager|hope to|would love|great fit|opportunity/i },
+            { label: "Uses a professional closing (Sincerely, Best regards, Respectfully)", re: /sincerely|best regards|kind regards|respectfully|best wishes|thank you again/i },
+            { label: "No slang or text-speak (u, ur, thx, lol)", re: /\b(u|ur|thx|lol|gonna|wanna|yo|hey)\b|!!/i, not: true }] }
+      ] }
+  ]
+};
+</script>
+<script src="cc-career.js?v=1"></script>
+<script src="cc-blocks2.js?v=1"></script>
+<script src="hub-config.js?v=3"></script>
+<script src="cc-lesson.js?v=4"></script>
+</body>
+</html>
